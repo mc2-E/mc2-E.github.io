@@ -2,6 +2,7 @@
 
 This repository hosts the website for the **MC²= E Lab**, a research group in the Department of Nuclear Engineering at Texas A&M University.
 
+
 ## About the Lab
 We develop multiscale and multi-physics models, reduced-order models, and AI/ML tools, to understand and engineer nuclear and energy materials.  
 Our work spans:
