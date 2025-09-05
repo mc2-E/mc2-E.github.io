@@ -1,8 +1,10 @@
 ---
-layout: about
-title: about
-permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+layout: home
+title: Materials under Challenging Conditions for Energy Applications
+nav: true
+nav_order: 1
+img: /assets/img/my_group.png
+---
 
 profile:
   align: right
