@@ -1,8 +1,13 @@
 ---
----
 layout: default
 ---
 
-<h1>Test Page</h1>
+<!-- This pulls the title directly from _config.yml -->
+<h1>{{ site.title }}</h1>
 
-<p>If you can see this text, the layout is working correctly.</p>
+<hr>
+
+<!-- This pulls the full description directly from _config.yml -->
+<p>
+  {{ site.description }}
+</p>
