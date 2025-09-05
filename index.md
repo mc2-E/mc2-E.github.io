@@ -1,12 +1,11 @@
 ---
 layout: about
 permalink: /
+title: MC²= E Lab
+subtitle: Karim Ahmed, PI
 ---
 
-# {{ site.title }}
-## {{ site.subtitle }}
-
-We are a research group in the Department of Nuclear Engineering at Texas A&M University.
+The **MC²=E (Materials under Challenging Conditions for Energy Applications)** is a research group in the Department of Nuclear Engineering at Texas A&M University.
 
 We develop multiscale and multi-physics models, reduced-order models, and AI/ML tools, to understand and engineer nuclear and energy materials. Our work spans:
 
