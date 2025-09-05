@@ -1,4 +1,6 @@
 ---
 ---
 
-# Welcome to the MC²=E Lab
+# {{ site.first_name }} {{ site.last_name }}
+
+{{ site.description }}
