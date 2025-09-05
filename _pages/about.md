@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Welcome to the MC²= E Lab
+subtitle: Led by Prof. {{ site.first_name }} {{ site.last_name }}
 nav: true
 nav_order: 1
 ---
