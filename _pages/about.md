@@ -1,9 +1,8 @@
 ---
 layout: home
-title: Materials under Challenging Conditions for Energy Applications
+subtitle: Materials under Challenging Conditions for Energy Applications
 nav: true
 nav_order: 1
-img: /assets/img/my_group.png
 ---
 
 profile:
