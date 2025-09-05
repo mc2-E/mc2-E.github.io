@@ -1,4 +1,4 @@
-layout: page title: Welcome to the MC²= E Lab subtitle: Led by Prof. {{ site.first_name }} {{ site.last_name }} nav: true nav_order: 1
+layout: page permalink: / title: Welcome to the MC²= E Lab subtitle: Led by Prof. {{ site.first_name }} {{ site.last_name }} nav: true nav_order: 1
 We are a research group in the Department of Nuclear Engineering at Texas A&M University.
 
 We develop multiscale and multi-physics models, reduced-order models, and AI/ML tools, to understand and engineer nuclear and energy materials. Our work spans:
