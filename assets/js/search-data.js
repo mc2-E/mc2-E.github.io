@@ -3,13 +3,20 @@ const ninja = document.querySelector('ninja-keys');
 
 // add the home and posts menu items
 ninja.data = [{
-    id: "nav-about",
-    title: "about",
+    id: "nav-",
+    title: "",
     section: "Navigation",
     handler: () => {
       window.location.href = "/";
     },
-  },{id: "nav-blog",
+  },{id: "nav-materials-under-challenging-conditions-for-energy-applications",
+          title: "Materials under Challenging Conditions for Energy Applications",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/_pages/about/";
+          },
+        },{id: "nav-blog",
           title: "blog",
           description: "",
           section: "Navigation",
