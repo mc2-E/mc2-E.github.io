@@ -1,21 +1,24 @@
 ---
-layout: home
-subtitle: Materials under Challenging Conditions for Energy Applications
+layout: page
+title: Welcome to the MC²= E Lab
 nav: true
 nav_order: 1
 ---
+
+We are a research group in the Department of Nuclear Engineering at Texas A&M University.
+
+We develop multiscale and multi-physics models, reduced-order models, and AI/ML tools, to understand and engineer nuclear and energy materials. Our work spans:
+- Multiphysics & multiscale modeling of materials in extreme environments
+- AI/ML-driven reduced-order models for materials properties and performance
+- Advanced nuclear fuels, claddings, and structural materials for advanced reactors
+- Materials for Fusion Energy
+- Battery Materials
 
 profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
-  more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
-
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+  
 
 announcements:
   enabled: true # includes a list of news items
