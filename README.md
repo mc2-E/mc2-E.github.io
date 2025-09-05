@@ -17,7 +17,6 @@ Our work spans:
 - `_pages/` – Research, Teaching, People, Publications, News  
 - `_posts/` – News & blog entries (Markdown files with date-based filenames)  
 
-
 ## How to Contribute
 Lab members can propose updates via **pull requests**. Typical contributions include:
 - Adding news items in `_posts/`  
