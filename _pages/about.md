@@ -5,18 +5,7 @@ title: Welcome to the MC²= E Lab
 subtitle: Led by Prof. {{ site.first_name }} {{ site.last_name }}
 nav: true
 nav_order: 1
-profile:
-  align: right
-  image: prof_pic.jpg
-  image_circular: false
-announcements:
-  enabled: true
-  scrollable: true
-  limit: 3
-latest_posts:
-  enabled: true
-  scrollable: true
-  limit: 3
+
 ---
 
 We are a research group in the Department of Nuclear Engineering at Texas A&M University.
@@ -28,11 +17,3 @@ We develop multiscale and multi-physics models, reduced-order models, and AI/ML 
 - Advanced nuclear fuels, claddings, and structural materials for advanced reactors
 - Materials for Fusion Energy
 - Battery Materials
-
----
-
-Write your biography here. Tell the world about yourself. Link to your favorite subreddit. You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `/assets/img/` folder.
-
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your publications page automatically.
-
-Link to your social media connections, too. This theme is set up to use Font Awesome icons and Academicons, like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
