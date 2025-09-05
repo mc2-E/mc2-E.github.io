@@ -32,6 +32,14 @@ jobs:
           ruby-version: '3.2'
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
           cache-version: 0
+
+      # This is the new, crucial step that installs the missing software
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+          pip install jupyter
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
