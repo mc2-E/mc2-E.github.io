@@ -9,8 +9,8 @@ ninja.data = [{
     handler: () => {
       window.location.href = "/";
     },
-  },{id: "nav-materials-under-challenging-conditions-for-energy-applications",
-          title: "Materials under Challenging Conditions for Energy Applications",
+  },{id: "nav-",
+          title: "",
           description: "",
           section: "Navigation",
           handler: () => {
