@@ -1,8 +1,7 @@
 ---
-layout: page
-permalink: /
-title: Welcome to the MC²= E Lab
-subtitle: Led by Prof. {{ site.first_name }} {{ site.last_name }}
+layout: about
+permalink: /about/
+title: About
 nav: true
 nav_order: 1
 
