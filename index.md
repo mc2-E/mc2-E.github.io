@@ -2,7 +2,7 @@
 layout: about
 permalink: /
 ---
-# The **MC²=E (Materials under Challenging Conditions for Energy Applications)** is a research group in the Department of Nuclear Engineering at Texas A&M University.
+## The **MC²=E (Materials under Challenging Conditions for Energy Applications)** is a research group in the Department of Nuclear Engineering at Texas A&M University.
 ## Karim Ahmed, PI
 
 
