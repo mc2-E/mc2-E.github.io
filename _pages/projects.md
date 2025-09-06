@@ -9,6 +9,12 @@ display_categories: [work, fun]
 horizontal: false
 ---
 
+{% comment %}
+This is a multi-line comment just for us.
+
+Our lab is pleased to announce our latest publication...
+
+
 <!-- pages/projects.md -->
 <div class="projects">
 {% if site.enable_project_categories and page.display_categories %}
@@ -63,3 +69,4 @@ horizontal: false
   {% endif %}
 {% endif %}
 </div>
+{% endcomment %}
