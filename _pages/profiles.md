@@ -7,8 +7,11 @@ nav: true
 nav_order: 7
 
 profiles:
-  # if you want to include more than one profile, just replicate the following block
-  # and create one content file for each profile inside _pages/
-  - align: center
-    image: my_group.png
+  # This section will be used to generate the grid of individual profiles
+  # that will appear below your main group photo.
+  - align: left 
 ---
+
+<div style="text-align: center; margin-bottom: 2rem;">
+  <img src="{{ '/assets/img/my_group.png' | relative_url }}" alt="MC²=E Lab Group Photo" style="width: 80%; max-width: 700px; border-radius: 5px;">
+</div>
