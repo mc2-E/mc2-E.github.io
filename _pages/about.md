@@ -6,6 +6,7 @@ nav: true
 nav_order: 1
 
 ---
+## **MC²=E (Materials under Challenging Conditions for Energy Applications)**
 
 We are a research group in the Department of Nuclear Engineering at Texas A&M University.
 
