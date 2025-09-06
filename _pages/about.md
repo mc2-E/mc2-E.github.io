@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 permalink: /about/
 nav: true
 title: Research
