@@ -17,5 +17,5 @@ We develop multiscale and multi-physics models, reduced-order models, and AI/ML 
 
 
 <div style="text-align: center; margin-bottom: 2rem;">
-  <img src="{{ '/assets/img/group_focus.jpg' | relative_url }}" alt="MC²=E Lab Group Research Focus" style="width: 90%; max-width: 800px; border-radius: 7px;">
+  <img src="{{ '/assets/img/group_focus.jpg' | relative_url }}" alt="MC²=E Lab Group Research Focus" style="width: 90%; max-width: 800px; border-radius: 9px;">
 </div>
