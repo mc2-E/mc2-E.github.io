@@ -22,10 +22,10 @@ We develop multiscale and multi-physics models, reduced-order models, and AI/ML 
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 2rem;">
  
-    <img src="{{ '/assets/img/doe_logo.jpg' | relative_url }}" alt="DOE logo" style="max-height: 60px;">
+    <img src="{{ '/assets/img/doe_logo.jpg' | relative_url }}" alt="DOE logo" style="max-height: 90px;">
  
-    <img src="{{ '/assets/img/nrc_logo.png' | relative_url }}" alt=" nrc Logo" style="max-height: 60px;">
+    <img src="{{ '/assets/img/nrc-logo.png' | relative_url }}" alt=" nrc Logo" style="max-height: 90px;">
  
-    <img src="{{ '/assets/img/neup_logo.png' | relative_url }}" alt=" neup Logo" style="max-height: 60px;">
+    <img src="{{ '/assets/img/neup_logo.png' | relative_url }}" alt=" neup Logo" style="max-height: 90px;">
 
 </div>
