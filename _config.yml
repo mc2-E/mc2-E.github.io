@@ -43,7 +43,15 @@ repo_trophies:
 # -----------------------------------------------------------------------------
 # will use title and url fields
 # Take a look to https://github.com/jekyll/jekyll-feed for more customization
+# -----------------------------------------------------------------------------
+# Social settings
+# -----------------------------------------------------------------------------
 
+social:
+  github: mc2-e
+  scholar: sV3XRksAAAAJ&hl=en
+  # twitter: your_username
+  # linkedin: your_username
 # -----------------------------------------------------------------------------
 # Layout
 # -----------------------------------------------------------------------------
