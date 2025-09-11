@@ -6,8 +6,7 @@ nav: true
 nav_order: 2
 ---
 
-## We will list most recent/under review publications here. For the full list check 
-<a href="https://scholar.google.com/citations?user=sV3XRksAAAAJ&hl=en" class="btn btn-primary" role="button" target="_blank" rel="noopener noreferrer">View Google Scholar Profile</a>
+### We will list most recent/under review publications here. For the full list <a href="https://scholar.google.com/citations?user=sV3XRksAAAAJ&hl=en" class="btn btn-primary" role="button" target="_blank" rel="noopener noreferrer">View Google Scholar Profile</a>
 
 {% comment %}
 
