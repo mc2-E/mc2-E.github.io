@@ -26,7 +26,10 @@ We develop multiscale and multi-physics models, reduced-order models, and AI/ML 
     <img src="{{ '/assets/img/nrc-logo.png' | relative_url }}" alt=" nrc Logo" style="max-height: 90px;">
 
     
-    <img src="{{ '/assets/img/mc2E_Navy.jpeg' | relative_url }}" alt="Navy logo" width="180" height="90">
+    <img src="{{ '/assets/img/mc2E_Navy.jpeg' | relative_url }}"
+     alt="Navy logo"
+     width="180" height="90"
+     style="width:180px; height:auto;">
 
  
     <img src="{{ '/assets/img/NEUP.jpg' | relative_url }}" alt=" neup Logo" style="max-height: 90px;">
