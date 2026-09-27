@@ -6,12 +6,12 @@ nav: true
 nav_order: 3
 ---
 
-## coming soon
-{% comment %}
+Explore course materials, interactive tools, and worked examples for materials science and nuclear engineering.
 
-description: Materials for courses you taught. Replace this text with your description.
+## Courses
 
-For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
+### [NUEN265 — Introduction to Materials Science for Nuclear Energy Applications]({{ '/teaching/nuen265/' | relative_url }})
 
-Organize your courses by years, topics, or universities, however you like!
-{% endcomment %}
+Build an understanding of materials from atomic arrangement to properties and nuclear-energy applications. Begin with the interactive crystal-structures explorer, which connects lattice geometry, atomic packing, density, and the structures of nuclear metals.
+
+[View NUEN265 materials →]({{ '/teaching/nuen265/' | relative_url }})
