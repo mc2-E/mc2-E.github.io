@@ -1423,3 +1423,15 @@ figure.cover {
     color: #23212d !important;
   }
 }
+
+// Use the wider site container for figures, while keeping prose readable.
+// Image sizes and sponsor-row styles are intentionally untouched.
+.post article > p,
+.post article > ul,
+.post article > ol,
+.post article > .clearfix > p,
+.post article > .clearfix > ul,
+.post article > .clearfix > ol,
+.post .post-description {
+  max-width: 82ch;
+}
