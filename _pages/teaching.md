@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /teaching/
-title: teaching
+title: Teaching
 nav: true
 nav_order: 3
 ---
@@ -15,3 +15,4 @@ Explore course materials, interactive tools, and worked examples for materials s
 Build an understanding of materials from atomic arrangement to properties and nuclear-energy applications. Begin with the interactive crystal-structures explorer, which connects lattice geometry, atomic packing, density, and the structures of nuclear metals.
 
 [View NUEN265 materials →]({{ '/teaching/nuen265/' | relative_url }})
+

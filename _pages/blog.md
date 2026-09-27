@@ -1,8 +1,8 @@
 ---
 layout: page
 permalink: /blog/
-title: blog
-nav: true
+title: Blog
+nav: false
 nav_order: 8
 pagination:
   enabled: true
@@ -15,3 +15,4 @@ pagination:
     before: 1 # The number of links before the current page
     after: 3 # The number of links after the current page
 ---
+

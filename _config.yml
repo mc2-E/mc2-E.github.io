@@ -2,19 +2,19 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: MC²= E Lab
+title: MC²=E Lab
 subtitle: Karim Ahmed, PI 
 first_name: Karim
 last_name: Ahmed
 contact_note: >
   The best way to reach me is by email.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  The MC2-E (Materials under Challenging Conditions for Energy Applications) research group at Texas A&M University, led by Prof. Karim Ahmed. We develop models to enable the optimization of current materials and the deployment of next-generation materials  .
+  The MC2-E (Materials under Challenging Conditions for Energy Applications) research group at Texas A&M University, led by Prof. Karim Ahmed. We develop models to enable the optimization of current materials and the deployment of next-generation materials.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
   Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
-keywords: jekyll, jekyll-theme, academic-website, portfolio-website # add your own keywords or leave empty
+keywords: materials science, nuclear energy, multiscale modeling, microstructure, phase-field, machine learning, Texas A&M University
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
@@ -57,10 +57,10 @@ social:
 # -----------------------------------------------------------------------------
 
 navbar_fixed: true
-footer_fixed: true
+footer_fixed: false
 search_enabled: true
 socials_in_search: true
-posts_in_search: true
+posts_in_search: false
 bib_search: true
 
 # Dimensions
@@ -183,6 +183,20 @@ kramdown:
 # Includes & excludes
 include: ["_pages", "_scripts"]
 exclude:
+  # Preserve the theme examples in Git, but omit them from the public site.
+  # Re-enable individual pages/collections when replacing them with real content.
+  - _posts
+  - _news
+  - _projects
+  - _books
+  - _pages/blog.md
+  - _pages/news.md
+  - _pages/books.md
+  - _pages/projects.md
+  - _pages/cv.md
+  - _pages/dropdown.md
+  - assets/json/resume.json
+  - assets/pdf/example_pdf.pdf
   - bin/
   - CONTRIBUTING.md
   - CUSTOMIZE.md
@@ -654,3 +668,4 @@ jsonresume:
   - references
 
   # This is a comment to force a rebuild
+
