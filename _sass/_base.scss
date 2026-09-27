@@ -1435,3 +1435,40 @@ figure.cover {
 .post .post-description {
   max-width: 82ch;
 }
+
+// Institutional accents complement the existing purple/cyan link palette.
+// Official Aggie Maroon: https://marcomm.tamu.edu/creative-platform/visual-style/brand-colors/
+:root {
+  --lab-heading-color: #500000;
+  --lab-active-color: #500000;
+}
+html[data-theme="dark"] {
+  --lab-heading-color: var(--global-text-color);
+  --lab-active-color: var(--global-theme-color);
+}
+.post :is(h1, h2, h3, h4, h5, h6),
+.post :is(h1, h2, h3, h4, h5, h6) a {
+  color: var(--lab-heading-color);
+}
+.navbar.navbar-light .navbar-nav .nav-item.active > .nav-link,
+.navbar.navbar-light .navbar-nav .nav-item.active > .nav-link:hover {
+  color: var(--lab-active-color);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 2px;
+}
+.post .btn.btn-primary {
+  color: #ffffff !important;
+  background-color: #500000 !important;
+  border-color: #500000 !important;
+}
+.post .btn.btn-primary:hover,
+.post .btn.btn-primary:active {
+  color: #ffffff !important;
+  background-color: #730000 !important;
+  border-color: #730000 !important;
+}
+.post .btn.btn-primary:focus-visible {
+  outline: 2px solid var(--global-theme-color);
+  outline-offset: 3px;
+}
