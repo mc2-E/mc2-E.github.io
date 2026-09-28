@@ -1579,3 +1579,26 @@ footer .footer-contact a:focus-visible {
     margin: 1.5rem 0 2rem;
   }
 }
+
+/* A larger default reading scale, without changing the visitor's browser setting. */
+html { zoom: 1.125; }
+@media (min-width: 768px) { html { zoom: 1.25; } }
+@media (min-width: 992px) { html { zoom: 1.5; } }
+
+/* CSS zoom does not change viewport media queries. Collapse the navigation
+   when its scaled contents need the same room as browser zoom at 150%. */
+@media (min-width: 992px) and (max-width: 1487.98px) {
+  #navbar.navbar-expand-lg { flex-flow: row wrap; justify-content: space-between; }
+  #navbar.navbar-expand-lg > .container { flex-wrap: wrap; }
+  #navbar.navbar-expand-lg .navbar-toggler { display: block; }
+  #navbar.navbar-expand-lg .navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+  }
+  #navbar.navbar-expand-lg .navbar-collapse.collapse:not(.show) { display: none !important; }
+  #navbar.navbar-expand-lg .navbar-collapse.show { display: block !important; }
+  #navbar.navbar-expand-lg .navbar-nav { flex-direction: column; }
+  #navbar.navbar-expand-lg .navbar-nav .nav-link { padding-right: 0; padding-left: 0; }
+}
+@media print { html { zoom: 1; } }
