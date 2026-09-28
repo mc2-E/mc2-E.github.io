@@ -1602,3 +1602,14 @@ html { zoom: 1.125; }
   #navbar.navbar-expand-lg .navbar-nav .nav-link { padding-right: 0; padding-left: 0; }
 }
 @media print { html { zoom: 1; } }
+
+/* Approved MC²=E BCC mark: keep the navigation compact at the existing page scale. */
+.navbar.navbar-light .navbar-brand.lab-brand .lab-brand-mark {
+  width: 139px;
+  height: auto;
+}
+.post .post-title .lab-home-mark {
+  width: 540px;
+  max-width: 100%;
+  height: auto;
+}

@@ -4,7 +4,11 @@ layout: default
 <div class="post">
   <header class="post-header">
     <h1 class="post-title">
-      {% if site.title == 'blank' %}
+      {% if page.permalink == '/' %}
+        <span class="sr-only">MC²=E — Materials under Challenging Conditions for Energy</span>
+        <img src="{{ '/assets/img/mc2e-bcc-primary-light.png' | relative_url }}" alt="" aria-hidden="true" width="1220" height="460" class="lab-home-mark only-light" fetchpriority="high">
+        <img src="{{ '/assets/img/mc2e-bcc-primary-dark.png' | relative_url }}" alt="" aria-hidden="true" width="1220" height="460" class="lab-home-mark only-dark">
+      {% elsif site.title == 'blank' %}
         <span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }}
         {{ site.last_name }}
       {% else %}

@@ -16,8 +16,9 @@
             {{- site.last_name -}}
           {% endif %}
         {% else %}
-        <img src="{{ '/assets/img/logo.png' | relative_url }}" alt="" aria-hidden="true" height="30" class="mr-2">
-        {{- site.title -}}
+        <span class="sr-only">MC²=E Lab — Home</span>
+        <img src="{{ '/assets/img/mc2e-bcc-compact-light.png' | relative_url }}" alt="" aria-hidden="true" width="520" height="150" class="lab-brand-mark only-light">
+        <img src="{{ '/assets/img/mc2e-bcc-compact-dark.png' | relative_url }}" alt="" aria-hidden="true" width="520" height="150" class="lab-brand-mark only-dark">
         {% endif %}
       </a>
       <!-- Navbar Toggle -->

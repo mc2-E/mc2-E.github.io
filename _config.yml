@@ -9,7 +9,7 @@ last_name: Ahmed
 contact_note: >
   The best way to reach me is by email.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  The MC2-E (Materials under Challenging Conditions for Energy Applications) research group at Texas A&M University, led by Prof. Karim Ahmed. We develop models to enable the optimization of current materials and the deployment of next-generation materials.
+  The MC²=E (Materials under Challenging Conditions for Energy) research group at Texas A&M University, led by Prof. Karim Ahmed. We develop models to enable the optimization of current materials and the deployment of next-generation materials.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
