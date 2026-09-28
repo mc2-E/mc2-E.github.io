@@ -1,4 +1,18 @@
 {% capture footer_contents %}
+  {% if site.data.socials.email or site.data.socials.scholar_userid %}
+    <nav class="footer-contact" aria-label="Contact and academic profile">
+      {% if site.data.socials.email %}
+        <a href="mailto:{{ site.data.socials.email | encode_email }}">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i><span>Email</span>
+        </a>
+      {% endif %}
+      {% if site.data.socials.scholar_userid %}
+        <a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid | escape }}">
+          <i class="ai ai-google-scholar" aria-hidden="true"></i><span>Google Scholar</span>
+        </a>
+      {% endif %}
+    </nav>
+  {% endif %}
   &copy; Copyright {{ site.time | date: '%Y' }}
   {{ site.first_name }}
   {{ site.middle_name }}

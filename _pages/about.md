@@ -9,11 +9,11 @@ description: Multiscale modeling and data-driven methods for nuclear and energy 
 
 Our research connects material structure, evolving microstructure, and component performance under challenging conditions. We develop physics-based models and reduced-order methods, using experimental evidence to evaluate predictions and guide model development.
 
-<figure style="margin: 1.5rem 0;">
+<figure class="lab-figure">
   <a href="{{ '/assets/img/group_focus.jpg' | relative_url }}" target="_blank" rel="noopener" aria-label="Open the detailed group research overview at full size in a new tab">
     <img src="{{ '/assets/img/group_focus.jpg' | relative_url }}" alt="Detailed overview of the MC²=E Lab's research themes and modeling methods." style="display: block; width: 100%; height: auto; border-radius: 9px;">
   </a>
-  <figcaption style="margin-top: 0.5rem; font-size: 0.95rem;">Group research overview. <a href="{{ '/assets/img/group_focus.jpg' | relative_url }}" target="_blank" rel="noopener">View the full-size image (opens a new tab)</a>.</figcaption>
+  <figcaption>Group research overview. <a href="{{ '/assets/img/group_focus.jpg' | relative_url }}" target="_blank" rel="noopener">View the full-size image (opens a new tab)</a>.</figcaption>
 </figure>
 
 ## Research themes
