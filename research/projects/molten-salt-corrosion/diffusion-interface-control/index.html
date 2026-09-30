@@ -1,0 +1,347 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Diffusion or interface control? — Corrosion explorer</title><style>
+:root{--maroon:#500000;--ink:#252525;--muted:#575757;--line:#d7d1ce;--gold:#8a6900;--blue:#155c8b;--paper:#fff;--wash:#f6f4f1}*{box-sizing:border-box}body{margin:0;background:var(--wash);color:var(--ink);font:17px/1.5 system-ui,-apple-system,sans-serif}header{background:var(--maroon);color:white;padding:32px max(24px,calc((100vw - 1300px)/2));}header p{max-width:930px;margin:8px 0 0;color:#f5e5de}h1{font-size:clamp(26px,3vw,38px);margin:0;line-height:1.2}h2{color:var(--maroon);font-size:25px;line-height:1.25;margin:0 0 16px}h3{font-size:19px;color:var(--maroon);margin:0 0 8px}main{max-width:1350px;margin:auto;padding:24px}.panel{background:white;border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:20px}p{margin:8px 0 14px}small,.muted{color:var(--muted);font-size:14px}label{display:block;font-size:14px;font-weight:700;margin-bottom:5px}input,select,button{font:inherit;border-radius:6px;border:1px solid #a99c95;max-width:100%}input,select{background:white;padding:9px;width:100%;color:var(--ink)}input[type=range]{padding:0;accent-color:var(--maroon)}button{background:white;color:var(--maroon);padding:8px 13px;cursor:pointer;font-weight:650}button:hover{background:#f5e8e5}button:disabled{opacity:.55;cursor:wait}button.primary{background:var(--maroon);color:white}:focus-visible{outline:3px solid #bd8b22;outline-offset:3px}.controls{align-items:end;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:17px}.control-note{margin:14px 0 0;font-size:14px}.buttons{display:flex;gap:8px;flex-wrap:wrap}.buttons button{font-size:14px}.subcontrols{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:end;margin-top:22px}.number-row{display:grid;grid-template-columns:auto 1fr auto;gap:8px}.tabs{display:flex;gap:6px;margin:20px 0}.tabs button{border:0;border-bottom:4px solid transparent;border-radius:6px 6px 0 0}.tabs button[aria-selected=true]{border-color:var(--maroon);background:#eee4e0}.status{display:flex;align-items:center;gap:12px;font-size:14px;margin-top:15px;min-height:28px}progress{width:130px;max-width:40%;accent-color:var(--maroon)}.balance{height:32px;background:#f2e3d0;display:flex;border-radius:6px;overflow:hidden}.diff-segment{background:var(--gold)}.interface-segment{background:var(--blue)}.balance-labels{display:flex;justify-content:space-between;gap:12px;font-size:16px;margin-top:7px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}.card{border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:8px;padding:16px}.card:nth-child(2){border-top-color:var(--blue)}.card:nth-child(3){border-top-color:var(--maroon);background:#faf5f3}.big{font-size:26px;font-weight:750;display:block;color:var(--ink);line-height:1.2}.unit{font-size:14px;display:block;margin-top:5px}.caption{font-size:14px;color:var(--muted);max-width:1020px}.plot svg{width:100%;height:auto;display:block;min-height:220px}.plot-wrap{max-width:1120px;margin:auto}.legend{display:flex;gap:20px;flex-wrap:wrap;font-size:14px;margin-bottom:4px}.legend span:before{content:'';display:inline-block;width:24px;border-top:3px solid var(--gold);vertical-align:middle;margin-right:6px}.legend .inter:before{border-top-color:var(--blue);border-top-style:dashed}.legend .actual:before{border-top-color:var(--maroon);border-top-width:4px}.table-wrap{overflow:auto;max-width:100%;border:1px solid var(--line);border-radius:7px}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#f4eeeb;color:var(--maroon)}td small{display:block}tr:last-child td{border-bottom:0}.equations{font-size:21px;background:#f7f5f2;padding:20px;overflow:auto;border-radius:8px}math{font-family:serif}details{border-top:1px solid var(--line);padding-top:14px;margin-top:16px}summary{cursor:pointer;font-weight:700;color:var(--maroon)}.notice{border-left:4px solid var(--gold);padding:10px 15px;background:#f9f4e8}.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.how-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:center;text-align:center;margin:18px 0}.how-flow div{padding:18px 10px;background:#f6eeea;border:1px solid #d9c5bc;border-radius:7px}.how-flow b{display:block;color:var(--maroon)}.error{color:#850000}.metric-line{display:flex;flex-wrap:wrap;gap:16px;font-size:14px;margin-top:12px}.cell-action{padding:4px 7px;font-size:14px;border:0;text-decoration:underline}.selected-row{background:#fbf1dc}.nowrap{white-space:nowrap}footer{font-size:14px;color:var(--muted);margin:20px 0}[hidden]{display:none!important}
+@media(max-width:1000px){.controls{grid-template-columns:repeat(3,minmax(0,1fr))}.cards{gap:8px}.big{font-size:23px}}@media(max-width:650px){main{padding:12px}.panel{padding:16px}header{padding:25px 18px}.controls,.subcontrols,.cards,.three{grid-template-columns:1fr}.controls{gap:12px}.tabs{gap:2px}.tabs button{font-size:14px;padding:8px}.plot svg{min-height:180px}.big{font-size:26px}.how-flow{grid-template-columns:1fr}.how-flow .arrow{transform:rotate(90deg)}.balance-labels{font-size:13px}.status{align-items:flex-start}.number-row input{min-width:0}}
+</style></head><body><header><h1>Diffusion or interface control?</h1><p>Which step limits steady Cr removal? Compare the two resistance shares and the rate they produce together, at a prescribed actual overpotential.</p></header><main>
+<section class="panel" aria-label="Model inputs"><div class="controls">
+<div><label for="mode">Sweep in steps of 1</label><select id="mode"><option value="S">Vacancy ratio Sᵥ</option><option value="factor">Cr diffusivity factor</option></select></div>
+<div><label for="length">Transport length L (µm)</label><select id="length"></select></div>
+<div><label for="eta">Actual overpotential η (mV)</label><input id="eta" type="number" max="1000" step="any"></div>
+<div><label for="coupling">Bulk coupling</label><select id="coupling"><option value="PTK">Thermo + kinetic (PTK)</option><option value="PT">Thermo only (PT)</option></select></div>
+<div><label for="fixed" id="fixed-label">Hold Cr tracer multiplier fixed</label><input id="fixed" type="number" min="1" max="1000000" step="1" value="1"></div></div>
+<p class="control-note">Linear analytical model · 700 °C · V<sub>T</sub> = <strong id="vt"></strong> mV · fixed alloy reservoir at the far boundary · integer sweep: <strong>1 → 1,000,000</strong></p>
+<div class="subcontrols"><div><label for="eta-slider">Voltage selection: V<sub>T</sub> to 1 V</label><input id="eta-slider" type="range" max="1000" step="any"><div class="buttons" id="voltage-presets"></div></div><div><div class="buttons"><button id="teaching-example">Show all three limits: 1 µm, V<sub>T</sub></button><button id="reset">Reset</button></div><p class="caption">Choose a smaller length to make interface control easier to reach.</p></div></div>
+<div class="status" role="status" aria-live="polite"><progress id="progress" max="1" value="0" aria-label="Integer sweep progress"></progress><span id="status">Preparing the complete integer sweep…</span></div></section>
+<nav class="tabs" role="tablist" aria-label="Calculator views"><button role="tab" id="tab-explore" aria-selected="true" aria-controls="view-explore">Explore control</button><button role="tab" id="tab-voltage" aria-selected="false" aria-controls="view-voltage" tabindex="-1">Voltage sweep</button><button role="tab" id="tab-model" aria-selected="false" aria-controls="view-model" tabindex="-1">How it works</button></nav>
+<section id="view-explore" role="tabpanel" aria-labelledby="tab-explore"><div class="panel"><h2 id="sweep-title">Vacancy supersaturation</h2><div class="subcontrols" style="margin-top:0"><div><label for="multiplier" id="point-label">Inspect an integer Sᵥ</label><div class="number-row"><button id="minus" aria-label="Decrease multiplier by one">−1</button><input id="multiplier" type="number" min="1" max="1000000" step="1" value="1"><button id="plus" aria-label="Increase multiplier by one">+1</button></div></div><div><label for="multiplier-slider">Fast navigation (logarithmic scale)</label><input id="multiplier-slider" type="range" min="0" max="6" step="0.001" value="0"></div></div>
+<p id="point-summary"></p><div class="balance" role="img" id="balance" aria-label="Resistance shares"><div class="diff-segment" id="diff-segment"></div><div class="interface-segment" id="interface-segment"></div></div><div class="balance-labels"><strong id="diff-label"></strong><strong id="interface-label"></strong></div><div class="cards" id="capacities"></div><p class="caption">The first two speeds are limiting capacities, each calculated with the other resistance removed. Their harmonic combination gives the actual overall rate. The actual bulk and interface fluxes are equal at steady state.</p><div class="metric-line" id="coefficients"></div>
+<div class="plot-wrap"><div id="share-plot" class="plot"></div><p class="caption">Gold band: diffusion ≥90% of resistance. Blue band: interface ≥90%. Dashed lines mark the 90%, 50% and 10% diffusion shares. The full integer sweep is evaluated; the curve is thinned only for display.</p></div>
+<h3>Transition points at this overpotential</h3><div class="table-wrap"><table id="thresholds"><thead><tr><th>Resistance split</th><th id="threshold-param">Required multiplier</th><th>Limiting diffusion speed<br>µm/year</th><th>Limiting interface speed<br>µm/year</th><th>Overall Cr removal<br>µm/year</th></tr></thead><tbody></tbody></table></div>
+<p class="caption">A crossing is solved between its adjacent integer sweep points. “Not reached” means that resistance split is outside 1–1,000,000 for these inputs.</p></div>
+<div class="panel"><h2>How the competing capacities set the rate</h2><div class="legend"><span>Diffusion-only capacity</span><span class="inter">Interface-only capacity</span><span class="actual">Overall rate</span></div><div id="rate-plot" class="plot"></div><p class="caption">All speeds use the same Cr-equivalent thickness definition. At equal resistances, the overall speed is half either individual capacity; at 90% diffusion resistance it is 90% of the diffusion-only capacity.</p><div class="buttons"><button id="export-curve">Download plotted curves (CSV)</button><button id="export-json">Download selected state and matrices (JSON)</button></div></div></section>
+<section id="view-voltage" role="tabpanel" aria-labelledby="tab-voltage" hidden><div class="panel"><h2>Where do the resistance splits occur?</h2><p id="voltage-summary"></p><div class="table-wrap"><table id="voltage-table"><thead><tr><th>Actual overpotential</th><th>90% diffusion<br>f<sub>D</sub> = 0.9</th><th>50–50<br>f<sub>D</sub> = 0.5</th><th>90% interface<br>f<sub>D</sub> = 0.1</th><th>Integer cases<br>diffusion / shared / interface</th></tr></thead><tbody></tbody></table></div><p class="caption">Click a threshold to inspect its nearest integer case. The CSV gives each continuous crossing, its integer bracket, conductances, limiting capacities, overall removal and surface fractions. The selected voltage is included alongside 1–11 thermal voltages and the 1 V endpoint.</p><button id="export-thresholds">Download all threshold details (CSV)</button></div></section>
+<section id="view-model" role="tabpanel" aria-labelledby="tab-model" hidden><div class="panel"><h2>Two resistances, one steady flux</h2><div class="how-flow" role="img" aria-label="A fixed far alloy reservoir feeds diffusion through the alloy and a dissolution reaction at the salt interface. The same steady chromium flux passes through both steps."><div><b>Fixed far alloy</b>Cr fraction c<sub>b</sub></div><span class="arrow">→</span><div><b>Bulk diffusion</b>R<sub>D</sub> = 1/k<sub>D</sub></div><span class="arrow">→</span><div><b>Surface dissolution</b>R<sub>I</sub> = 1/k<sub>I</sub></div></div>
+<p>The slower limiting capacity corresponds to the larger resistance. Increasing transport makes it easier for the surface reaction to become limiting. Increasing overpotential accelerates that reaction and makes diffusion control more likely.</p>
+<div class="equations"><math display="block" aria-label="Overall speed is bulk chromium fraction divided by the sum of diffusion and interface resistance"><mi>r</mi><mo>=</mo><mfrac><msub><mi>c</mi><mi>b</mi></msub><mrow><msub><mi>R</mi><mi>D</mi></msub><mo>+</mo><msub><mi>R</mi><mi>I</mi></msub></mrow></mfrac><mo>,</mo><mspace width="1em"/><msub><mi>f</mi><mi>D</mi></msub><mo>=</mo><mfrac><msub><mi>R</mi><mi>D</mi></msub><mrow><msub><mi>R</mi><mi>D</mi></msub><mo>+</mo><msub><mi>R</mi><mi>I</mi></msub></mrow></mfrac></math></div>
+<div class="three"><div><h3>90% diffusion</h3><p>R<sub>D</sub> = 9 R<sub>I</sub><br>k<sub>I</sub> = 9 k<sub>D</sub><br>r = 0.9 r<sub>D,limit</sub></p></div><div><h3>50–50</h3><p>R<sub>D</sub> = R<sub>I</sub><br>k<sub>D</sub> = k<sub>I</sub><br>r = ½ r<sub>D,limit</sub> = ½ r<sub>I,limit</sub></p></div><div><h3>90% interface</h3><p>R<sub>I</sub> = 9 R<sub>D</sub><br>k<sub>D</sub> = 9 k<sub>I</sub><br>r = 0.9 r<sub>I,limit</sub></p></div></div>
+<h3>What model is being calculated?</h3><p>This is the established <strong>linear analytical prescribed-overpotential benchmark</strong>: r = h c<sub>s</sub>, where h = j₀ sinh(η/V<sub>T</sub>)/(F C<sub>site</sub> c<sub>b</sub>). It holds the actual Cr overpotential fixed and uses j₀ = 5 A/m² as a diagnostic reaction scale. It does not use the alternative square-root activity prefactor from the separate BV sensitivity study.</p><p>The full thermodynamic Hessian H is retained. PT uses diagonal kinetic mobility B; PTK includes its vacancy-exchange cross terms. For each trial, D = BH is evaluated at that trial’s uniform initial/far composition and then held constant in space.</p>
+<div class="equations"><math display="block" aria-label="The vector a equals the inverse coupled diffusion matrix applied to the chromium removal and vacancy injection direction"><mi mathvariant="bold">a</mi><mo>=</mo><msup><mrow><mo>(</mo><mi mathvariant="bold">B</mi><mi mathvariant="bold">H</mi><mo>)</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup><mrow><mo>(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mo>−</mo><mn>1</mn><mo>)</mo></mrow><msup><mspace width="0em"/><mi>T</mi></msup></math><p style="margin-bottom:0">D<sub>eff</sub> = 1/a<sub>Cr</sub>; k<sub>D</sub> = D<sub>eff</sub>/L; k<sub>I</sub> = h.<br>q<sub>s</sub> = q<sub>b</sub> − L a r, for q = (Ni, Cr, vacancy).</p></div>
+<p><strong>Cr tracer diffusivity is not D<sub>eff</sub>.</strong> Scaling D*<sub>Cr</sub> rebuilds all linked Cr mobility terms, including vacancy transport. Fe/Ni tracer values remain fixed. Changing Sᵥ reevaluates both H and B while preserving occupied-site metal ratios and the thermal vacancy normalization.</p>
+<h3>Units and physical scope</h3><p>Conductances k have units m/s, resistances R have units s/m, and r = j/(2 F C<sub>site</sub>) is Cr-equivalent removal speed. Multiply m/s by 10⁶ × 31,536,000 to obtain µm/year. This measures removed Cr inventory per area, not predicted wall recession.</p><p class="notice">The requested ranges are sensitivity windows. Sᵥ = 1,000,000 corresponds to a bulk vacancy fraction of 0.02919 (2.919%). The model has no void formation or vacancy sinks; very high vacancy states, especially near or above 1%, are mathematical extrapolations. Increasing D*<sub>Cr</sub> by up to one million is likewise not a literature uncertainty range.</p><details><summary>Reference material values and reproduction</summary><div id="material-values"></div><p>The benchmark inherits the 316L/FLiNaK parameter set at 700 °C, the thermodynamic Hessian and mobility construction from the target-rate and prescribed analytical explorers. Reference Ni and Cr fractions are 0.1174401 and 0.1885074. C<sub>site</sub> = 100,000 mol/m³. Those choices are retained for comparison and are not fitted here.</p><p>This file runs offline. It evaluates all 1,000,000 integer values in a background worker, uses exact analytical resistance formulas and solves every detected crossing between adjacent integers. It runs no MOOSE simulation.</p></details></div></section>
+<footer>Prescribed actual overpotential only · Steady analytical benchmark · Existing model parameters · CSV exports include the calculation assumptions.</footer>
+</main><script>'use strict';
+const DATA={
+  "T": 973.15,
+  "R": 8.31446261815324,
+  "F": 96485.33212331001,
+  "j0": 5.0,
+  "Csite": 100000.0,
+  "vthermal": 2.9187831503121694e-08,
+  "VT_V": 0.08385957864056579,
+  "qthermal": [
+    0.11744009952731564,
+    0.18850737921609845,
+    2.9187831503121694e-08
+  ],
+  "y": [
+    0.6940525123266423,
+    0.11744010295513757,
+    0.18850738471822023
+  ],
+  "tracers": [
+    3.6861309965350795e-20,
+    2.950963559825461e-20,
+    8.774877334868778e-20
+  ],
+  "pairs": {
+    "FeNi": [
+      -8868.1353905,
+      6750.932795,
+      -725.805174
+    ],
+    "FeCr": [
+      3556.75745,
+      -1410.0,
+      0.0
+    ],
+    "NiCr": [
+      -4504.269315,
+      -17474.37197,
+      0.0
+    ]
+  },
+  "ternary": [
+    -6500.0,
+    48000.0,
+    19731.5
+  ],
+  "sizes": [
+    1,
+    10,
+    25,
+    50,
+    75,
+    100,
+    200,
+    400,
+    600,
+    800,
+    1000
+  ],
+  "targets": [
+    1,
+    5,
+    10,
+    20,
+    40,
+    60,
+    80,
+    100
+  ],
+  "secondsYear": 31536000,
+  "bath": {
+    "gap": 0.45,
+    "j0cr": 5,
+    "j0h": 5
+  },
+  "bounds": {
+    "S": [
+      1,
+      10000
+    ],
+    "eta": [
+      0,
+      1
+    ],
+    "factor": [
+      0.0001,
+      1000000.0
+    ]
+  }
+}
+;
+
+const YEAR=DATA.secondsYear, TO_RATE=1e6*YEAR;
+const dot=(a,b)=>a.reduce((v,x,i)=>v+x*b[i],0);
+const transpose=A=>A[0].map((_,j)=>A.map(r=>r[j]));
+const product=(A,B)=>{const C=transpose(B);return A.map(r=>C.map(c=>dot(r,c)));};
+const logspace=(lo,hi,n)=>Array.from({length:n},(_,i)=>i===0?lo:i===n-1?hi:Math.exp(Math.log(lo)+(Math.log(hi)-Math.log(lo))*i/(n-1)));
+function solveSPD(A,b){
+ const C=Array.from({length:3},()=>[0,0,0]);
+ for(let i=0;i<3;i++)for(let j=0;j<=i;j++){
+  let a=A[i][j];for(let k=0;k<j;k++)a-=C[i][k]*C[j][k];
+  if(i===j){if(!(a>0))throw Error('The reference Hessian is not positive definite.');C[i][j]=Math.sqrt(a);}
+  else C[i][j]=a/C[j][j];
+ }
+ const y=[0,0,0],x=[0,0,0];
+ for(let i=0;i<3;i++){y[i]=b[i];for(let k=0;k<i;k++)y[i]-=C[i][k]*y[k];y[i]/=C[i][i];}
+ for(let i=2;i>=0;i--){x[i]=y[i];for(let k=i+1;k<3;k++)x[i]-=C[k][i]*x[k];x[i]/=C[i][i];}
+ return x;
+}
+function hessian(x){
+ const [f,n,c,v]=x,U=Array.from({length:3},()=>[0,0,0]);
+ for(const [name,i,j] of [['FeNi',0,1],['FeCr',0,2],['NiCr',1,2]]){
+  const [a,b]=[x[i],x[j]],[l0,l1,l2]=DATA.pairs[name],d=a-b;
+  const P=l0+l1*d+l2*d*d,P1=l1+2*l2*d,P2=2*l2;
+  U[i][i]+=2*b*P1+a*b*P2;U[j][j]+=-2*a*P1+a*b*P2;
+  const cross=P+d*P1-a*b*P2;U[i][j]+=cross;U[j][i]+=cross;
+ }
+ const [Af,An,Ac]=DATA.ternary;
+ const W=[[2*Af*n*c,c*(2*Af*f+2*An*n+Ac*c),n*(2*Af*f+An*n+2*Ac*c)],
+ [c*(2*Af*f+2*An*n+Ac*c),2*An*f*c,f*(Af*f+2*An*n+2*Ac*c)],
+ [n*(2*Af*f+An*n+2*Ac*c),f*(Af*f+2*An*n+2*Ac*c),2*Ac*f*n]];
+ const S=[[-1,-1,-1],[1,0,0],[0,1,0]];
+ const hex=product(product(transpose(S),U.map((r,i)=>r.map((z,j)=>z+W[i][j]))),S);
+ return hex.map((r,i)=>r.map((z,j)=>z+DATA.R*DATA.T*(1/f+(i===j?1/x[i+1]:0))));
+}
+function coefficients(S=1,model='PTK',factor=1){
+ if(!Number.isFinite(S)||S<1||S>1e6||!['PT','PTK'].includes(model)||!Number.isFinite(factor)||factor<1||factor>1e6)throw Error('Use integer multipliers from 1 to 1,000,000.');
+ const v=S*DATA.vthermal,x=[...DATA.y.map(y=>y*(1-v)),v],q=x.slice(1),H=hessian(x);
+ const tracers=DATA.tracers.map((d,i)=>d*(i===2?factor:1));
+ const m=tracers.map((d,i)=>d*x[i]*S/(DATA.R*DATA.T));
+ const [mf,mn,mc]=m,B=model==='PT'?[[mn,0,0],[0,mc,0],[0,0,mf+mn+mc]]:[[mn,0,-mn],[0,mc,-mc],[-mn,-mc,mf+mn+mc]];
+ // Exact B^-1(0,1,-1): avoids subtractive cancellation at large Cr multipliers.
+ const b=model==='PT'?[0,1/mc,-1/(mf+mn+mc)]:[0,1/mc,0];
+ const a=solveSPD(H,b),D=product(B,H);
+ return {S,model,factor,x,q,H,B,D,a,tracers};
+}
+// Appended to base.js. All internal lengths in metres, diffusivities in m²/s.
+const MAX=1000000, TARGETS=[.9,.5,.1];
+const VOLTAGES=[...Array.from({length:11},(_,i)=>(i+1)*DATA.VT_V),1];
+function validate(p){
+ if(!['S','factor'].includes(p.mode)||!['PT','PTK'].includes(p.model))throw Error('Choose a sweep and transport model.');
+ if(!(p.L>=1&&p.L<=1000&&p.eta>=DATA.VT_V-1e-14&&p.eta<=1))throw Error('Length: 1–1000 µm; overpotential: one thermal voltage to 1 V.');
+ for(const k of ['S','factor'])if(!Number.isInteger(p[k])||p[k]<1||p[k]>MAX)throw Error('Multipliers must be integers from 1 to 1,000,000.');
+}
+function point(p,x){
+ const pp={...p,[p.mode]:x},c=coefficients(pp.S,p.model,pp.factor),L=p.L*1e-6;
+ const h=DATA.j0*Math.sinh(p.eta/DATA.VT_V)/(DATA.F*DATA.Csite*c.q[1]);
+ const a=c.a[1],kD=1/(L*a),Da=h/kD,fD=Da/(1+Da),fI=1/(1+Da);
+ if(!(a>0))throw Error('Nonpositive effective chromium transport.');
+ const k=h*fI,r=c.q[1]*k,q=c.q.map((v,i)=>v-L*c.a[i]*r);q[1]=c.q[1]*fI;
+ const fractions=[1-q.reduce((a,b)=>a+b,0),...q];
+ return {x,S:pp.S,factor:pp.factor,L:p.L,eta:p.eta,model:p.model,q,physical:fractions.every(v=>v>=0&&v<=1),
+  cCr:c.q[1],vBulk:c.q[2],DstarCr:c.tracers[2],Deff:1/a,kD,kI:h,kOverall:k,RD:1/kD,RI:1/h,Da,fD,fI,
+  rate:r*TO_RATE,diffusionLimit:c.q[1]*kD*TO_RATE,interfaceLimit:c.q[1]*h*TO_RATE,current:2*DATA.F*DATA.Csite*r};
+}
+function makeBeta(p){
+ // Only two entries of H^-1 are needed for aCr. This is the same exact 3x3
+ // linear solve used by coefficients(), reduced algebraically for the large sweep.
+ const cache=p.mode==='factor'?coefficients(p.S,p.model,1):null;
+ const fixed=cache?inverseCr(cache.H):null;
+ function inverseCr(H){
+  const [a,b,c]=H[0],d=H[1][1],e=H[1][2],f=H[2][2];
+  const minor=a*d-b*b,det=a*(d*f-e*e)-b*(b*f-c*e)+c*(b*e-c*d);
+  if(!(a>0&&minor>0&&det>0))throw Error('Nonpositive reference Hessian.');
+  return [(a*f-c*c)/det,(b*c-a*e)/det];
+ }
+ const pref=p.L*1e-6*DATA.j0/(DATA.F*DATA.Csite),RT=DATA.R*DATA.T;
+ return x=>{
+  const S=p.mode==='S'?x:p.S,mult=p.mode==='factor'?x:p.factor;
+  const v=S*DATA.vthermal,fs=1-v;
+  const qCr=DATA.y[2]*fs,xx=[...DATA.y.map(y=>y*fs),v];
+  const inv=fixed||inverseCr(hessian(xx));
+  const mf=DATA.tracers[0]*xx[0]*S/RT,mn=DATA.tracers[1]*xx[1]*S/RT,mc=DATA.tracers[2]*mult*qCr*S/RT;
+  const aCr=inv[0]/mc-(p.model==='PT'?inv[1]/(mf+mn+mc):0);
+  if(!(aCr>0))throw Error('Nonpositive Cr transport response.');
+  return pref*aCr/qCr;
+ };
+}
+function solveCross(beta,p,target,eta,lo,hi){
+ const sh=Math.sinh(eta/DATA.VT_V),bt=target/(1-target)/sh;
+ let l=lo,h=hi,fl=beta(l)-bt;
+ for(let k=0;k<48&&h-l>1e-9*Math.max(1,l);k++){
+  const m=(l+h)/2,f=beta(m)-bt;if(fl*f<=0)h=m;else{l=m;fl=f;}
+ }
+ const x=(l+h)/2,state=point({...p,eta},x);
+ return {target,eta,x,lowerInteger:lo,upperInteger:hi,state};
+}
+function sweep(p,progress=()=>{},max=MAX){
+ validate(p);const start=Date.now(),beta=makeBeta(p);
+ const voltages=[...new Set([...VOLTAGES,p.eta])].sort((a,b)=>a-b);
+ const cases=voltages.map(eta=>({eta,sh:Math.sinh(eta/DATA.VT_V),counts:[0,0,0],crossings:[],min:1,max:0}));
+ const cuts=cases.flatMap((c,i)=>TARGETS.map(target=>({i,target,b:target/(1-target)/c.sh})));
+ const sampleIndices=new Set(logspace(1,max,601).map(Math.round));sampleIndices.add(max);
+ const samples=[];let previous,up=0,down=0;
+ for(let x=1;x<=max;x++){
+  const b=beta(x);if(sampleIndices.has(x))samples.push({x,beta:b});
+  if(x>1){if(b>previous)up++;else if(b<previous)down++;}
+  for(const c of cases){
+   const da=b*c.sh,f=da/(1+da);c.min=Math.min(c.min,f);c.max=Math.max(c.max,f);
+   c.counts[f>=.9?0:f<=.1?2:1]++;
+  }
+  for(const cut of cuts){
+   if(b===cut.b)cases[cut.i].crossings.push(solveCross(beta,p,cut.target,cases[cut.i].eta,x,x));
+   else if(x>1&&(previous-cut.b)*(b-cut.b)<0)cases[cut.i].crossings.push(solveCross(beta,p,cut.target,cases[cut.i].eta,x-1,x));
+  }
+  previous=b;if(x%25000===0)progress(x/max);
+ }
+ return {p,max,step:1,cases,samples,trend:{increasingSteps:up,decreasingSteps:down},elapsedMs:Date.now()-start};
+}
+globalThis.ControlModel={DATA,MAX,TARGETS,VOLTAGES,TO_RATE,coefficients,hessian,point,makeBeta,sweep,solveCross};
+if(typeof module!=='undefined')module.exports=globalThis.ControlModel;
+</script><script>const MODEL_SOURCE="'use strict';\nconst DATA={\n  \"T\": 973.15,\n  \"R\": 8.31446261815324,\n  \"F\": 96485.33212331001,\n  \"j0\": 5.0,\n  \"Csite\": 100000.0,\n  \"vthermal\": 2.9187831503121694e-08,\n  \"VT_V\": 0.08385957864056579,\n  \"qthermal\": [\n    0.11744009952731564,\n    0.18850737921609845,\n    2.9187831503121694e-08\n  ],\n  \"y\": [\n    0.6940525123266423,\n    0.11744010295513757,\n    0.18850738471822023\n  ],\n  \"tracers\": [\n    3.6861309965350795e-20,\n    2.950963559825461e-20,\n    8.774877334868778e-20\n  ],\n  \"pairs\": {\n    \"FeNi\": [\n      -8868.1353905,\n      6750.932795,\n      -725.805174\n    ],\n    \"FeCr\": [\n      3556.75745,\n      -1410.0,\n      0.0\n    ],\n    \"NiCr\": [\n      -4504.269315,\n      -17474.37197,\n      0.0\n    ]\n  },\n  \"ternary\": [\n    -6500.0,\n    48000.0,\n    19731.5\n  ],\n  \"sizes\": [\n    1,\n    10,\n    25,\n    50,\n    75,\n    100,\n    200,\n    400,\n    600,\n    800,\n    1000\n  ],\n  \"targets\": [\n    1,\n    5,\n    10,\n    20,\n    40,\n    60,\n    80,\n    100\n  ],\n  \"secondsYear\": 31536000,\n  \"bath\": {\n    \"gap\": 0.45,\n    \"j0cr\": 5,\n    \"j0h\": 5\n  },\n  \"bounds\": {\n    \"S\": [\n      1,\n      10000\n    ],\n    \"eta\": [\n      0,\n      1\n    ],\n    \"factor\": [\n      0.0001,\n      1000000.0\n    ]\n  }\n}\n;\n\nconst YEAR=DATA.secondsYear, TO_RATE=1e6*YEAR;\nconst dot=(a,b)=>a.reduce((v,x,i)=>v+x*b[i],0);\nconst transpose=A=>A[0].map((_,j)=>A.map(r=>r[j]));\nconst product=(A,B)=>{const C=transpose(B);return A.map(r=>C.map(c=>dot(r,c)));};\nconst logspace=(lo,hi,n)=>Array.from({length:n},(_,i)=>i===0?lo:i===n-1?hi:Math.exp(Math.log(lo)+(Math.log(hi)-Math.log(lo))*i/(n-1)));\nfunction solveSPD(A,b){\n const C=Array.from({length:3},()=>[0,0,0]);\n for(let i=0;i<3;i++)for(let j=0;j<=i;j++){\n  let a=A[i][j];for(let k=0;k<j;k++)a-=C[i][k]*C[j][k];\n  if(i===j){if(!(a>0))throw Error('The reference Hessian is not positive definite.');C[i][j]=Math.sqrt(a);}\n  else C[i][j]=a/C[j][j];\n }\n const y=[0,0,0],x=[0,0,0];\n for(let i=0;i<3;i++){y[i]=b[i];for(let k=0;k<i;k++)y[i]-=C[i][k]*y[k];y[i]/=C[i][i];}\n for(let i=2;i>=0;i--){x[i]=y[i];for(let k=i+1;k<3;k++)x[i]-=C[k][i]*x[k];x[i]/=C[i][i];}\n return x;\n}\nfunction hessian(x){\n const [f,n,c,v]=x,U=Array.from({length:3},()=>[0,0,0]);\n for(const [name,i,j] of [['FeNi',0,1],['FeCr',0,2],['NiCr',1,2]]){\n  const [a,b]=[x[i],x[j]],[l0,l1,l2]=DATA.pairs[name],d=a-b;\n  const P=l0+l1*d+l2*d*d,P1=l1+2*l2*d,P2=2*l2;\n  U[i][i]+=2*b*P1+a*b*P2;U[j][j]+=-2*a*P1+a*b*P2;\n  const cross=P+d*P1-a*b*P2;U[i][j]+=cross;U[j][i]+=cross;\n }\n const [Af,An,Ac]=DATA.ternary;\n const W=[[2*Af*n*c,c*(2*Af*f+2*An*n+Ac*c),n*(2*Af*f+An*n+2*Ac*c)],\n [c*(2*Af*f+2*An*n+Ac*c),2*An*f*c,f*(Af*f+2*An*n+2*Ac*c)],\n [n*(2*Af*f+An*n+2*Ac*c),f*(Af*f+2*An*n+2*Ac*c),2*Ac*f*n]];\n const S=[[-1,-1,-1],[1,0,0],[0,1,0]];\n const hex=product(product(transpose(S),U.map((r,i)=>r.map((z,j)=>z+W[i][j]))),S);\n return hex.map((r,i)=>r.map((z,j)=>z+DATA.R*DATA.T*(1/f+(i===j?1/x[i+1]:0))));\n}\nfunction coefficients(S=1,model='PTK',factor=1){\n if(!Number.isFinite(S)||S<1||S>1e6||!['PT','PTK'].includes(model)||!Number.isFinite(factor)||factor<1||factor>1e6)throw Error('Use integer multipliers from 1 to 1,000,000.');\n const v=S*DATA.vthermal,x=[...DATA.y.map(y=>y*(1-v)),v],q=x.slice(1),H=hessian(x);\n const tracers=DATA.tracers.map((d,i)=>d*(i===2?factor:1));\n const m=tracers.map((d,i)=>d*x[i]*S/(DATA.R*DATA.T));\n const [mf,mn,mc]=m,B=model==='PT'?[[mn,0,0],[0,mc,0],[0,0,mf+mn+mc]]:[[mn,0,-mn],[0,mc,-mc],[-mn,-mc,mf+mn+mc]];\n // Exact B^-1(0,1,-1): avoids subtractive cancellation at large Cr multipliers.\n const b=model==='PT'?[0,1/mc,-1/(mf+mn+mc)]:[0,1/mc,0];\n const a=solveSPD(H,b),D=product(B,H);\n return {S,model,factor,x,q,H,B,D,a,tracers};\n}\n// Appended to base.js. All internal lengths in metres, diffusivities in m\u00b2/s.\nconst MAX=1000000, TARGETS=[.9,.5,.1];\nconst VOLTAGES=[...Array.from({length:11},(_,i)=>(i+1)*DATA.VT_V),1];\nfunction validate(p){\n if(!['S','factor'].includes(p.mode)||!['PT','PTK'].includes(p.model))throw Error('Choose a sweep and transport model.');\n if(!(p.L>=1&&p.L<=1000&&p.eta>=DATA.VT_V-1e-14&&p.eta<=1))throw Error('Length: 1\u20131000 \u00b5m; overpotential: one thermal voltage to 1 V.');\n for(const k of ['S','factor'])if(!Number.isInteger(p[k])||p[k]<1||p[k]>MAX)throw Error('Multipliers must be integers from 1 to 1,000,000.');\n}\nfunction point(p,x){\n const pp={...p,[p.mode]:x},c=coefficients(pp.S,p.model,pp.factor),L=p.L*1e-6;\n const h=DATA.j0*Math.sinh(p.eta/DATA.VT_V)/(DATA.F*DATA.Csite*c.q[1]);\n const a=c.a[1],kD=1/(L*a),Da=h/kD,fD=Da/(1+Da),fI=1/(1+Da);\n if(!(a>0))throw Error('Nonpositive effective chromium transport.');\n const k=h*fI,r=c.q[1]*k,q=c.q.map((v,i)=>v-L*c.a[i]*r);q[1]=c.q[1]*fI;\n const fractions=[1-q.reduce((a,b)=>a+b,0),...q];\n return {x,S:pp.S,factor:pp.factor,L:p.L,eta:p.eta,model:p.model,q,physical:fractions.every(v=>v>=0&&v<=1),\n  cCr:c.q[1],vBulk:c.q[2],DstarCr:c.tracers[2],Deff:1/a,kD,kI:h,kOverall:k,RD:1/kD,RI:1/h,Da,fD,fI,\n  rate:r*TO_RATE,diffusionLimit:c.q[1]*kD*TO_RATE,interfaceLimit:c.q[1]*h*TO_RATE,current:2*DATA.F*DATA.Csite*r};\n}\nfunction makeBeta(p){\n // Only two entries of H^-1 are needed for aCr. This is the same exact 3x3\n // linear solve used by coefficients(), reduced algebraically for the large sweep.\n const cache=p.mode==='factor'?coefficients(p.S,p.model,1):null;\n const fixed=cache?inverseCr(cache.H):null;\n function inverseCr(H){\n  const [a,b,c]=H[0],d=H[1][1],e=H[1][2],f=H[2][2];\n  const minor=a*d-b*b,det=a*(d*f-e*e)-b*(b*f-c*e)+c*(b*e-c*d);\n  if(!(a>0&&minor>0&&det>0))throw Error('Nonpositive reference Hessian.');\n  return [(a*f-c*c)/det,(b*c-a*e)/det];\n }\n const pref=p.L*1e-6*DATA.j0/(DATA.F*DATA.Csite),RT=DATA.R*DATA.T;\n return x=>{\n  const S=p.mode==='S'?x:p.S,mult=p.mode==='factor'?x:p.factor;\n  const v=S*DATA.vthermal,fs=1-v;\n  const qCr=DATA.y[2]*fs,xx=[...DATA.y.map(y=>y*fs),v];\n  const inv=fixed||inverseCr(hessian(xx));\n  const mf=DATA.tracers[0]*xx[0]*S/RT,mn=DATA.tracers[1]*xx[1]*S/RT,mc=DATA.tracers[2]*mult*qCr*S/RT;\n  const aCr=inv[0]/mc-(p.model==='PT'?inv[1]/(mf+mn+mc):0);\n  if(!(aCr>0))throw Error('Nonpositive Cr transport response.');\n  return pref*aCr/qCr;\n };\n}\nfunction solveCross(beta,p,target,eta,lo,hi){\n const sh=Math.sinh(eta/DATA.VT_V),bt=target/(1-target)/sh;\n let l=lo,h=hi,fl=beta(l)-bt;\n for(let k=0;k<48&&h-l>1e-9*Math.max(1,l);k++){\n  const m=(l+h)/2,f=beta(m)-bt;if(fl*f<=0)h=m;else{l=m;fl=f;}\n }\n const x=(l+h)/2,state=point({...p,eta},x);\n return {target,eta,x,lowerInteger:lo,upperInteger:hi,state};\n}\nfunction sweep(p,progress=()=>{},max=MAX){\n validate(p);const start=Date.now(),beta=makeBeta(p);\n const voltages=[...new Set([...VOLTAGES,p.eta])].sort((a,b)=>a-b);\n const cases=voltages.map(eta=>({eta,sh:Math.sinh(eta/DATA.VT_V),counts:[0,0,0],crossings:[],min:1,max:0}));\n const cuts=cases.flatMap((c,i)=>TARGETS.map(target=>({i,target,b:target/(1-target)/c.sh})));\n const sampleIndices=new Set(logspace(1,max,601).map(Math.round));sampleIndices.add(max);\n const samples=[];let previous,up=0,down=0;\n for(let x=1;x<=max;x++){\n  const b=beta(x);if(sampleIndices.has(x))samples.push({x,beta:b});\n  if(x>1){if(b>previous)up++;else if(b<previous)down++;}\n  for(const c of cases){\n   const da=b*c.sh,f=da/(1+da);c.min=Math.min(c.min,f);c.max=Math.max(c.max,f);\n   c.counts[f>=.9?0:f<=.1?2:1]++;\n  }\n  for(const cut of cuts){\n   if(b===cut.b)cases[cut.i].crossings.push(solveCross(beta,p,cut.target,cases[cut.i].eta,x,x));\n   else if(x>1&&(previous-cut.b)*(b-cut.b)<0)cases[cut.i].crossings.push(solveCross(beta,p,cut.target,cases[cut.i].eta,x-1,x));\n  }\n  previous=b;if(x%25000===0)progress(x/max);\n }\n return {p,max,step:1,cases,samples,trend:{increasingSteps:up,decreasingSteps:down},elapsedMs:Date.now()-start};\n}\nglobalThis.ControlModel={DATA,MAX,TARGETS,VOLTAGES,TO_RATE,coefficients,hessian,point,makeBeta,sweep,solveCross};\nif(typeof module!=='undefined')module.exports=globalThis.ControlModel;\n";</script><script>'use strict';
+(()=>{
+ const M=ControlModel,$=id=>document.getElementById(id),fmt=(x,n=4)=>!Number.isFinite(x)?'—':x===0?'0':(Math.abs(x)<.001||Math.abs(x)>=1e5)?x.toExponential(n-1):x.toLocaleString('en-US',{maximumSignificantDigits:n});
+ const pct=x=>x>=.999995?'>99.999%':x<.000005?'<0.001%':(100*x).toFixed(x>.99||x<.01?3:1)+'%';
+ const defaultP=()=>({mode:'S',model:'PTK',L:100,eta:M.DATA.VT_V,S:1,factor:1});
+ let p=defaultP(),selected=1,result=null,worker=null,token=0;
+ $('length').innerHTML=M.DATA.sizes.map(L=>`<option>${L}</option>`).join('');
+ for(const id of ['eta','eta-slider'])$(id).min=M.DATA.VT_V*1000;
+ $('vt').textContent=fmt(M.DATA.VT_V*1000,8);
+ $('voltage-presets').innerHTML=[1,2,4,8].map(n=>`<button data-voltage="${n*M.DATA.VT_V}">${n} V<sub>T</sub></button>`).join('')+'<button data-voltage="1">1 V</button>';
+ function name(){return p.mode==='S'?'Vacancy supersaturation Sᵥ':'Cr tracer-diffusivity multiplier';}
+ function sync(){
+  $('mode').value=p.mode;$('coupling').value=p.model;$('length').value=p.L;
+  $('eta').value=Number((p.eta*1000).toFixed(6));$('eta-slider').value=p.eta*1000;
+  $('fixed-label').textContent=p.mode==='S'?'Hold Cr tracer multiplier fixed':'Hold vacancy supersaturation Sᵥ fixed';
+  $('fixed').value=p.mode==='S'?p.factor:p.S;$('multiplier').value=selected;$('multiplier-slider').value=Math.log10(selected);
+  $('point-label').textContent='Inspect an integer '+(p.mode==='S'?'Sᵥ':'Cr diffusivity multiplier');
+  $('sweep-title').textContent=name();$('threshold-param').textContent=p.mode==='S'?'Required Sᵥ':'Required Cr multiplier';
+ }
+ function curveRows(){return result?result.samples.map(z=>({...M.point(p,z.x)})):[];}
+ function activeCase(){return result?.cases.find(c=>Math.abs(c.eta-p.eta)<1e-10);}
+ function thresholds(){
+  const c=activeCase();$('thresholds').querySelector('tbody').innerHTML=M.TARGETS.map(t=>{
+   const labels={'.9':'90% diffusion','.5':'50–50','.1':'90% interface'},label=t===.9?'90% diffusion':t===.5?'50–50':'90% interface';
+   const roots=c?.crossings.filter(r=>r.target===t)||[];
+   if(!c)return `<tr><td>${label}</td><td colspan="4">Sweep in progress…</td></tr>`;
+   if(!roots.length)return `<tr><td>${label}</td><td colspan="4">Not reached. Diffusion share spans ${pct(c.min)}–${pct(c.max)}.</td></tr>`;
+   return roots.map(r=>`<tr><td>${label}</td><td><strong>${fmt(r.x,7)}</strong><small>Integer bracket: ${r.lowerInteger.toLocaleString()}–${r.upperInteger.toLocaleString()}</small></td><td>${fmt(r.state.diffusionLimit,6)}</td><td>${fmt(r.state.interfaceLimit,6)}</td><td><strong>${fmt(r.state.rate,6)}</strong></td></tr>`).join('');
+  }).join('');
+ }
+ function plot(host,series,{logY=false,ylabel,desc,share=false,marker=null}){
+  const small=$(host).clientWidth<600,W=small?Math.max(260,$(host).clientWidth):960,H=small?340:440,left=small?78:96,right=small?16:30,top=25,bottom=68,w=W-left-right,h=H-top-bottom; const tick=small?12:17,axis=small?14:20;
+  const xs=x=>left+Math.log10(x)/6*w;
+  let lo=0,hi=1;if(logY){const ys=series.flatMap(s=>s.rows.map(z=>z.y)).filter(v=>v>0);lo=Math.floor(Math.log10(Math.min(...ys)));hi=Math.ceil(Math.log10(Math.max(...ys)));if(lo===hi)hi++;}
+  const yy=y=>top+h-(logY?(Math.log10(y)-lo)/(hi-lo):y)*h;
+  let svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${desc}"><title>${desc}</title>`;
+  if(share)svg+=`<rect x="${left}" y="${top}" width="${w}" height="${h*.1}" fill="#f6ecd1"/><rect x="${left}" y="${top+h*.9}" width="${w}" height="${h*.1}" fill="#e4eff7"/>`;
+  for(let k=0;k<=6;k+=(small?2:1)){const x=left+k*w/6;svg+=`<path d="M${x},${top}V${top+h}" stroke="#ddd"/><text x="${x}" y="${top+h+28}" text-anchor="middle" font-size="${tick}">${k<4?Math.pow(10,k).toLocaleString():`10<tspan dy="-6" font-size="12">${k}</tspan>`}</text>`;}
+  const ticks=logY?Array.from({length:hi-lo+1},(_,i)=>lo+i).filter((_,i)=>i%Math.max(1,Math.ceil((hi-lo)/7))===0):(small?[0,.1,.5,.9,1]:[0,.1,.25,.5,.75,.9,1]);
+  for(const t of ticks){const y=yy(logY?10**t:t);svg+=`<path d="M${left},${y}H${left+w}" stroke="${!logY&&[.1,.5,.9].includes(t)?'#857c75':'#ddd'}" stroke-dasharray="${!logY&&[.1,.5,.9].includes(t)?'5,4':'none'}"/><text x="${left-12}" y="${y+6}" text-anchor="end" font-size="${tick}">${logY?`10<tspan dy="-6" font-size="12">${t}</tspan>`:Math.round(t*100)+'%'}</text>`;}
+  for(const s of series)svg+=`<path d="${s.rows.map((z,i)=>(i?'L':'M')+xs(z.x).toFixed(2)+','+yy(z.y).toFixed(2)).join(' ')}" fill="none" stroke="${s.color}" stroke-width="${s.width||3}" stroke-dasharray="${s.dash||'none'}"/>`;
+  if(marker)svg+=`<path d="M${xs(marker.x)},${top}V${top+h}" stroke="#333" stroke-dasharray="2,4"/><circle cx="${xs(marker.x)}" cy="${yy(marker.y)}" r="6" fill="#fff" stroke="#500000" stroke-width="3"/>`;
+  svg+=`<path d="M${left},${top}V${top+h}H${left+w}" fill="none" stroke="#444"/><text x="${left+w/2}" y="${H-12}" text-anchor="middle" font-size="${axis}" font-weight="700">${small?(p.mode==='S'?'Sᵥ':'Cr multiplier'):(p.mode==='S'?'Vacancy supersaturation Sᵥ':'Cr tracer-diffusivity multiplier')} (log scale)</text><text transform="translate(22,${top+h/2}) rotate(-90)" text-anchor="middle" font-size="${axis}" font-weight="700">${small&&logY?'Speed (µm/year)':ylabel}</text></svg>`;
+  $(host).innerHTML=svg;
+ }
+ function render(){
+  sync();const z=M.point(p,selected);window.currentState=z;
+  $('point-summary').innerHTML=`At <strong>${selected.toLocaleString()}×</strong>, ${fmt(p.eta*1000,6)} mV and ${p.L} µm: <strong>${z.fD>=.9?'diffusion controlled':z.fI>=.9?'interface controlled':'shared control'}</strong>.`;
+  $('diff-segment').style.width=(100*z.fD)+'%';$('interface-segment').style.width=(100*z.fI)+'%';
+  $('balance').setAttribute('aria-label',`Diffusion ${pct(z.fD)}; interface ${pct(z.fI)} of resistance`);
+  $('diff-label').textContent='Diffusion: '+pct(z.fD);$('interface-label').textContent='Interface: '+pct(z.fI);
+  $('capacities').innerHTML=[['Diffusion-only capacity',z.diffusionLimit,'If the surface reaction were instantaneous'],['Interface-only capacity',z.interfaceLimit,'If bulk diffusion were instantaneous'],['Overall Cr-removal rate',z.rate,'Both resistances acting together']].map(([label,val,note])=>`<div class="card"><h3>${label}</h3><output class="big">${fmt(val,5)}</output><span class="unit">µm/year</span><small>${note}</small></div>`).join('');
+  $('coefficients').innerHTML=`<span>k<sub>D</sub> = ${fmt(z.kD)} m/s</span><span>k<sub>I</sub> = ${fmt(z.kI)} m/s</span><span>D*<sub>Cr</sub> = ${fmt(z.DstarCr)} m²/s</span><span>D<sub>eff</sub> = ${fmt(z.Deff)} m²/s</span><span>Surface Cr = ${fmt(z.q[1])}</span><span>Surface v = ${fmt(z.q[2])}</span>`;
+  if(result){
+   const rows=curveRows();plot('share-plot',[{rows:rows.map(z=>({x:z.x,y:z.fD})),color:'#500000',width:3.5}],{ylabel:'Diffusion share of resistance',desc:'Diffusion resistance share across the multiplier sweep',share:true,marker:{x:selected,y:z.fD}});
+   plot('rate-plot',[{rows:rows.map(z=>({x:z.x,y:z.diffusionLimit})),color:'#8a6900'},{rows:rows.map(z=>({x:z.x,y:z.interfaceLimit})),color:'#155c8b',dash:'8,5'},{rows:rows.map(z=>({x:z.x,y:z.rate})),color:'#500000',width:4}],{logY:true,ylabel:'Cr-equivalent speed (µm/year)',desc:'Diffusion limiting, interface limiting and actual overall removal speeds',marker:{x:selected,y:z.rate}});
+  }else{ $('share-plot').innerHTML='<p class="caption">Updating the sweep…</p>'; $('rate-plot').innerHTML='<p class="caption">Updating the sweep…</p>'; }
+  thresholds();renderTable();
+ }
+ function renderTable(){
+  $('voltage-summary').textContent=`${name()}, 1–1,000,000 in increments of 1; L = ${p.L} µm; ${p.model}; ${p.mode==='S'?'Cr tracer multiplier':'vacancy supersaturation'} held at ${p.mode==='S'?p.factor:p.S}.`;
+  if(!result){$('voltage-table').querySelector('tbody').innerHTML='<tr><td colspan="5">Sweep in progress…</td></tr>';return;}
+  $('voltage-table').querySelector('tbody').innerHTML=result.cases.map(c=>`<tr class="${Math.abs(c.eta-p.eta)<1e-10?'selected-row':''}"><td><strong>${fmt(c.eta*1000,7)} mV</strong><small>${fmt(c.eta/M.DATA.VT_V,5)} V<sub>T</sub></small></td>${M.TARGETS.map(t=>{const rs=c.crossings.filter(r=>r.target===t);return '<td>'+(!rs.length?'Not reached':rs.map(r=>`<button class="cell-action" data-eta="${c.eta}" data-x="${r.x}">${fmt(r.x,7)}</button><small>rate ${fmt(r.state.rate,5)} µm/yr</small>`).join(''))+'</td>';}).join('')}<td>${c.counts.map(n=>n.toLocaleString()).join(' / ')}</td></tr>`).join('');
+ }
+ function run(){
+  if(worker)worker.terminate();const id=++token;result=null;render();
+  $('progress').hidden=false;$('progress').value=0;$('status').textContent='Evaluating every integer from 1 to 1,000,000…';
+  for(const x of ['export-thresholds','export-curve'])$(x).disabled=true;
+  const src=MODEL_SOURCE+'\nonmessage=e=>{try{const r=ControlModel.sweep(e.data,v=>postMessage({progress:v}));postMessage({result:r});}catch(e){postMessage({error:e.message});}};';
+  const url=URL.createObjectURL(new Blob([src],{type:'text/javascript'}));worker=new Worker(url);URL.revokeObjectURL(url);
+  worker.onmessage=e=>{if(id!==token)return;if(e.data.progress!==undefined){$('progress').value=e.data.progress;return;}if(e.data.error){$('status').textContent=e.data.error;$('status').className='error';return;}
+   result=e.data.result;$('progress').value=1;$('status').className='';$('status').textContent=`Complete: 1,000,000 integer values × ${result.cases.length} voltages (${(result.elapsedMs/1000).toFixed(2)} s).`;render();
+   for(const x of ['export-thresholds','export-curve'])$(x).disabled=false;
+   document.documentElement.dataset.ready='true';worker.terminate();worker=null;
+  };worker.onerror=e=>{$('status').textContent='Sweep error: '+e.message;};
+  document.documentElement.dataset.ready='false';worker.postMessage({...p});
+ }
+ function integer(v){return Math.max(1,Math.min(M.MAX,Math.round(Number(v)||1)));}
+ function setPoint(x){selected=integer(x);render();}
+ $('multiplier').addEventListener('change',e=>setPoint(e.target.value));$('multiplier-slider').addEventListener('input',e=>setPoint(10**Number(e.target.value)));
+ $('minus').onclick=()=>setPoint(selected-1);$('plus').onclick=()=>setPoint(selected+1);
+ $('mode').onchange=e=>{p.mode=e.target.value;selected=1;run();};$('length').onchange=e=>{p.L=+e.target.value;run();};$('coupling').onchange=e=>{p.model=e.target.value;run();};
+ $('fixed').onchange=e=>{p[p.mode==='S'?'factor':'S']=integer(e.target.value);run();};
+ function voltage(v){p.eta=Math.max(M.DATA.VT_V,Math.min(1,Number(v)||M.DATA.VT_V));run();}
+ $('eta').onchange=e=>voltage(+e.target.value/1000);$('eta-slider').onchange=e=>voltage(+e.target.value/1000);
+ $('voltage-presets').onclick=e=>{const b=e.target.closest('[data-voltage]');if(b)voltage(+b.dataset.voltage);};
+ $('reset').onclick=()=>{p=defaultP();selected=1;run();};$('teaching-example').onclick=()=>{p=defaultP();p.L=1;selected=1;run();};
+ function tab(id){for(const t of ['explore','voltage','model']){const active=t===id;$('view-'+t).hidden=!active;$('tab-'+t).setAttribute('aria-selected',active);$('tab-'+t).tabIndex=active?0:-1;}if(id==='explore')render();}
+ for(const t of ['explore','voltage','model']){$('tab-'+t).onclick=()=>tab(t);$('tab-'+t).onkeydown=e=>{if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();const a=['explore','voltage','model'],i=(a.indexOf(t)+(e.key==='ArrowRight'?1:2))%3;tab(a[i]);$('tab-'+a[i]).focus();}};}
+ $('voltage-table').onclick=e=>{const b=e.target.closest('[data-x]');if(!b)return;p.eta=+b.dataset.eta;selected=integer(b.dataset.x);tab('explore');render();};
+ function download(name,text,type='text/csv'){const u=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}
+ const csv=rows=>rows.map(row=>row.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\n');
+ const headers=['model','sweep','L_um','eta_mV','S_v','Cr_tracer_multiplier','Dstar_Cr_m2_s','D_eff_m2_s','kD_m_s','kI_m_s','RD_s_m','RI_s_m','diffusion_share','interface_share','diffusion_limit_um_year','interface_limit_um_year','overall_rate_um_year','surface_Ni','surface_Cr','surface_v'];
+ const fields=z=>[z.model,p.mode,z.L,z.eta*1000,z.S,z.factor,z.DstarCr,z.Deff,z.kD,z.kI,z.RD,z.RI,z.fD,z.fI,z.diffusionLimit,z.interfaceLimit,z.rate,...z.q];
+ $('export-curve').onclick=()=>download('Resistance_Curves.csv',csv([headers,...curveRows().map(fields)]));
+ $('export-thresholds').onclick=()=>{
+  const rows=[['status','target_diffusion_share','crossing_multiplier','lower_integer','upper_integer',...headers]];
+  for(const c of result.cases)for(const t of M.TARGETS){const roots=c.crossings.filter(r=>r.target===t);if(!roots.length)rows.push(['not_reached',t,'','','',p.model,p.mode,p.L,c.eta*1000]);else for(const r of roots)rows.push(['crossing',t,r.x,r.lowerInteger,r.upperInteger,...fields(r.state)]);}
+  download('Resistance_Thresholds.csv',csv(rows));
+ };
+ $('export-json').onclick=()=>download('Resistance_Selected_State.json',JSON.stringify({definition:'Steady Cr-equivalent removal; constant-coefficient analytical transport and linear prescribed interface; not wall recession',parameters:p,selectedMultiplier:selected,state:M.point(p,selected),matrices:M.coefficients(p.mode==='S'?selected:p.S,p.model,p.mode==='factor'?selected:p.factor),constants:M.DATA},null,2),'application/json');
+ $('material-values').innerHTML=`<p>Thermal vacancy fraction: ${fmt(M.DATA.vthermal,9)}. Reference Cr tracer diffusivity: ${fmt(M.DATA.tracers[2],9)} m²/s; Ni: ${fmt(M.DATA.tracers[1],9)} m²/s; Fe: ${fmt(M.DATA.tracers[0],9)} m²/s.</p>`;
+ window.addEventListener('resize',()=>render());
+ globalThis.ResistanceExplorer={getParameters:()=>({...p}),getResult:()=>result,getSelected:()=>M.point(p,selected),setPoint};run();
+})();
+</script></body></html>
