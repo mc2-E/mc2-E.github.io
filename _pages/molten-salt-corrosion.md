@@ -34,7 +34,7 @@ Explore the project through two implementations. Both use a one-dimensional allo
 <section class="implementation-card" aria-labelledby="comprehensive-title">
   <h2 id="comprehensive-title">Comprehensive Implementation</h2>
   <p>A unified, configurable explorer for Cr-only or Cr+Fe dissolution and deposition. Vary activity-dependent kinetics, equilibrium-reference gaps, bath activities and electrical constraints within one model.</p>
-  <p>Compare prescribed Cr overpotential, prescribed electrode potential and maintained-chemistry mixed potential, with profiles, time histories and electrochemical plots.</p>
+  <p>Compare prescribed Cr overpotential, prescribed electrode potential, and finite-bath or maintained-chemistry mixed potential, with profiles, time histories, evolving bath inventories and electrochemical plots.</p>
   <div class="project-links"><a href="{{ '/research/projects/molten-salt-corrosion/comprehensive-implementation/' | relative_url }}">Explore the comprehensive implementation →</a></div>
 </section>
 </div>
@@ -46,3 +46,4 @@ These tools hold the bulk transport coefficients fixed at the selected reference
 Rates represent **equivalent metal transfer per unit area**, not direct wall recession or depletion depth. The simple tools report Cr-equivalent removal; the comprehensive explorer also separates signed Cr and Fe transfer from net metal removal. Assumptions and applicable parameter ranges are documented within each tool.
 
 [← All research projects]({{ '/research/projects/' | relative_url }})
+
