@@ -15,6 +15,7 @@ Explore the questions, methods and interactive resources behind our research. Ea
 
 Understand how alloy transport and interfacial electrochemistry control selective dissolution in molten salts. Explore prescribed overpotential, finite-bath and maintained-chemistry conditions, diffusion versus interface control, and uncertainty in Cr diffusivity.
 
-**Available resources:** five analytical explorers, supporting reports, and offline downloads.
+**Available resources:** a Simple Implementation collection with five focused explorers, supporting reports and offline downloads, plus a Comprehensive Implementation with configurable Cr-only and Cr+Fe reaction kinetics.
 
 [Explore the molten-salt project →]({{ '/research/projects/molten-salt-corrosion/' | relative_url }})
+

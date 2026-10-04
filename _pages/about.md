@@ -9,14 +9,6 @@ description: Multiscale modeling and data-driven methods for nuclear and energy 
 
 Our research connects material structure, evolving microstructure, and component performance under challenging conditions. We develop physics-based models and reduced-order methods, using experimental evidence to evaluate predictions and guide model development.
 
-## Projects
-
-### [Molten-salt corrosion]({{ '/research/projects/molten-salt-corrosion/' | relative_url }})
-
-Interactive analytical tools connect alloy transport, interface kinetics and salt chemistry, with supporting reports and offline downloads.
-
-[View project resources →]({{ '/research/projects/molten-salt-corrosion/' | relative_url }}) · [All research projects →]({{ '/research/projects/' | relative_url }})
-
 <figure class="lab-figure">
   <a href="{{ '/assets/img/group_focus.jpg' | relative_url }}" target="_blank" rel="noopener" aria-label="Open the detailed group research overview at full size in a new tab">
     <img src="{{ '/assets/img/group_focus.jpg' | relative_url }}" alt="Detailed overview of the MC²=E Lab's research themes and modeling methods." style="display: block; width: 100%; height: auto; border-radius: 9px;">
@@ -47,3 +39,11 @@ Our work addresses materials for advanced nuclear reactors, including the evolut
 We also apply computational materials methods to fusion-energy and battery-material challenges, examining how material structure and coupled physical processes affect performance.
 
 [View our publications →]({{ '/publications/' | relative_url }})
+
+## Projects
+
+### [Molten-salt corrosion]({{ '/research/projects/molten-salt-corrosion/' | relative_url }})
+
+Interactive analytical tools connect alloy transport, interface kinetics and salt chemistry, with supporting reports and offline downloads.
+
+[View project resources →]({{ '/research/projects/molten-salt-corrosion/' | relative_url }}) · [All research projects →]({{ '/research/projects/' | relative_url }})

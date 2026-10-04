@@ -1,0 +1,652 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chromium Diffusivity & Vacancy Explorer</title><style>
+:root{--maroon:#500000;--blue:#2c5f8a;--teal:#0b6e75;--ink:#222b34;--muted:#56616a;--line:#d9dfe3;--paper:#fff;--bg:#f5f6f7}*{box-sizing:border-box}body{margin:0;font:17px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:var(--bg)}header{background:var(--maroon);color:white;padding:32px max(24px,calc((100vw - 1280px)/2));}h1{font-size:clamp(1.7rem,3vw,2.5rem);margin:0 0 8px;line-height:1.2}header p{max-width:880px;margin:0;opacity:.94}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:700;margin-bottom:10px}main{max-width:1328px;margin:auto;padding:24px}.lead{margin:0 0 18px;max-width:1050px}.panel{background:white;border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:20px;box-shadow:0 2px 8px #00000004}h2{font-size:1.35rem;color:var(--maroon);margin:0 0 12px}h3{font-size:1.05rem;margin:10px 0;color:var(--blue)}.controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}label{display:block;font-weight:650;font-size:.91rem;margin-bottom:6px}input,select,button{font:inherit}input,select{width:100%;min-height:44px;padding:8px;border:1px solid #87939a;border-radius:6px;background:white;color:var(--ink)}small,.help{display:block;color:var(--muted);font-size:.82rem;margin-top:5px;line-height:1.45}.wide{grid-column:span 2}button{border:1px solid var(--maroon);border-radius:6px;background:white;color:var(--maroon);padding:10px 16px;cursor:pointer;font-weight:650;min-height:44px}button.primary{background:var(--maroon);color:white}button:hover{filter:brightness(.94)}button:disabled{opacity:.5;cursor:wait}:focus-visible{outline:3px solid #d89300;outline-offset:3px}.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:18px}.status{font-size:.9rem;flex:1;min-width:220px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.tabs button[aria-selected=true]{background:var(--maroon);color:white}.tab[hidden]{display:none}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}.card{background:#f6eeee;border:1px solid #eadcdc;border-radius:9px;padding:16px}.card span{display:block;font-size:.84rem;color:var(--muted)}.card strong{display:block;font-size:1.45rem;font-weight:700;color:var(--maroon);margin:3px 0}.plots{display:grid;grid-template-columns:1fr 1fr;gap:20px}.plot{border:1px solid var(--line);border-radius:9px;background:#fff;padding:12px;min-width:0}.plot svg{display:block;width:100%;height:auto;font-family:system-ui,sans-serif}.plot h3{margin:0 0 8px}.plot-note{font-size:.82rem;color:var(--muted);margin:8px 0}.plot-controls{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin:10px 0 16px}.plot-controls label{display:flex;align-items:center;gap:8px;font-weight:500}.plot-controls select{width:auto}.plot-controls input[type=checkbox]{width:20px;min-height:20px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:.9rem}th{text-align:left;background:#f2f4f5}td,th{padding:10px;border-bottom:1px solid var(--line);white-space:nowrap}caption{text-align:left;font-weight:650;margin:8px 0}.selected-row{background:#f6eeee}.legend{font-size:.84rem;display:flex;gap:18px;flex-wrap:wrap;margin-bottom:10px}.swatch{display:inline-block;width:25px;border-top:3px solid var(--maroon);vertical-align:middle;margin-right:6px}.swatch.base{border-color:var(--blue);border-top-style:dashed}.note{padding:12px 16px;border-left:4px solid var(--teal);background:#eef7f7;border-radius:0 6px 6px 0;font-size:.92rem}.evidence{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.evidence article{border:1px solid var(--line);padding:16px;border-radius:8px}.evidence button{margin-top:8px}.equation{overflow-x:auto;margin:15px 0;padding:14px;background:#f7f7f7;border-radius:6px}math{font-size:1.18rem}a{color:var(--blue)}.muted{color:var(--muted)}details{margin:14px 0}summary{cursor:pointer;font-weight:650;color:var(--maroon)}footer{font-size:.82rem;color:var(--muted);padding:15px 0 30px}.flow{width:100%;max-height:225px}#snapshot{font-size:.91rem;color:var(--muted);margin:0 0 15px}#error{color:#8a1c13;font-weight:600}input:disabled,select:disabled{background:#eee}.checkline{display:flex;align-items:center;gap:8px}.checkline input{width:20px;min-height:20px}
+@media(max-width:850px){.controls{grid-template-columns:1fr 1fr}.plots{grid-template-columns:1fr}.evidence{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){main{padding:14px}.panel{padding:15px}.controls{grid-template-columns:1fr}.wide{grid-column:span 1}header{padding:24px 18px}.cards{gap:8px}.card{padding:12px}.card strong{font-size:1.2rem}.actions button{flex:1}.tabs button{flex:1;font-size:.9rem;padding:9px}.plot{padding:6px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style></head><body><header><div class="eyebrow">316-like alloy · 700°C · analytical transport</div><h1>Chromium diffusivity & vacancy explorer</h1><p>Separate uncertainty in the Cr tracer input from the effect of initial and far-boundary vacancies. Follow corrosion from one hour to two years, then examine its final limit.</p></header><main>
+<p class="lead">Choose an interface, length and material reference. Change <strong>Cr diffusivity</strong>, <strong>vacancy supersaturation</strong>, or both. Rates and accumulated removal are <strong>Cr-equivalent</strong> quantities—not predicted wall recession.</p>
+<section class="panel" aria-labelledby="setup-title"><h2 id="setup-title">1. Set the comparison</h2><div class="controls">
+<div class="wide"><label for="bath">Interface condition</label><select id="bath"><option value="prescribed">Prescribed actual overpotential</option><option value="finite">Mixed potential · finite bath</option><option value="maintained">Mixed potential · maintained chemistry</option></select><small id="bath-help">The actual overpotential is held fixed; bulk supply still evolves.</small></div>
+<div><label for="length">Transport length L (µm)</label><input type="number" id="length" min="1" max="1000" step="any" value="100" list="lengths"><datalist id="lengths"><option value="1"><option value="10"><option value="25"><option value="50"><option value="75"><option value="100"><option value="200"><option value="400"><option value="1000"></datalist><small>1–1000 µm. The far alloy is a fixed reservoir.</small></div>
+<div><label for="eta">Actual overpotential η (mV)</label><select id="eta"><option value=".015">15</option><option value=".08385957864056579" selected>83.86 · 1 Vₜ</option><option value=".16771915728113158">167.72 · 2 Vₜ</option><option value=".33543831456226316">335.44 · 4 Vₜ</option><option value=".5031574718433947">503.16 · 6 Vₜ</option><option value=".6708766291245263">670.88 · 8 Vₜ</option><option value=".8385957864056579">838.60 · 10 Vₜ</option><option value="1">1000 · 1 V</option></select><small>Used only for prescribed overpotential. Mixed potential is solved.</small></div>
+<div><label for="sv">Vacancy supersaturation Sᵥ</label><input type="number" id="sv" value="1" min="1" max="10000" step="any" list="vacancies"><datalist id="vacancies"><option value="1"><option value="10"><option value="100"><option value="1000"><option value="10000"></datalist><small id="v-help"></small></div>
+<div><label for="preset">Cr lattice evidence preset</label><select id="preset"><option value="ornl">ORNL / Perkins · baseline</option><option value="mizouchi">Mizouchi · SUS316</option><option value="smith">Smith · 50 K extrapolation</option><option value="custom">Custom sensitivity value</option></select><small>Experimental fits; not a statistical confidence interval.</small></div>
+<div><label for="dcr">Cr tracer D* (m²/s)</label><input id="dcr" type="number" value="8.774877334868778e-20" step="any" min="8.774877334868778e-24" max="8.774877334868778e-14"><small id="d-help"></small></div>
+<div><label for="model">Bulk coupling</label><select id="model"><option value="PTK">Thermodynamic + kinetic (PTK)</option><option value="PT">Thermodynamic only (PT)</option></select><small>Both retain the full thermodynamic Hessian.</small></div></div>
+<div class="actions"><button id="calculate" class="primary">Calculate</button><button id="reset">Reset to original reference</button><label class="checkline"><input type="checkbox" id="baseline">Overlay ORNL + thermal vacancy</label></div><div class="actions"><span id="status" class="status" role="status" aria-live="polite">Ready.</span><button id="cancel" hidden>Cancel calculation</button></div><p id="error" role="alert"></p></section>
+<nav class="tabs" role="tablist" aria-label="Explorer views"><button role="tab" aria-selected="true" aria-controls="time-panel" id="time-tab" data-tab="time">Time & profiles</button><button role="tab" aria-selected="false" aria-controls="size-panel" id="size-tab" data-tab="size">Size dependence</button><button role="tab" aria-selected="false" aria-controls="evidence-panel" id="evidence-tab" data-tab="evidence">Evidence & model</button></nav>
+<section class="tab" id="time-panel" role="tabpanel" aria-labelledby="time-tab"><div class="panel"><h2>2. Follow the approach to the final state</h2><p id="snapshot"></p><div class="plot-controls"><label for="time">Show profiles and values at <select id="time"><option value="1">1 h</option><option value="10">10 h</option><option value="25">25 h</option><option value="100" selected>100 h</option><option value="1000">1000 h</option><option value="10000">10,000 h</option><option value="17520">2 years · 17,520 h</option><option value="final">Final asymptote</option></select></label><label><input id="lograte" type="checkbox" checked>Log rate axis when all values are positive</label></div>
+<div class="cards"><div class="card"><span>Cr-equivalent removal rate</span><strong id="rate-val">—</strong><span>µm/year</span></div><div class="card"><span>Accumulated Cr-equivalent removal</span><strong id="removal-val">—</strong><span>µm</span></div><div class="card"><span>Surface Cr site fraction</span><strong id="cr-val">—</strong><span>All lattice sites</span></div><div class="card"><span>Surface vacancy site fraction</span><strong id="v-val">—</strong><span>All lattice sites</span></div></div>
+<p class="note" id="final-note">The final limit is computed separately from the two-year solution.</p><div class="legend"><span><i class="swatch"></i>Selected material reference</span><span id="baseline-legend" hidden><i class="swatch base"></i>Original ORNL + thermal vacancy</span></div><div class="plots"><div class="plot"><h3>Instantaneous removal rate</h3><div id="rate-plot"></div><p class="plot-note">Time is logarithmic. The final rate is listed separately below.</p></div><div class="plot"><h3>Accumulated removal</h3><div id="removal-plot"></div><p class="plot-note">Includes removal from t = 0, even though the plot begins at 1 h.</p></div></div>
+<h3 style="margin-top:24px">Profiles through the alloy</h3><div class="plot-controls"><label for="zoom">Spatial view <select id="zoom"><option value="1">Entire length</option><option value=".1">First 10% from interface</option><option value=".01">First 1% from interface</option><option value=".001">First 0.1% from interface</option></select></label></div><p class="help">x = 0 is the alloy–salt interface; x = L is the fixed alloy reservoir. Near-interface samples are retained in every exported profile.</p><div class="plots"><div class="plot"><h3>Chromium</h3><div id="cr-plot"></div></div><div class="plot"><h3>Vacancies</h3><div id="v-plot"></div></div><div class="plot"><h3>Nickel</h3><div id="ni-plot"></div></div><div class="plot"><h3>What is connected?</h3><svg class="flow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" role="img" aria-labelledby="maptitle mapdesc"><title id="maptitle">Alloy transport and interface connections</title><desc id="mapdesc">Salt at the left reacts with alloy at x equals zero. Chromium leaves toward salt and vacancies enter alloy. A fixed alloy reservoir supplies the right boundary. The three interface choices change only the reacting boundary model.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#500000"/></marker></defs><rect x="15" y="40" width="110" height="120" rx="8" fill="#eef7f7" stroke="#0b6e75"/><rect x="190" y="40" width="230" height="120" rx="8" fill="#f6eeee" stroke="#500000"/><rect x="455" y="40" width="130" height="120" rx="8" fill="#eef3f7" stroke="#2c5f8a"/><g font-family="system-ui,sans-serif" font-size="17" fill="#222b34" text-anchor="middle"><text x="70" y="85">Salt</text><text x="70" y="110" font-size="13">Finite /</text><text x="70" y="130" font-size="13">maintained</text><text x="305" y="80">Alloy diffusion</text><text x="305" y="110" font-size="14">Ni · Cr · vacancies</text><text x="305" y="137" font-size="14">D = B H</text><text x="520" y="80">Far reservoir</text><text x="520" y="110" font-size="14">Fixed Ni, Cr, v</text><text x="520" y="136" font-size="14">x = L</text><text x="157" y="190" font-size="14">x = 0</text><text x="300" y="212" font-size="13">Choose inputs → calculate → compare times / sizes → export CSV</text></g><path d="M190 85H127" stroke="#500000" stroke-width="2" marker-end="url(#arrow)"/><path d="M127 137H188" stroke="#500000" stroke-width="2" marker-end="url(#arrow)"/><text x="144" y="75" font-family="system-ui" font-size="14">Cr</text><text x="151" y="127" font-family="system-ui" font-size="14">v</text><path d="M455 100H423" stroke="#500000" stroke-width="2" marker-end="url(#arrow)"/></svg>
+<p class="plot-note">Cr leaves and vacancies enter at the reacting interface. The far alloy fixes Ni, Cr and vacancy fractions.</p></div></div>
+<div class="actions"><button id="export-history">Download history CSV</button><button id="export-profile">Download displayed profile CSV</button></div><div class="table-wrap"><table id="milestones"><caption>Milestone predictions and the separate final limit</caption><thead><tr><th scope="col">Time</th><th scope="col">Rate (µm/year)</th><th scope="col">Removal (µm)</th><th scope="col">Surface Ni</th><th scope="col">Surface Cr</th><th scope="col">Surface v</th></tr></thead><tbody></tbody></table></div></div></section>
+<section class="tab" id="size-panel" role="tabpanel" aria-labelledby="size-tab" hidden><div class="panel"><h2>Same material and interface, different transport lengths</h2><p>Hold the selected Cr input, vacancy reference, coupling and interface fixed. Compare nine lengths at one time, including the separate final limit.</p><div class="plot-controls"><label for="size-time">Compare at <select id="size-time"><option value="1">1 h</option><option value="10">10 h</option><option value="25">25 h</option><option value="100">100 h</option><option value="1000">1000 h</option><option value="10000">10,000 h</option><option value="17520" selected>2 years</option><option value="final">Final asymptote</option></select></label><button id="size-calculate" class="primary">Calculate nine sizes</button><button id="export-size" disabled>Download size CSV</button></div><p id="size-snapshot" class="help">Lengths: 1, 10, 25, 50, 75, 100, 200, 400 and 1000 µm.</p><div class="plots"><div class="plot"><h3>Removal rate versus length</h3><div id="size-rate"></div></div><div class="plot"><h3>Accumulated removal versus length</h3><div id="size-removal"></div></div><div class="plot"><h3>Surface Cr versus length</h3><div id="size-cr"></div></div><div class="plot"><h3>Surface vacancies versus length</h3><div id="size-v"></div></div></div><p class="note">For a finite bath, final zero current and final removal are independent of transport length and tracer diffusivity at a fixed far composition and bath capacity. The transient approach still depends on transport. For maintained chemistry or positive prescribed overpotential, final cumulative removal is unbounded.</p></div></section>
+<section class="tab" id="evidence-panel" role="tabpanel" aria-labelledby="evidence-tab" hidden><div class="panel"><h2>Evidence for the Cr lattice input</h2><p>All three values are paired Arrhenius fits evaluated at 973.15 K. Their spread is a provisional between-study envelope—not a 95% interval. The model’s Fe and Ni tracer inputs remain fixed.</p><div class="evidence"><article><h3>Mizouchi · SUS316</h3><strong>3.11 × 10⁻²⁰ m²/s</strong><p>⁵¹Cr radiotracer; 888–1173 K. Large grains and stress relief isolate lattice transport.</p><a href="https://doi.org/10.2320/matertrans.45.2945">Primary paper</a><br><button data-preset="mizouchi">Use this fit</button></article><article><h3>ORNL / Perkins · baseline</h3><strong>8.77 × 10⁻²⁰ m²/s</strong><p>Fe–17 wt% Cr–12 wt% Ni ternary surrogate. This retains the original model input.</p><a href="https://doi.org/10.1007/BF02644255">Primary paper</a><br><button data-preset="ornl">Use this fit</button></article><article><h3>Smith · Type 316</h3><strong>5.71 × 10⁻¹⁹ m²/s</strong><p>50 K extrapolation below the measured range. Fit reproduced in later literature; original full text not inspected.</p><a href="https://doi.org/10.1179/030634575790444270">Publisher record</a><br><button data-preset="smith">Use this fit</button></article></div>
+<p><a href="../../reports/Cr_Diffusivity_Uncertainty.pdf">Read the five-page evidence report</a> · <a href="../../data/Diffusivity_973K_Evidence.csv" download>Evidence data (CSV)</a></p><p>The custom input permits 10⁻⁴–10⁶ times the ORNL baseline for sensitivity. Values outside the experimental envelope are not literature uncertainty bounds. Grain-boundary coefficients, corrosion-inferred effective values and vacancy-rich atomistic simulations are intentionally not interchangeable lattice presets.</p>
+<h2>The retained mathematical model</h2><p>Composition is <math><mrow><mi mathvariant="bold">q</mi><mo>=</mo><mo>(</mo><msub><mi>x</mi><mi>Ni</mi></msub><mo>,</mo><msub><mi>x</mi><mi>Cr</mi></msub><mo>,</mo><msub><mi>x</mi><mi>v</mi></msub><mo>)</mo></mrow></math>. Initially it equals the fixed far composition. Increasing the vacancy reference preserves occupied-site Fe:Ni:Cr ratios. The thermal vacancy normalization remains fixed.</p>
+<div class="equation"><math display="block"><mrow><msub><mi>S</mi><mi>v</mi></msub><mo>=</mo><mfrac><msub><mi>x</mi><mrow><mi>v</mi><mo>,</mo><mi>b</mi></mrow></msub><msub><mi>x</mi><mrow><mi>v</mi><mo>,</mo><mi>thermal</mi></mrow></msub></mfrac><mo>,</mo><mspace width="1em"/><msub><mi>m</mi><mi>i</mi></msub><mo>=</mo><mfrac><mrow><msubsup><mi>D</mi><mi>i</mi><mo>*</mo></msubsup><msub><mi>x</mi><mrow><mi>i</mi><mo>,</mo><mi>b</mi></mrow></msub><msub><mi>S</mi><mi>v</mi></msub></mrow><mrow><mi>R</mi><mi>T</mi></mrow></mfrac><mo>,</mo><mspace width="1em"/><mi mathvariant="bold">D</mi><mo>=</mo><mi mathvariant="bold">B</mi><mi mathvariant="bold">H</mi></mrow></math></div>
+<p>The full Hessian H and linked mobility B are recalculated for each selected reference, then frozen during transport. In PTK, the Cr input changes both Cr transport and its vacancy-exchange terms. PT keeps only the diagonal of B; it still retains thermodynamic coupling. D* is a tracer input; D is the coupled chemical diffusion matrix.</p>
+<div class="equation"><math display="block"><mrow><mfrac><mrow><mo>∂</mo><mi mathvariant="bold">q</mi></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac><mo>=</mo><mi mathvariant="bold">D</mi><mfrac><mrow><msup><mo>∂</mo><mn>2</mn></msup><mi mathvariant="bold">q</mi></mrow><mrow><mo>∂</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></mfrac><mo>,</mo><mspace width="1em"/><mi mathvariant="bold">D</mi><msub><mfrac><mrow><mo>∂</mo><mi mathvariant="bold">q</mi></mrow><mrow><mo>∂</mo><mi>x</mi></mrow></mfrac><mn>0</mn></msub><mo>=</mo><mi mathvariant="bold">s</mi><mi>r</mi><mo>,</mo><mspace width="1em"/><mi mathvariant="bold">s</mi><mo>=</mo><msup><mrow><mo>(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mo>−</mo><mn>1</mn><mo>)</mo></mrow><mi>T</mi></msup></mrow></math></div>
+<p>Positive r removes Cr and creates vacancies. With molar site density C<sub>site</sub>, the current density is j = 2 F C<sub>site</sub> r (r in m/s). The integrated removal is the time integral of r.</p>
+<details open><summary>Prescribed actual overpotential</summary><p>The existing analytical benchmark uses a concentration-linear surface law, with the same diagnostic j₀ = 5 A/m² and Vₜ = RT/F = 83.86 mV. Its h is recalculated with the selected far Cr fraction. It is not the alternative nonlinear activity-prefactor sensitivity study.</p><div class="equation"><math display="block"><mrow><mi>r</mi><mo>=</mo><mi>h</mi><msub><mi>x</mi><mrow><mi>Cr</mi><mo>,</mo><mi>s</mi></mrow></msub><mo>,</mo><mspace width="1em"/><mi>h</mi><mo>=</mo><mfrac><mrow><msub><mi>j</mi><mn>0</mn></msub><mi>sinh</mi><mo>(</mo><mi>η</mi><mo>/</mo><msub><mi>V</mi><mi>T</mi></msub><mo>)</mo></mrow><mrow><mi>F</mi><msub><mi>C</mi><mi>site</mi></msub><msub><mi>x</mi><mrow><mi>Cr</mi><mo>,</mo><mi>b</mi></mrow></msub></mrow></mfrac></mrow></math></div></details>
+<details><summary>Mixed potential: finite bath or maintained chemistry</summary><p>The anodic and cathodic currents balance at every time. A and V are alloy Cr and vacancy activity ratios relative to the retained thermal reference; H, P and S are the normalized salt reactant/product activities.</p><div class="equation"><math display="block"><mtable columnalign="left"><mtr><mtd><msub><mi>E</mi><mi>Cr</mi></msub><mo>=</mo><mfrac><msub><mi>V</mi><mi>T</mi></msub><mn>2</mn></mfrac><mi>ln</mi><mo>(</mo><mi>V</mi><mi>S</mi><mo>/</mo><mi>A</mi><mo>)</mo></mtd></mtr><mtr><mtd><msub><mi>E</mi><mi>H</mi></msub><mo>=</mo><mn>0.45</mn><mtext> V</mtext><mo>+</mo><msub><mi>V</mi><mi>T</mi></msub><mo>[</mo><mi>ln</mi><mi>H</mi><mo>−</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>ln</mi><mi>P</mi><mo>]</mo></mtd></mtr><mtr><mtd><mi>j</mi><mo>=</mo><mn>2</mn><msub><mi>j</mi><mrow><mn>0</mn><mi>Cr</mi></mrow></msub><mi>A</mi><mi>sinh</mi><mo>[</mo><mo>(</mo><mi>E</mi><mo>−</mo><msub><mi>E</mi><mi>Cr</mi></msub><mo>)</mo><mo>/</mo><msub><mi>V</mi><mi>T</mi></msub><mo>]</mo></mtd></mtr><mtr><mtd><mi>j</mi><mo>=</mo><mo>−</mo><mn>2</mn><msub><mi>j</mi><mrow><mn>0</mn><mi>H</mi></mrow></msub><msqrt><mi>H</mi><msqrt><mi>P</mi></msqrt></msqrt><mi>sinh</mi><mo>[</mo><mo>(</mo><mi>E</mi><mo>−</mo><msub><mi>E</mi><mi>H</mi></msub><mo>)</mo><mo>/</mo><mo>(</mo><mn>2</mn><msub><mi>V</mi><mi>T</mi></msub><mo>)</mo><mo>]</mo></mtd></mtr></mtable></math></div><p>Maintained chemistry: H = P = S = 1. Finite bath: H = 1 − u, P = 1 + u, S = 1 + 10u, with du/dt = C<sub>site</sub>r/C<sub>bath</sub>. C<sub>bath</sub> = 1.88507 mol/m² and C<sub>site</sub> = 10⁵ mol/m³; both exchange-current scales are 5 A/m². These are retained diagnostic settings, not a calibration to a specific operating plant.</p></details>
+<h3>Final does not mean two years</h3><p>Finite-bath equilibrium has zero net current and a finite accumulated removal. Its alloy profile becomes uniform at the far composition. Maintained chemistry and positive prescribed overpotential retain a steady gradient and current; their accumulated removal continues to increase. A changed D* can change the approach time without changing the finite-bath terminal amount.</p>
+<h3>How predictions are calculated</h3><p>Bulk diffusion uses the existing analytical kernels. Prescribed-potential histories use Laplace inversion. Mixed-potential histories use those kernels with numerical boundary-current balance and piecewise-linear history quadrature: a semi-analytical calculation. All coefficient, activity and bath definitions are retained from the earlier explorers. No new MOOSE results are included.</p></div></section>
+<footer>Offline HTML · native MathML · 365-day year · fixed far-alloy reservoir. Downloaded CSV files retain the selected parameters. Keep this explorer beside its report folder if you want the local report link to work.</footer></main><script id="worker-source" type="text/plain">(function(){
+'use strict';
+const DATA={"T": 973.15, "R": 8.31446261815324, "F": 96485.33212331001, "j0": 5.0, "Csite": 100000.0, "vthermal": 2.9187831503121694e-08, "VT_V": 0.08385957864056579, "qthermal": [0.11744009952731564, 0.18850737921609845, 2.9187831503121694e-08], "y": [0.6940525123266423, 0.11744010295513757, 0.18850738471822023], "tracers": [3.6861309965350795e-20, 2.950963559825461e-20, 8.774877334868778e-20], "pairs": {"FeNi": [-8868.1353905, 6750.932795, -725.805174], "FeCr": [3556.75745, -1410.0, 0.0], "NiCr": [-4504.269315, -17474.37197, 0.0]}, "ternary": [-6500.0, 48000.0, 19731.5], "sizes": [1, 10, 25, 50, 75, 100, 200, 400, 1000], "targets": [1, 5, 10, 20, 40, 60, 80, 100], "secondsYear": 31536000, "bath": {"gap": 0.45, "j0cr": 5, "j0h": 5, "capacity": 1.8850737921609846}, "bounds": {"S": [1, 10000], "eta": [0, 1], "factor": [0.0001, 1000000.0]}, "maxHours": 17520};
+// Exact activity expressions copied programmatically from the current full-model input.
+function activities(q){
+ const [x_ni,x_cr,x_v]=q,x_fe=1-x_ni-x_cr-x_v;
+ if(Math.min(x_ni,x_cr,x_v,x_fe)<=0)throw Error('Surface state left the positive composition domain.');
+  const mc=-144000.0*(0.41107291666666667*x_cr**2*x_fe*x_ni + 0.019583333333333333*x_cr**2*x_fe + 0.24269961069444445*x_cr**2*x_ni - 0.13541666666666667*x_cr*x_fe**2*x_ni - 0.019583333333333333*x_cr*x_fe**2 + 1.0*x_cr*x_fe*x_ni**2 - 0.27404861111111111*x_cr*x_fe*x_ni + 0.005116371180555556*x_cr*x_fe - 0.24269961069444445*x_cr*x_ni**2 - 0.27397925871527778*x_cr*x_ni - 0.015120941124999999*x_fe**3*x_ni + 0.030241882249999999*x_fe**2*x_ni**2 + 0.138901844375*x_fe**2*x_ni + 0.0097916666666666667*x_fe**2 - 0.015120941124999999*x_fe*x_ni**3 - 0.42709628881944444*x_fe*x_ni**2 - 0.061584273545138886*x_fe*x_ni - 0.024699704513888889*x_fe + 0.12134980534722222*x_ni**2 + 0.03127964802083333*x_ni);
+  const mv=x_cr*x_fe*x_ni*(19731.5*x_cr - 6500.0*x_fe + 48000.0*x_ni) + x_cr*x_fe*(1410.0*x_cr - 1410.0*x_fe + 3556.7574500000001) + x_cr*x_ni*(17474.37197*x_cr - 17474.37197*x_ni - 4504.2693149999996) - x_cr*(19731.5*x_cr*x_fe*x_ni + 1410.0*x_cr*x_fe + 17474.37197*x_cr*x_ni + x_fe*x_ni*(19731.5*x_cr - 6500.0*x_fe + 48000.0*x_ni) + x_fe*(1410.0*x_cr - 1410.0*x_fe + 3556.7574500000001) + x_ni*(17474.37197*x_cr - 17474.37197*x_ni - 4504.2693149999996)) + x_fe*x_ni*(6750.9327949999997*x_fe - 6750.9327949999997*x_ni - 725.80517399999997*(x_fe - x_ni)**2 - 8868.1353904999996) - x_fe*(-6500.0*x_cr*x_fe*x_ni - 1410.0*x_cr*x_fe + x_cr*x_ni*(19731.5*x_cr - 6500.0*x_fe + 48000.0*x_ni) + x_cr*(1410.0*x_cr - 1410.0*x_fe + 3556.7574500000001) + x_fe*x_ni*(-1451.6103479999999*x_fe + 1451.6103479999999*x_ni + 6750.9327949999997) + x_ni*(6750.9327949999997*x_fe - 6750.9327949999997*x_ni - 725.80517399999997*(x_fe - x_ni)**2 - 8868.1353904999996)) - x_ni*(48000.0*x_cr*x_fe*x_ni + x_cr*x_fe*(19731.5*x_cr - 6500.0*x_fe + 48000.0*x_ni) - 17474.37197*x_cr*x_ni + x_cr*(17474.37197*x_cr - 17474.37197*x_ni - 4504.2693149999996) + x_fe*x_ni*(1451.6103479999999*x_fe - 1451.6103479999999*x_ni - 6750.9327949999997) + x_fe*(6750.9327949999997*x_fe - 6750.9327949999997*x_ni - 725.80517399999997*(x_fe - x_ni)**2 - 8868.1353904999996));
+ return {A:x_cr/0.18850737921609845*Math.exp((mc-2549.9799214737041)/(DATA.R*DATA.T)), V:x_v/DATA.vthermal*Math.exp((mv+310.17154597999587)/(DATA.R*DATA.T))};
+}
+
+const YEAR=DATA.secondsYear, TO_RATE=1e6*YEAR;
+const dot=(a,b)=>a.reduce((v,x,i)=>v+x*b[i],0);
+const transpose=A=>A[0].map((_,j)=>A.map(r=>r[j]));
+const product=(A,B)=>{const C=transpose(B);return A.map(r=>C.map(c=>dot(r,c)));};
+const logspace=(lo,hi,n)=>Array.from({length:n},(_,i)=>i===0?lo:i===n-1?hi:Math.exp(Math.log(lo)+(Math.log(hi)-Math.log(lo))*i/(n-1)));
+function solveSPD(A,b){
+ const C=Array.from({length:3},()=>[0,0,0]);
+ for(let i=0;i<3;i++)for(let j=0;j<=i;j++){
+  let a=A[i][j];for(let k=0;k<j;k++)a-=C[i][k]*C[j][k];
+  if(i===j){if(!(a>0))throw Error('The reference Hessian is not positive definite.');C[i][j]=Math.sqrt(a);}
+  else C[i][j]=a/C[j][j];
+ }
+ const y=[0,0,0],x=[0,0,0];
+ for(let i=0;i<3;i++){y[i]=b[i];for(let k=0;k<i;k++)y[i]-=C[i][k]*y[k];y[i]/=C[i][i];}
+ for(let i=2;i>=0;i--){x[i]=y[i];for(let k=i+1;k<3;k++)x[i]-=C[k][i]*x[k];x[i]/=C[i][i];}
+ return x;
+}
+function hessian(x){
+ const [f,n,c,v]=x,U=Array.from({length:3},()=>[0,0,0]);
+ for(const [name,i,j] of [['FeNi',0,1],['FeCr',0,2],['NiCr',1,2]]){
+  const [a,b]=[x[i],x[j]],[l0,l1,l2]=DATA.pairs[name],d=a-b;
+  const P=l0+l1*d+l2*d*d,P1=l1+2*l2*d,P2=2*l2;
+  U[i][i]+=2*b*P1+a*b*P2;U[j][j]+=-2*a*P1+a*b*P2;
+  const cross=P+d*P1-a*b*P2;U[i][j]+=cross;U[j][i]+=cross;
+ }
+ const [Af,An,Ac]=DATA.ternary;
+ const W=[[2*Af*n*c,c*(2*Af*f+2*An*n+Ac*c),n*(2*Af*f+An*n+2*Ac*c)],
+ [c*(2*Af*f+2*An*n+Ac*c),2*An*f*c,f*(Af*f+2*An*n+2*Ac*c)],
+ [n*(2*Af*f+An*n+2*Ac*c),f*(Af*f+2*An*n+2*Ac*c),2*Ac*f*n]];
+ const S=[[-1,-1,-1],[1,0,0],[0,1,0]];
+ const hex=product(product(transpose(S),U.map((r,i)=>r.map((z,j)=>z+W[i][j]))),S);
+ return hex.map((r,i)=>r.map((z,j)=>z+DATA.R*DATA.T*(1/f+(i===j?1/x[i+1]:0))));
+}
+function coefficients(S=1,model='PTK',factor=1){
+ if(!Number.isFinite(S)||S<1||S>10000||!['PT','PTK'].includes(model)||!Number.isFinite(factor)||factor<1e-4||factor>1e6)throw Error('Select S between 1 and 10,000 and a Cr multiplier between 0.0001 and 1,000,000.');
+ const v=S*DATA.vthermal,x=[...DATA.y.map(y=>y*(1-v)),v],q=x.slice(1),H=hessian(x);
+ const tracers=DATA.tracers.map((d,i)=>d*(i===2?factor:1));
+ const m=tracers.map((d,i)=>d*x[i]*S/(DATA.R*DATA.T));
+ const [mf,mn,mc]=m,B=model==='PT'?[[mn,0,0],[0,mc,0],[0,0,mf+mn+mc]]:[[mn,0,-mn],[0,mc,-mc],[-mn,-mc,mf+mn+mc]];
+ // Exact B^-1(0,1,-1): avoids subtractive cancellation at large Cr multipliers.
+ const b=model==='PT'?[0,1/mc,-1/(mf+mn+mc)]:[0,1/mc,0];
+ const a=solveSPD(H,b),D=product(B,H);
+ return {S,model,factor,x,q,H,B,D,a,tracers};
+}
+function complete(c,p,r,extra={}){
+ const L=p.L*1e-6,q=c.q.map((v,i)=>v-L*c.a[i]*r);
+ if(extra.qCr!==undefined)q[1]=extra.qCr;
+ const x=[1-q.reduce((a,b)=>a+b,0),...q];
+ return {r,rate:r*TO_RATE,q,x,current:2*DATA.F*DATA.Csite*r,physical:x.every(v=>v>=0&&v<=1),c,...extra};
+}
+function mixedInterface(q,r){
+ const {A,V}=activities(q),j=2*DATA.F*DATA.Csite*r,VT=DATA.VT_V;
+ const Ecr=VT/2*Math.log(V/A),etaCr=VT*Math.asinh(j/(2*DATA.bath.j0cr*A));
+ const E=Ecr+etaCr,EfromH=DATA.bath.gap-2*VT*Math.asinh(j/(2*DATA.bath.j0h));
+ return {A,V,Ecr,E,etaCr,Eh:DATA.bath.gap,residual:E-EfromH};
+}
+function forward(p,model='PTK'){
+ if(!Number.isFinite(p.L)||p.L<1||p.L>1000||!['prescribed','maintained'].includes(p.bath))throw Error('Choose a length from 1 to 1,000 µm and an interface condition.');
+ const c=coefficients(p.S,model,p.factor),L=p.L*1e-6;
+ if(p.bath==='prescribed'){
+  if(!Number.isFinite(p.eta)||p.eta<0||p.eta>1)throw Error('Prescribed overpotential must be between 0 and 1 V.');
+  const h=DATA.j0*Math.sinh(p.eta/DATA.VT_V)/(DATA.F*DATA.Csite*c.q[1]);
+  const bulk=L*c.a[1],Da=h*bulk,r=h*c.q[1]/(1+Da);
+  return complete(c,p,r,{h,Da,bulkShare:Da/(1+Da),transportCeiling:c.q[1]/bulk*TO_RATE,qCr:h?r/h:c.q[1],etaCr:p.eta});
+ }
+ const phi=c.a.map(a=>L*a),slopes=[phi.reduce((a,b)=>a+b,0),...phi.map(z=>-z)];
+ let lo=-Infinity,hi=Infinity;
+ for(let i=0;i<4;i++){
+  if(slopes[i]>0)lo=Math.max(lo,-c.x[i]/slopes[i]);
+  if(slopes[i]<0)hi=Math.min(hi,-c.x[i]/slopes[i]);
+ }
+ const state=r=>c.q.map((v,i)=>v-phi[i]*r);
+ // All approved references have positive corrosion driving force initially.
+ const f0=mixedInterface(c.q,0).residual;
+ if(Math.abs(f0)<1e-15)return complete(c,p,0,mixedInterface(c.q,0));
+ if(f0<0)lo=0;else hi=0;
+ if(Number.isFinite(lo)&&lo!==0)lo+=Math.abs(lo)*2e-13;
+ if(Number.isFinite(hi)&&hi!==0)hi-=Math.abs(hi)*2e-13;
+ if(!Number.isFinite(lo)||!Number.isFinite(hi)||lo>=hi)throw Error('No physical current bracket.');
+ if(mixedInterface(state(lo),lo).residual>0||mixedInterface(state(hi),hi).residual<0)throw Error('No bracketed mixed-potential solution.');
+ let r=0,out;
+ for(let k=0;k<110;k++){
+  r=(lo+hi)/2;out=mixedInterface(state(r),r);
+  if(out.residual>0)hi=r;else lo=r;
+  if(Math.abs(out.residual)<2e-13)break;
+ }
+ return complete(c,p,r,out);
+}
+function scanRoots(fn,lo,hi,target,log=true,n=161){
+ const xs=log?logspace(lo,hi,n):Array.from({length:n},(_,i)=>lo+(hi-lo)*i/(n-1));
+ const samples=xs.map(x=>({x,y:fn(x)})),roots=[];
+ const addRoot=x=>{if(!roots.some(v=>Math.abs(v-x)<1e-8*Math.max(1e-8,Math.abs(x))))roots.push(x);};
+ for(let i=0;i<samples.length;i++){
+  const a=samples[i];if(Math.abs(a.y-target)<1e-11*Math.max(1,Math.abs(target)))addRoot(a.x);
+  if(!i)continue;const b=samples[i-1];if((a.y-target)*(b.y-target)>=0)continue;
+  let l=b.x,h=a.x,fl=b.y-target;
+  for(let j=0;j<75;j++){
+   const m=log?Math.sqrt(l*h):(l+h)/2,fm=fn(m)-target;
+   if(Math.abs(fm)<1e-11*Math.max(1,Math.abs(target))){l=h=m;break;}
+   if(fl*fm<=0)h=m;else{l=m;fl=fm;}
+  }addRoot(log?Math.sqrt(l*h):(l+h)/2);
+ }
+ return {roots,samples,min:Math.min(...samples.map(z=>z.y)),max:Math.max(...samples.map(z=>z.y))};
+}
+function inverse(p,model='PTK',n=161){
+ if(!(p.target>0)||!Number.isFinite(p.target))throw Error('Choose a positive target rate.');
+ if(p.solve==='eta'&&p.bath==='maintained')return {model,roots:[],reason:'Mixed potential is an output. Solve for vacancy supersaturation or Cr tracer diffusivity.',samples:[]};
+ const key={S:'S',eta:'eta',factor:'factor'}[p.solve];if(!key)throw Error('Choose the unknown input.');
+ const [lo,hi]=DATA.bounds[key],fn=x=>forward({...p,[key]:x},model).rate;
+ let result;
+ if(key==='eta'){
+  const c=coefficients(p.S,model,p.factor),rt=p.target/TO_RATE,qs=c.q[1]-p.L*1e-6*c.a[1]*rt;
+  const ceiling=c.q[1]/(p.L*1e-6*c.a[1])*TO_RATE;
+  const required=qs>0?DATA.VT_V*Math.asinh(rt*DATA.F*DATA.Csite*c.q[1]/(DATA.j0*qs)):null;
+  // Resolve the reaction-to-transport transition, even when it occurs far below 1 mV.
+  const halfPlateau=DATA.VT_V*Math.asinh(DATA.F*DATA.Csite*c.q[1]/(DATA.j0*p.L*1e-6*c.a[1]));
+  const plotMin=Math.max(1e-15,Math.min(hi,halfPlateau,required>0?required:hi)/1000);
+  const xs=[0,...logspace(plotMin,hi,n-1)];
+  if(required>0&&required<=hi)xs.push(required);
+  const samples=[...new Set(xs)].sort((a,b)=>a-b).map(x=>({x,y:fn(x)}));
+  result={samples,min:0,max:samples.at(-1).y,transportCeiling:ceiling,required,roots:required!==null&&required<=hi?[required]:[],
+   reason:required===null?'Target reaches or exceeds the transport ceiling: no finite overpotential can supply it.':required>hi?'Required overpotential exceeds the 1 V search limit.':''};
+ }else result=scanRoots(fn,lo,hi,p.target,true,n);
+ const roots=result.roots.map(value=>({value,parameters:{...p,[key]:value},state:forward({...p,[key]:value},model)}));
+ const reason=result.reason||(!roots.length?(p.target>result.max?'Target is above the rates reached in the search window.':p.target<result.min?'Target is below the rates reached in the search window.':'No crossing was found in the search window.'):'');
+ return {...result,roots,reason,model,key,lo,hi};
+}
+function sizes(p,model){return DATA.sizes.map(L=>({L,...inverse({...p,L},model,81)}));}
+function profiles(root,n=81){const {state,parameters:p}=root;return Array.from({length:n},(_,i)=>{const x=p.L*i/(n-1),q=state.q.map((v,j)=>v+(state.c.q[j]-v)*i/(n-1));return {x,q,Fe:1-q.reduce((a,b)=>a+b,0)};});}
+globalThis.InverseCorrosion={DATA,TO_RATE,hessian,coefficients,forward,inverse,sizes,profiles,mixedInterface,scanRoots};
+if(typeof module!=='undefined')module.exports=globalThis.InverseCorrosion;
+
+})();
+
+function prescribedFactory(DATA){
+'use strict';
+// Pure functions; micrometres, seconds, site fractions. No PDE time stepping.
+
+const add=(a,b)=>[a[0]+b[0],a[1]+b[1]];
+const sub=(a,b)=>[a[0]-b[0],a[1]-b[1]];
+const mul=(a,b)=>[a[0]*b[0]-a[1]*b[1],a[0]*b[1]+a[1]*b[0]];
+const scale=(a,b)=>[a[0]*b,a[1]*b];
+const div=(a,b)=>{const d=b[0]*b[0]+b[1]*b[1];return [(a[0]*b[0]+a[1]*b[1])/d,(a[1]*b[0]-a[0]*b[1])/d];};
+const expc=a=>{const r=Math.exp(a[0]);return [r*Math.cos(a[1]),r*Math.sin(a[1])];};
+const sqrtc=a=>{const r=Math.hypot(...a);return [Math.sqrt(Math.max(0,(r+a[0])/2)),Math.sign(a[1])*Math.sqrt(Math.max(0,(r-a[0])/2))];};
+const DEGREE=24;
+const TALBOT=Array.from({length:DEGREE},(_,i)=>{
+  const r=2*DEGREE/5;
+  if(!i)return {delta:[r,0],gamma:[Math.exp(r)/2,0]};
+  const theta=Math.PI*i/DEGREE,cot=1/Math.tan(theta),delta=[r*theta*cot,r*theta];
+  return {delta,gamma:mul(expc(delta),[1,theta*(1+cot*cot)-cot])};
+});
+function coefficients(ref,model,eta){
+  if(!DATA.references[ref]||!['PT','PTK'].includes(model)||!Number.isFinite(eta)||eta<0||eta>1000)throw Error('Invalid coefficient request.');
+  const state=DATA.references[ref],m=state.models[model];
+  const h=1e6*DATA.j0*Math.sinh(DATA.F*(eta/1000)/(DATA.R*DATA.T))/(DATA.F*DATA.Csite*state.q[1]);
+  return {...m,q0:state.q,h};
+}
+function steady(ref,model,L,eta){
+  const c=coefficients(ref,model,eta);
+  if(!Number.isFinite(L)||L<1||L>1000)throw Error('Length must be 1–1000 µm.');
+  const Da=c.h*L*c.a[1],r=c.h*c.q0[1]/(1+Da),dq=c.a.map(v=>-L*v*r);
+  const q=c.q0.map((v,i)=>v+dq[i]);
+  if(c.h>0)q[1]=r/c.h;
+  return {r,q,dq,Da,bulkShare:Da/(1+Da),...c,L};
+}
+function profile(ref,model,L,eta,n=151){
+  const st=steady(ref,model,L,eta);
+  return Array.from({length:n},(_,i)=>{const x=L*i/(n-1);return {x,q:st.q.map((v,j)=>v+(st.q0[j]-v)*x/L)};});
+}
+function transient(ref,model,L,eta,hours){
+  if(!Number.isFinite(hours)||hours<0||hours>DATA.maxHours)throw Error('Time must be 0–17520 h.');
+  const st=steady(ref,model,L,eta),t=hours*3600;
+  if(!t||!st.h)return {r:st.h*st.q0[1],q:st.q0.slice(),dq:[0,0,0]};
+  const sums=[0,0,0];let rsum=0;
+  for(const term of TALBOT){
+    const p=scale(term.delta,1/t),phi=[[0,0],[0,0],[0,0]];
+    for(let i=0;i<3;i++){
+      const k=sqrtc(scale(p,1/st.eigen[i]));
+      const e=expc(scale(k,-2*L));
+      const z=div(div(sub([1,0],e),add([1,0],e)),sqrtc(scale(p,st.eigen[i])));
+      for(let j=0;j<3;j++)phi[j]=add(phi[j],scale(z,st.weights[j][i]));
+    }
+    const rh=div([st.h*st.q0[1],0],mul(p,add([1,0],scale(phi[1],st.h))));
+    rsum+=mul(term.gamma,sub(rh,div([st.r,0],p)))[0];
+    for(let j=0;j<3;j++)sums[j]+=mul(term.gamma,sub(scale(mul(phi[j],rh),-1),div([st.dq[j],0],p)))[0];
+  }
+  const r=st.r+.4/t*rsum,dq=st.dq.map((v,j)=>v+.4/t*sums[j]);
+  const q=st.q0.map((v,j)=>v+dq[j]);
+  // The exact surface closure avoids subtracting nearly equal Cr fractions.
+  q[1]=r/st.h;dq[1]=q[1]-st.q0[1];
+  if(!Number.isFinite(r)||q.some(v=>!Number.isFinite(v)))throw Error('Analytical evaluation failed.');
+  return {r,q,dq};
+}
+const logspace=(a,b,n)=>Array.from({length:n},(_,i)=>i===0?a:i===n-1?b:Math.exp(Math.log(a)+(Math.log(b)-Math.log(a))*i/(n-1)));
+function history(ref,model,L,eta,endHours=100){
+  if(![100,DATA.maxHours].includes(endHours))throw Error('Choose the 100 h or two-year time window.');
+  const step=endHours===100?1:100;
+  const t=[...new Set([0,...logspace(1e-4,endHours,160),...Array.from({length:Math.floor(endHours/step)+1},(_,i)=>i*step),1,10,25,100,endHours])].sort((a,b)=>a-b);
+  return t.map(x=>({x,...transient(ref,model,L,eta,x)}));
+}
+function sizes(ref,model,eta,mode,hours){
+  const lengths=DATA.sweep.sweep_sizes_um;
+  return lengths.map(x=>({x,...(mode==='steady'?steady(ref,model,x,eta):transient(ref,model,x,eta,hours))}));
+}
+function transientProfile(ref,model,L,eta,hours,positions){
+  const st=steady(ref,model,L,eta),surface=transient(ref,model,L,eta,hours),t=hours*3600;
+  const x=positions||[...new Set([0,L,...Array.from({length:101},(_,i)=>L*i/100),...logspace(L*1e-8,L/2,121),...logspace(L*1e-8,L/2,80).map(v=>L-v)])].sort((a,b)=>a-b);
+  if(x.some(v=>!Number.isFinite(v)||v<0||v>L))throw Error('Profile locations must be inside the alloy.');
+  if(!t||!st.h)return x.map(x=>({x,q:st.q0.slice(),r:surface.r}));
+  const terms=TALBOT.map(term=>{
+    const p=scale(term.delta,1/t),ks=[],den=[],phi=[[0,0],[0,0],[0,0]];
+    for(let i=0;i<3;i++){
+      const k=sqrtc(scale(p,1/st.eigen[i])),e=expc(scale(k,-2*L));ks.push(k);
+      den.push(mul(add([1,0],e),sqrtc(scale(p,st.eigen[i]))));
+      const z=div(sub([1,0],e),den[i]);for(let j=0;j<3;j++)phi[j]=add(phi[j],scale(z,st.weights[j][i]));
+    }
+    return {p,ks,den,gamma:term.gamma,rh:div([st.h*st.q0[1],0],mul(p,add([1,0],scale(phi[1],st.h))))};
+  });
+  return x.map(xx=>{
+    if(xx===0)return {x:xx,q:surface.q.slice(),r:surface.r};
+    if(xx===L)return {x:xx,q:st.q0.slice(),r:surface.r};
+    const dq=st.a.map(v=>-(L-xx)*v*st.r),sums=[0,0,0];
+    for(const term of terms){
+      const phi=[[0,0],[0,0],[0,0]];
+      for(let i=0;i<3;i++){
+        const z=div(sub(expc(scale(term.ks[i],-xx)),expc(scale(term.ks[i],-(2*L-xx)))),term.den[i]);
+        for(let j=0;j<3;j++)phi[j]=add(phi[j],scale(z,st.weights[j][i]));
+      }
+      for(let j=0;j<3;j++)sums[j]+=mul(term.gamma,sub(scale(mul(phi[j],term.rh),-1),div([dq[j],0],term.p)))[0];
+    }
+    return {x:xx,q:st.q0.map((v,j)=>v+dq[j]+.4/t*sums[j]),r:surface.r};
+  });
+}
+function supersaturations(model,L,eta,mode,hours){
+  if(!['steady','transient'].includes(mode))throw Error('Select steady state or a transient time.');
+  return Object.entries(DATA.references).map(([ref,c])=>({ref,x:c.supersaturation,vref:c.q[2],
+    ...(mode==='steady'?steady(ref,model,L,eta):transient(ref,model,L,eta,hours))}));
+}
+function fullSweep(models,mode,hours){
+  const rows=[];
+  for(const [ref,entry] of Object.entries(DATA.references))for(const L of DATA.sweep.sweep_sizes_um)for(const eta of DATA.etaPresets_mV)for(const model of models){
+    const z=mode==='steady'?steady(ref,model,L,eta):transient(ref,model,L,eta,hours);
+    rows.push({ref,model,S:entry.supersaturation,L,eta,etaOverVT:eta/(1000*DATA.VT_V),...z});
+  }
+  return rows;
+}
+
+function removal(ref,model,L,eta,hours){
+ const st=steady(ref,model,L,eta),t=hours*3600;if(!t||!st.h)return 0;let sum=0;
+ for(const term of TALBOT){
+  const p=scale(term.delta,1/t),phi=[[0,0],[0,0],[0,0]];
+  for(let i=0;i<3;i++){
+   const e=expc(scale(sqrtc(scale(p,1/st.eigen[i])),-2*L));
+   const z=div(div(sub([1,0],e),add([1,0],e)),sqrtc(scale(p,st.eigen[i])));
+   for(let j=0;j<3;j++)phi[j]=add(phi[j],scale(z,st.weights[j][i]));
+  }
+  const integrated=div([st.h*st.q0[1],0],mul(mul(p,p),add([1,0],scale(phi[1],st.h))));
+  sum+=mul(term.gamma,sub(integrated,div([st.r,0],mul(p,p))))[0];
+ }
+ return st.r*t+.4/t*sum;
+}
+
+return {removal,DATA,coefficients,steady,profile,transient,history,sizes,transientProfile,supersaturations,fullSweep};
+
+}
+
+function maintainedFactory(DATA){
+'use strict';
+
+// Exact activity expressions copied programmatically from the current full-model input.
+function activities(q){
+ const [x_ni,x_cr,x_v]=q,x_fe=1-x_ni-x_cr-x_v;
+ if(Math.min(x_ni,x_cr,x_v,x_fe)<=0)throw Error('Surface state left the positive composition domain.');
+  const mc=-144000.0*(0.41107291666666667*x_cr**2*x_fe*x_ni + 0.019583333333333333*x_cr**2*x_fe + 0.24269961069444445*x_cr**2*x_ni - 0.13541666666666667*x_cr*x_fe**2*x_ni - 0.019583333333333333*x_cr*x_fe**2 + 1.0*x_cr*x_fe*x_ni**2 - 0.27404861111111111*x_cr*x_fe*x_ni + 0.005116371180555556*x_cr*x_fe - 0.24269961069444445*x_cr*x_ni**2 - 0.27397925871527778*x_cr*x_ni - 0.015120941124999999*x_fe**3*x_ni + 0.030241882249999999*x_fe**2*x_ni**2 + 0.138901844375*x_fe**2*x_ni + 0.0097916666666666667*x_fe**2 - 0.015120941124999999*x_fe*x_ni**3 - 0.42709628881944444*x_fe*x_ni**2 - 0.061584273545138886*x_fe*x_ni - 0.024699704513888889*x_fe + 0.12134980534722222*x_ni**2 + 0.03127964802083333*x_ni);
+  const mv=x_cr*x_fe*x_ni*(19731.5*x_cr - 6500.0*x_fe + 48000.0*x_ni) + x_cr*x_fe*(1410.0*x_cr - 1410.0*x_fe + 3556.7574500000001) + x_cr*x_ni*(17474.37197*x_cr - 17474.37197*x_ni - 4504.2693149999996) - x_cr*(19731.5*x_cr*x_fe*x_ni + 1410.0*x_cr*x_fe + 17474.37197*x_cr*x_ni + x_fe*x_ni*(19731.5*x_cr - 6500.0*x_fe + 48000.0*x_ni) + x_fe*(1410.0*x_cr - 1410.0*x_fe + 3556.7574500000001) + x_ni*(17474.37197*x_cr - 17474.37197*x_ni - 4504.2693149999996)) + x_fe*x_ni*(6750.9327949999997*x_fe - 6750.9327949999997*x_ni - 725.80517399999997*(x_fe - x_ni)**2 - 8868.1353904999996) - x_fe*(-6500.0*x_cr*x_fe*x_ni - 1410.0*x_cr*x_fe + x_cr*x_ni*(19731.5*x_cr - 6500.0*x_fe + 48000.0*x_ni) + x_cr*(1410.0*x_cr - 1410.0*x_fe + 3556.7574500000001) + x_fe*x_ni*(-1451.6103479999999*x_fe + 1451.6103479999999*x_ni + 6750.9327949999997) + x_ni*(6750.9327949999997*x_fe - 6750.9327949999997*x_ni - 725.80517399999997*(x_fe - x_ni)**2 - 8868.1353904999996)) - x_ni*(48000.0*x_cr*x_fe*x_ni + x_cr*x_fe*(19731.5*x_cr - 6500.0*x_fe + 48000.0*x_ni) - 17474.37197*x_cr*x_ni + x_cr*(17474.37197*x_cr - 17474.37197*x_ni - 4504.2693149999996) + x_fe*x_ni*(1451.6103479999999*x_fe - 1451.6103479999999*x_ni - 6750.9327949999997) + x_fe*(6750.9327949999997*x_fe - 6750.9327949999997*x_ni - 725.80517399999997*(x_fe - x_ni)**2 - 8868.1353904999996));
+ return {A:x_cr/0.18850737921609845*Math.exp((mc-2549.9799214737041)/(DATA.R*DATA.T)), V:x_v/DATA.vthermal*Math.exp((mv+310.17154597999587)/(DATA.R*DATA.T))};
+}
+
+const TH=DATA.VT_V, JC=2*DATA.F*DATA.Csite*1e-6;
+// Complementary error function (Numerical Recipes approximation; independent QA below).
+function erfc(x){const t=1/(1+.5*Math.abs(x));const p=t*Math.exp(-x*x-1.26551223+t*(1.00002368+t*(.37409196+t*(.09678418+t*(-.18628806+t*(.27886807+t*(-1.13520398+t*(1.48851587+t*(-.82215223+t*.17087277)))))))));return x>=0?p:2-p;}
+function imageStep(a,t,d){const z=a/(2*Math.sqrt(d*t));if(z>27)return 0;return 2*Math.sqrt(t/(Math.PI*d))*Math.exp(-z*z)-a/d*erfc(z);}
+function stepKernel(x,t,d,L){
+ if(t<=0||x===L)return 0;const tau=d*t/(L*L);
+ if(tau<.025){let f=0;for(let m=0;m<4;m++){const g=imageStep(x+2*m*L,t,d)-imageStep(2*L-x+2*m*L,t,d);f+=(m%2?-1:1)*g;}return f;}
+ let f=(L-x)/d;
+ for(let n=0;n<60;n++){const z=(n+.5)*Math.PI,e=Math.exp(-z*z*tau);f-=2*L/d*Math.cos(z*x/L)*e/(z*z);if(e<1e-17)break;}return f;
+}
+// Second time primitive permits exact integration of linearly varying flux.
+function imageSecond(a,t,d){const z=a/(2*Math.sqrt(d*t)),b=a*a/(4*d);if(z>27)return 0;return 4/3*Math.sqrt(t/(Math.PI*d))*(t+b)*Math.exp(-z*z)-a/d*(t+2*b/3)*erfc(z);}
+function secondKernel(x,t,d,L){
+ if(t<=0||x===L)return 0;const tau=d*t/(L*L),y=x/L;
+ if(tau<.025){let f=0;for(let m=0;m<4;m++)f+=(m%2?-1:1)*(imageSecond(x+2*m*L,t,d)-imageSecond(2*L-x+2*m*L,t,d));return f;}
+ let v=1/6-y*y/4+y*y*y/12;
+ for(let n=0;n<60;n++){const z=(n+.5)*Math.PI,e=Math.exp(-z*z*tau);v-=Math.cos(z*y)*e/z**4;if(e<1e-17)break;}
+ return (L-x)*t/d-2*L**3/(d*d)*v;
+}
+function modalKernel(t,c,L,x=0){return c.eigen.map(d=>stepKernel(x,t,d,L));}
+function modalSecond(t,c,L,x=0){return c.eigen.map(d=>secondKernel(x,t,d,L));}
+function combine(v,c){return c.weights.map(w=>w.reduce((s,a,i)=>s+a*v[i],0));}
+// Maintained H=P=S=1. Equivalent removal r has units micrometres/second.
+// No bath capacity, inventory unknown, or feedback from cumulative removal.
+function interfaceAt(q,r){
+ const {A,V}=activities(q),Ecr=TH/2*Math.log(V/A),Eh=DATA.bath.gap,j=JC*r;
+ const E=Ecr+TH*Math.asinh(j/(2*DATA.bath.j0cr*A));
+ const EfromH=Eh-2*TH*Math.asinh(j/(2*DATA.bath.j0h));
+ return {E,Ecr,Eh,etaCr:E-Ecr,j,A,V,residual:E-EfromH};
+}
+function closure(qhist,phi){
+ let lo=-Infinity,hi=Infinity;
+ const base=[...qhist,1-qhist.reduce((a,b)=>a+b,0)];
+ const slope=[...phi.map(z=>-z),phi.reduce((a,b)=>a+b,0)];
+ for(let i=0;i<4;i++){
+  if(slope[i]>0)lo=Math.max(lo,-base[i]/slope[i]);
+  if(slope[i]<0)hi=Math.min(hi,-base[i]/slope[i]);
+ }
+ const qAt=r=>qhist.map((z,i)=>z-phi[i]*r);
+ const fun=r=>interfaceAt(qAt(r),r).residual;
+ // At zero diffusion history the current scale fits well inside this bracket.
+ if(!Number.isFinite(lo))lo=-1;if(!Number.isFinite(hi))hi=1;
+ lo+=Math.max(Math.abs(lo)*2e-13,1e-30);hi-=Math.max(Math.abs(hi)*2e-13,1e-30);
+ if(!(lo<hi)||fun(lo)>0||fun(hi)<0)throw Error('No bracketed admissible maintained-chemistry root.');
+ let r;
+ for(let k=0;k<100;k++){
+  r=(lo+hi)/2;const f=fun(r);if(f>0)hi=r;else lo=r;
+  if(Math.abs(f)<2e-13)break;
+ }
+ const q=qAt(r);return {q,r,...interfaceAt(q,r)};
+}
+function endpoint(ref='thermal',model='PTK',L=100){
+ const state=DATA.references[ref],c=state.models[model];
+ // sum_i w_i L/lambda_i = L D^-1 s, with s=(0,1,-1).
+ const phi=combine(c.eigen.map(d=>L/d),c);
+ return {L,model,ref,...closure(state.q,phi)};
+}
+function timeGrid(hours,logStep=.025){
+ const end=hours*3600,ts=[0,end];for(let t=1e-10;t<end;t*=1+logStep)ts.push(t);
+ for(const h of [1,10,25,100,1000,10000,17520])if(h*3600<end)ts.push(h*3600);
+ return [...new Set(ts)].sort((a,b)=>a-b);
+}
+function solve(ref='thermal',model='PTK',L=100,hours=100,logStep=.025,linearH=null){
+ if(!DATA.references[ref]||!['PT','PTK'].includes(model)||L<1||L>1000||hours<=0||hours>17520)throw Error('Select valid length, reference, model and time.');
+ const state=DATA.references[ref],c=state.models[model],qb=state.q,ts=timeGrid(hours,logStep),rows=[];
+ const first=linearH===null?closure(qb,[0,0,0]):{q:qb.slice(),r:linearH*qb[1]};rows.push({t:0,removal:0,...first});
+ for(let n=1;n<ts.length;n++){
+  const t=ts[n],dt=t-ts[n-1],hist=[0,0,0];let fprev=modalKernel(t,c,L),jprev=modalSecond(t,c,L);
+  for(let k=1;k<n;k++){
+   const f=modalKernel(t-ts[k],c,L),j=modalSecond(t-ts[k],c,L),span=ts[k]-ts[k-1];
+   const mid=span<1e-3*(t-ts[k-1])?modalKernel(t-(ts[k]+ts[k-1])/2,c,L):null;
+   for(let i=0;i<3;i++){const delta=fprev[i]-f[i];if(delta===0)continue;const wn=mid?(delta+4*(mid[i]-f[i]))/6:(jprev[i]-j[i])/span-f[i];hist[i]+=(delta-wn)*rows[k-1].r+wn*rows[k].r;}fprev=f;jprev=j;
+  }
+  const fd=modalKernel(dt,c,L),jd=modalSecond(dt,c,L).map(z=>z/dt);
+  for(let i=0;i<3;i++)hist[i]+=(fd[i]-jd[i])*rows[n-1].r;
+  const loss=combine(hist,c),qh=qb.map((z,i)=>z-loss[i]),phi=combine(jd,c);
+  let row;
+  if(linearH===null)row=closure(qh,phi);
+  else{const r=linearH*qh[1]/(1+linearH*phi[1]),q=qh.map((z,i)=>z-phi[i]*r);row={q,r};}
+  rows.push({t,removal:rows[n-1].removal+dt/2*(rows[n-1].r+row.r),...row});
+ }
+ return {ref,model,L,hours,logStep,rows,endpoint:endpoint(ref,model,L)};
+}
+function profile(sol,hours,n=141,requestedX=null){
+ const t=hours*3600,idx=sol.rows.findIndex(z=>Math.abs(z.t-t)<1e-7);if(idx<0)throw Error('Requested profile time was not included in the solve.');
+ const c=DATA.references[sol.ref].models[sol.model],qb=DATA.references[sol.ref].q,L=sol.L;
+ const xs=requestedX?[...requestedX]:[0,L];if(!requestedX){for(let i=1;i<n;i++)xs.push(L*i/n);for(let i=0;i<70;i++){const a=L*Math.pow(10,-7+6.7*i/69);xs.push(a,L-a);}}
+ return [...new Set(xs)].sort((a,b)=>a-b).map(x=>{
+  if(x===0)return {x,q:sol.rows[idx].q.slice()};if(x===L)return {x,q:qb.slice()};
+  const hist=[0,0,0];let prev=modalKernel(t,c,L,x),jp=modalSecond(t,c,L,x);
+  for(let k=1;k<=idx;k++){const f=modalKernel(t-sol.rows[k].t,c,L,x),j=modalSecond(t-sol.rows[k].t,c,L,x),span=sol.rows[k].t-sol.rows[k-1].t;const mid=span<1e-3*(t-sol.rows[k-1].t)?modalKernel(t-(sol.rows[k].t+sol.rows[k-1].t)/2,c,L,x):null;for(let i=0;i<3;i++){const delta=prev[i]-f[i];if(delta===0)continue;const wn=mid?(delta+4*(mid[i]-f[i]))/6:(jp[i]-j[i])/span-f[i];hist[i]+=(delta-wn)*sol.rows[k-1].r+wn*sol.rows[k].r;}prev=f;jp=j;}
+  const loss=combine(hist,c);return {x,q:qb.map((a,i)=>a-loss[i])};
+ });
+}
+return {DATA,activities,stepKernel,secondKernel,interfaceAt,closure,endpoint,solve,profile,JC};
+
+}
+
+function finiteFactory(DATA){
+'use strict';
+
+// Exact activity expressions copied programmatically from the current full-model input.
+function activities(q){
+ const [x_ni,x_cr,x_v]=q,x_fe=1-x_ni-x_cr-x_v;
+ if(Math.min(x_ni,x_cr,x_v,x_fe)<=0)throw Error('Surface state left the positive composition domain.');
+  const mc=-144000.0*(0.41107291666666667*x_cr**2*x_fe*x_ni + 0.019583333333333333*x_cr**2*x_fe + 0.24269961069444445*x_cr**2*x_ni - 0.13541666666666667*x_cr*x_fe**2*x_ni - 0.019583333333333333*x_cr*x_fe**2 + 1.0*x_cr*x_fe*x_ni**2 - 0.27404861111111111*x_cr*x_fe*x_ni + 0.005116371180555556*x_cr*x_fe - 0.24269961069444445*x_cr*x_ni**2 - 0.27397925871527778*x_cr*x_ni - 0.015120941124999999*x_fe**3*x_ni + 0.030241882249999999*x_fe**2*x_ni**2 + 0.138901844375*x_fe**2*x_ni + 0.0097916666666666667*x_fe**2 - 0.015120941124999999*x_fe*x_ni**3 - 0.42709628881944444*x_fe*x_ni**2 - 0.061584273545138886*x_fe*x_ni - 0.024699704513888889*x_fe + 0.12134980534722222*x_ni**2 + 0.03127964802083333*x_ni);
+  const mv=x_cr*x_fe*x_ni*(19731.5*x_cr - 6500.0*x_fe + 48000.0*x_ni) + x_cr*x_fe*(1410.0*x_cr - 1410.0*x_fe + 3556.7574500000001) + x_cr*x_ni*(17474.37197*x_cr - 17474.37197*x_ni - 4504.2693149999996) - x_cr*(19731.5*x_cr*x_fe*x_ni + 1410.0*x_cr*x_fe + 17474.37197*x_cr*x_ni + x_fe*x_ni*(19731.5*x_cr - 6500.0*x_fe + 48000.0*x_ni) + x_fe*(1410.0*x_cr - 1410.0*x_fe + 3556.7574500000001) + x_ni*(17474.37197*x_cr - 17474.37197*x_ni - 4504.2693149999996)) + x_fe*x_ni*(6750.9327949999997*x_fe - 6750.9327949999997*x_ni - 725.80517399999997*(x_fe - x_ni)**2 - 8868.1353904999996) - x_fe*(-6500.0*x_cr*x_fe*x_ni - 1410.0*x_cr*x_fe + x_cr*x_ni*(19731.5*x_cr - 6500.0*x_fe + 48000.0*x_ni) + x_cr*(1410.0*x_cr - 1410.0*x_fe + 3556.7574500000001) + x_fe*x_ni*(-1451.6103479999999*x_fe + 1451.6103479999999*x_ni + 6750.9327949999997) + x_ni*(6750.9327949999997*x_fe - 6750.9327949999997*x_ni - 725.80517399999997*(x_fe - x_ni)**2 - 8868.1353904999996)) - x_ni*(48000.0*x_cr*x_fe*x_ni + x_cr*x_fe*(19731.5*x_cr - 6500.0*x_fe + 48000.0*x_ni) - 17474.37197*x_cr*x_ni + x_cr*(17474.37197*x_cr - 17474.37197*x_ni - 4504.2693149999996) + x_fe*x_ni*(1451.6103479999999*x_fe - 1451.6103479999999*x_ni - 6750.9327949999997) + x_fe*(6750.9327949999997*x_fe - 6750.9327949999997*x_ni - 725.80517399999997*(x_fe - x_ni)**2 - 8868.1353904999996));
+ return {A:x_cr/0.18850737921609845*Math.exp((mc-2549.9799214737041)/(DATA.R*DATA.T)), V:x_v/DATA.vthermal*Math.exp((mv+310.17154597999587)/(DATA.R*DATA.T))};
+}
+
+const TH=DATA.VT_V, JC=2*DATA.F*DATA.Csite*1e-6, BC=DATA.Csite*1e-6/DATA.bath.capacity;
+// Complementary error function (Numerical Recipes approximation; independent QA below).
+function erfc(x){const t=1/(1+.5*Math.abs(x));const p=t*Math.exp(-x*x-1.26551223+t*(1.00002368+t*(.37409196+t*(.09678418+t*(-.18628806+t*(.27886807+t*(-1.13520398+t*(1.48851587+t*(-.82215223+t*.17087277)))))))));return x>=0?p:2-p;}
+function imageStep(a,t,d){const z=a/(2*Math.sqrt(d*t));if(z>27)return 0;return 2*Math.sqrt(t/(Math.PI*d))*Math.exp(-z*z)-a/d*erfc(z);}
+function stepKernel(x,t,d,L){
+ if(t<=0||x===L)return 0;const tau=d*t/(L*L);
+ if(tau<.025){let f=0;for(let m=0;m<4;m++){const g=imageStep(x+2*m*L,t,d)-imageStep(2*L-x+2*m*L,t,d);f+=(m%2?-1:1)*g;}return f;}
+ let f=(L-x)/d;
+ for(let n=0;n<60;n++){const z=(n+.5)*Math.PI,e=Math.exp(-z*z*tau);f-=2*L/d*Math.cos(z*x/L)*e/(z*z);if(e<1e-17)break;}return f;
+}
+// Second time primitive permits exact integration of linearly varying flux.
+function imageSecond(a,t,d){const z=a/(2*Math.sqrt(d*t)),b=a*a/(4*d);if(z>27)return 0;return 4/3*Math.sqrt(t/(Math.PI*d))*(t+b)*Math.exp(-z*z)-a/d*(t+2*b/3)*erfc(z);}
+function secondKernel(x,t,d,L){
+ if(t<=0||x===L)return 0;const tau=d*t/(L*L),y=x/L;
+ if(tau<.025){let f=0;for(let m=0;m<4;m++)f+=(m%2?-1:1)*(imageSecond(x+2*m*L,t,d)-imageSecond(2*L-x+2*m*L,t,d));return f;}
+ let v=1/6-y*y/4+y*y*y/12;
+ for(let n=0;n<60;n++){const z=(n+.5)*Math.PI,e=Math.exp(-z*z*tau);v-=Math.cos(z*y)*e/z**4;if(e<1e-17)break;}
+ return (L-x)*t/d-2*L**3/(d*d)*v;
+}
+function modalKernel(t,c,L,x=0){return c.eigen.map(d=>stepKernel(x,t,d,L));}
+function modalSecond(t,c,L,x=0){return c.eigen.map(d=>secondKernel(x,t,d,L));}
+function combine(v,c){return c.weights.map(w=>w.reduce((s,a,i)=>s+a*v[i],0));}
+function interfaceAt(q,u,r){
+ const {A,V}=activities(q),H=1-u,P=1+u,S=1+10*u;
+ if(Math.min(H,P,S)<=0)throw Error('Bath inventory left its admissible domain.');
+ const Ecr=TH/2*Math.log(V*S/A),Eh=DATA.bath.gap+TH*(Math.log(H)-.5*Math.log(P));
+ const j=JC*r,E=Ecr+TH*Math.asinh(j/(2*DATA.bath.j0cr*A));
+ const EfromH=Eh-2*TH*Math.asinh(j/(2*DATA.bath.j0h*Math.sqrt(H*Math.sqrt(P))));
+ return {E,Ecr,Eh,etaCr:E-Ecr,etaH:E-Eh,j,u,HF:H,A,V,residual:E-EfromH};
+}
+function closure(qhist,phi,uold,dt){
+ let lo=-Infinity,hi=Infinity;const base=[...qhist,1-qhist.reduce((a,b)=>a+b,0)],slope=[...phi.map(z=>-z),phi.reduce((a,b)=>a+b,0)];
+ for(let i=0;i<4;i++){if(slope[i]>0)lo=Math.max(lo,-base[i]/slope[i]);if(slope[i]<0)hi=Math.min(hi,-base[i]/slope[i]);}
+ if(dt>0){lo=Math.max(lo,(-.1-uold)/(BC*dt));hi=Math.min(hi,(1-uold)/(BC*dt));}
+ const qAt=r=>qhist.map((z,i)=>z-phi[i]*r);
+ const fun=r=>interfaceAt(qAt(r),uold+BC*dt*r,r).residual;
+ if(!Number.isFinite(lo))lo=-1;if(!Number.isFinite(hi))hi=1;
+ const eps=2e-13;lo+=Math.max(Math.abs(lo)*eps,1e-30);hi-=Math.max(Math.abs(hi)*eps,1e-30);
+ if(!(lo<hi))throw Error('No admissible surface state for the time step.');
+ let fl=fun(lo),fh=fun(hi);
+ if(fl>0||fh<0)throw Error('Mixed-potential root could not be bracketed.');
+ let r=0;
+ for(let k=0;k<75;k++){r=(lo+hi)/2;const f=fun(r);if(f>0)hi=r;else lo=r;if(Math.abs(f)<2e-13)break;}
+ const q=qAt(r),u=uold+BC*dt*r;
+ return {q,r,...interfaceAt(q,u,r)};
+}
+function endpoint(ref){const q=DATA.references[ref].q.slice(),{A,V}=activities(q),K=Math.exp(2*DATA.bath.gap/TH)*A/V,u=2*(K-1)/(2*K+11+Math.sqrt(88*K+81)),E=TH/2*Math.log(V*(1+10*u)/A);return {q,u,E,HF:1-u,r:0,Q:u*DATA.bath.capacity,removal:u/BC};}
+function timeGrid(hours,logStep=.025){
+ const end=hours*3600,ts=[0,end];for(let t=1e-10;t<end;t*=1+logStep)ts.push(t);
+ for(const h of [1,10,25,100,1000,10000,17520])if(h*3600<end)ts.push(h*3600);
+ return [...new Set(ts)].sort((a,b)=>a-b);
+}
+function solve(ref='thermal',model='PTK',L=100,hours=100,logStep=.025,linearH=null){
+ if(!DATA.references[ref]||!['PT','PTK'].includes(model)||L<1||L>1000||hours<=0||hours>17520)throw Error('Select valid length, reference, model and time.');
+ const state=DATA.references[ref],c=state.models[model],qb=state.q,ts=timeGrid(hours,logStep),rows=[];
+ const first=linearH===null?closure(qb,[0,0,0],0,0):{q:qb.slice(),r:linearH*qb[1],u:0};rows.push({t:0,...first});
+ for(let n=1;n<ts.length;n++){
+  const t=ts[n],dt=t-ts[n-1],hist=[0,0,0];let fprev=modalKernel(t,c,L),jprev=modalSecond(t,c,L);
+  for(let k=1;k<n;k++){
+   const f=modalKernel(t-ts[k],c,L),j=modalSecond(t-ts[k],c,L),span=ts[k]-ts[k-1];
+   const mid=span<1e-3*(t-ts[k-1])?modalKernel(t-(ts[k]+ts[k-1])/2,c,L):null;
+   for(let i=0;i<3;i++){const delta=fprev[i]-f[i];if(delta===0)continue;const wn=mid?(delta+4*(mid[i]-f[i]))/6:(jprev[i]-j[i])/span-f[i];hist[i]+=(delta-wn)*rows[k-1].r+wn*rows[k].r;}fprev=f;jprev=j;
+  }
+  const fd=modalKernel(dt,c,L),jd=modalSecond(dt,c,L).map(z=>z/dt);
+  for(let i=0;i<3;i++)hist[i]+=(fd[i]-jd[i])*rows[n-1].r;
+  const loss=combine(hist,c),qh=qb.map((z,i)=>z-loss[i]),phi=combine(jd,c),uBase=rows[n-1].u+BC*dt/2*rows[n-1].r;
+  let row;
+  if(linearH===null)row=closure(qh,phi,uBase,dt/2);
+  else{const r=linearH*qh[1]/(1+linearH*phi[1]),q=qh.map((z,i)=>z-phi[i]*r);row={q,r,u:uBase+BC*dt/2*r};}
+  rows.push({t,...row});
+ }
+ return {ref,model,L,hours,logStep,rows,endpoint:endpoint(ref)};
+}
+function profile(sol,hours,n=141){
+ const t=hours*3600,idx=sol.rows.findIndex(z=>Math.abs(z.t-t)<1e-7);if(idx<0)throw Error('Requested profile time was not included in the solve.');
+ const c=DATA.references[sol.ref].models[sol.model],qb=DATA.references[sol.ref].q,L=sol.L;
+ const xs=[0,L];for(let i=1;i<n;i++)xs.push(L*i/n);for(let i=0;i<70;i++){const a=L*Math.pow(10,-7+6.7*i/69);xs.push(a,L-a);}
+ return [...new Set(xs)].sort((a,b)=>a-b).map(x=>{
+  if(x===0)return {x,q:sol.rows[idx].q.slice()};if(x===L)return {x,q:qb.slice()};
+  const hist=[0,0,0];let prev=modalKernel(t,c,L,x),jp=modalSecond(t,c,L,x);
+  for(let k=1;k<=idx;k++){const f=modalKernel(t-sol.rows[k].t,c,L,x),j=modalSecond(t-sol.rows[k].t,c,L,x),span=sol.rows[k].t-sol.rows[k-1].t;const mid=span<1e-3*(t-sol.rows[k-1].t)?modalKernel(t-(sol.rows[k].t+sol.rows[k-1].t)/2,c,L,x):null;for(let i=0;i<3;i++){const delta=prev[i]-f[i];if(delta===0)continue;const wn=mid?(delta+4*(mid[i]-f[i]))/6:(jp[i]-j[i])/span-f[i];hist[i]+=(delta-wn)*sol.rows[k-1].r+wn*sol.rows[k].r;}prev=f;jp=j;}
+  const loss=combine(hist,c);return {x,q:qb.map((a,i)=>a-loss[i])};
+ });
+}
+return {DATA,activities,stepKernel,secondKernel,interfaceAt,closure,endpoint,solve,profile,BC,JC};
+
+}
+
+'use strict';
+// Symmetric similarity D = L (L^T H L) L^-1, where B = L L^T.
+// No non-symmetric eigenproblem or vacancy finite differencing is needed.
+function modalCoefficients(c){
+ const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0),tr=A=>A[0].map((_,j)=>A.map(r=>r[j])),mul=(A,B)=>{const T=tr(B);return A.map(r=>T.map(col=>dot(r,col)));};
+ const L=Array.from({length:3},()=>[0,0,0]);
+ for(let i=0;i<3;i++)for(let j=0;j<=i;j++){let v=c.B[i][j];for(let k=0;k<j;k++)v-=L[i][k]*L[j][k];L[i][j]=i===j?Math.sqrt(v):v/L[j][j];}
+ const A=mul(mul(tr(L),c.H),L).map(r=>r.map(v=>v*1e12)),U=[[1,0,0],[0,1,0],[0,0,1]];
+ for(let it=0;it<80;it++){
+  let p=0,q=1;for(const [i,j] of [[0,2],[1,2]])if(Math.abs(A[i][j])>Math.abs(A[p][q]))[p,q]=[i,j];
+  if(Math.abs(A[p][q])<1e-28*Math.max(...A.map((r,i)=>Math.abs(r[i]))))break;
+  const tau=(A[q][q]-A[p][p])/(2*A[p][q]),t=(tau>=0?1:-1)/(Math.abs(tau)+Math.sqrt(1+tau*tau)),cs=1/Math.sqrt(1+t*t),sn=t*cs,apq=A[p][q];
+  A[p][p]-=t*apq;A[q][q]+=t*apq;A[p][q]=A[q][p]=0;
+  for(let k=0;k<3;k++){if(k!==p&&k!==q){const kp=A[k][p],kq=A[k][q];A[k][p]=A[p][k]=cs*kp-sn*kq;A[k][q]=A[q][k]=sn*kp+cs*kq;}const up=U[k][p],uq=U[k][q];U[k][p]=cs*up-sn*uq;U[k][q]=sn*up+cs*uq;}
+ }
+ const V=mul(L,U),y=[0,0,0],s=[0,1,-1];for(let i=0;i<3;i++){y[i]=s[i];for(let j=0;j<i;j++)y[i]-=L[i][j]*y[j];y[i]/=L[i][i];}
+ const z=tr(U).map(r=>dot(r,y)),order=[0,1,2].sort((i,j)=>A[i][i]-A[j][j]);
+ const eigen=order.map(i=>A[i][i]),weights=V.map(r=>order.map(i=>r[i]*z[i]));
+ if(eigen.some(d=>!(d>0)))throw Error('Reference diffusion modes are not positive.');
+ return {B:c.B,H:c.H,D:c.D.map(r=>r.map(v=>v*1e12)),a:c.a.map(v=>v*1e-12),eigen,weights};
+}
+function prepare(p){
+ const c=InverseCorrosion.coefficients(p.S,p.model,p.factor),m=modalCoefficients(c),D={...InverseCorrosion.DATA,references:{custom:{q:c.q,supersaturation:p.S,models:{[p.model]:m}}}};
+ return {c,m,D,engine:p.bath==='finite'?finiteFactory(D):p.bath==='maintained'?maintainedFactory(D):prescribedFactory(D)};
+}
+const MILESTONES=[1,10,25,100,1000,10000,17520], YEAR=31536000;
+function evaluate(p,step=.025){
+ if(!Number.isFinite(p.L)||p.L<1||p.L>1000||!['prescribed','finite','maintained'].includes(p.bath))throw Error('Choose a supported interface and length.');
+ const {c,m,D,engine:e}=prepare(p);let rows,endpoint,sol=null;
+ if(p.bath==='prescribed'){
+  rows=e.history('custom',p.model,p.L,p.eta*1000,17520).map(r=>({t:r.x*3600,...r,removal:e.removal('custom',p.model,p.L,p.eta*1000,r.x)}));
+  endpoint=e.steady('custom',p.model,p.L,p.eta*1000);endpoint.removal=p.eta>0?null:0;
+ }else{
+  sol=e.solve('custom',p.model,p.L,17520,step);rows=sol.rows;endpoint=sol.endpoint;
+  if(p.bath==='finite')rows=rows.map(r=>({...r,removal:r.u/e.BC}));else endpoint.removal=null;
+ }
+ const milestones=MILESTONES.map(h=>{const r=rows.find(r=>Math.abs(r.t-h*3600)<1e-7);if(!r)throw Error('Missing milestone.');return {...r,h,rate:r.r*YEAR};});
+ return {p,c,m,D,rows,milestones,endpoint:{...endpoint,rate:endpoint.r*YEAR},_sol:sol};
+}
+function spatial(result,h){
+ const {p,c,D}=result,e=p.bath==='finite'?finiteFactory(D):p.bath==='maintained'?maintainedFactory(D):prescribedFactory(D);
+ if(h==='final')return Array.from({length:151},(_,i)=>{const x=p.L*i/150;return {x,q:result.endpoint.q.map((v,j)=>v+(c.q[j]-v)*x/p.L)};});
+ if(p.bath==='prescribed')return e.transientProfile('custom',p.model,p.L,p.eta*1000,+h);
+ return e.profile(result._sol,+h);
+}
+globalThis.CrExplorer={modalCoefficients,prepare,evaluate,spatial,MILESTONES,YEAR};
+if(typeof module!=='undefined')module.exports=globalThis.CrExplorer;
+
+const cache=new Map();
+function cached(p){const key=JSON.stringify(p);if(!cache.has(key)){if(cache.size>=14)cache.delete(cache.keys().next().value);cache.set(key,CrExplorer.evaluate(p));}return cache.get(key);}
+function view(r,h){return {...r,_sol:undefined,rows:r.rows.filter(z=>z.t>=3600),profile:CrExplorer.spatial(r,h)};}
+onmessage=function({data:d}){try{
+ if(d.action==='case'){
+  postMessage({progress:'Calculating selected reference…'});const r=cached(d.p),result=view(r,d.h);let base=null;
+  if(d.baseline){postMessage({progress:'Calculating original ORNL + thermal reference…'});base=view(cached({...d.p,S:1,factor:1}),d.h);}
+  postMessage({action:'case',result,base,h:d.h});
+ }else if(d.action==='size'){
+  const out=[];for(const L of InverseCorrosion.DATA.sizes){postMessage({progress:`Size comparison: ${out.length+1} of 9 · ${L} µm`});const p={...d.p,L};let row;
+   if(d.h==='final'){const {engine:e}=CrExplorer.prepare(p);row=p.bath==='prescribed'?e.steady('custom',p.model,L,p.eta*1000):e.endpoint('custom',p.model,L);if(p.bath!=='finite')row.removal=null;}
+   else row=cached(p).milestones.find(z=>z.h===+d.h);
+   out.push({L,...row,rate:row.r*CrExplorer.YEAR});
+  }postMessage({action:'size',rows:out,p:d.p,h:d.h});
+ }
+}catch(err){postMessage({error:err.message,stack:err.stack});}};
+</script><script>'use strict';
+const $=id=>document.getElementById(id),ORNL=8.774877334868778e-20,VT=.08385957864056579,VTHERM=2.9187831503121694e-8,YEAR=31536000;
+const presets={ornl:ORNL,mizouchi:1.13e-7*Math.exp(-234000/(8.31446261815324*973.15)),smith:6.3e-6*Math.exp(-243000/(8.31446261815324*973.15))};
+const names={prescribed:'Prescribed overpotential',finite:'Finite-bath mixed potential',maintained:'Maintained-chemistry mixed potential'};
+let worker,workerURL,last=null,sizeLast=null,busy=false;
+function fmt(v,n=4){if(v===null)return 'Continues to grow';if(!Number.isFinite(v))return '—';if(v===0)return '0';if(Math.abs(v)<.001||Math.abs(v)>=1e5)return v.toExponential(n-1);return Number(v.toPrecision(n)).toLocaleString('en-US',{maximumSignificantDigits:n});}
+function setBusy(v){busy=v;for(const id of ['calculate','reset','size-calculate'])$(id).disabled=v;$('time').disabled=v;$('cancel').hidden=!v;}
+function makeWorker(){if(worker)worker.terminate();if(workerURL)URL.revokeObjectURL(workerURL);workerURL=URL.createObjectURL(new Blob([$('worker-source').textContent],{type:'application/javascript'}));worker=new Worker(workerURL);worker.onmessage=({data:d})=>{
+ if(d.progress){$('status').textContent=d.progress;return;}setBusy(false);
+ if(d.error){$('error').textContent='Calculation could not be completed: '+d.error;$('status').textContent='Adjust the inputs or restore an evidence preset.';return;}
+ if(d.action==='case'){last=d;draw();$('status').textContent='Calculated through 17,520 h; final limit evaluated separately.';}
+ else{sizeLast=d;drawSize();$('status').textContent='Nine-size comparison complete.';$('export-size').disabled=false;}
+ };worker.onerror=e=>{setBusy(false);$('error').textContent=e.message;$('status').textContent='Calculation failed.';};}
+function params(){const p={bath:$('bath').value,L:+$('length').value,S:+$('sv').value,factor:+$('dcr').value/ORNL,model:$('model').value,eta:+$('eta').value};if(!Number.isFinite(p.L)||p.L<1||p.L>1000)throw Error('Length must be 1–1000 µm.');if(!Number.isFinite(p.S)||p.S<1||p.S>10000)throw Error('Vacancy supersaturation must be 1–10,000.');if(!Number.isFinite(p.factor)||p.factor<.0001*(1-1e-12)||p.factor>1e6*(1+1e-12))throw Error('Cr diffusivity must be between 10⁻⁴ and 10⁶ times the ORNL baseline.');p.factor=Math.min(1e6,Math.max(.0001,p.factor));return p;}
+function helpers(){const S=+$('sv').value,D=+$('dcr').value;$('v-help').textContent=`Initial/far vacancy fraction = ${fmt(S*VTHERM,5)}. Thermal normalization stays fixed.`;$('d-help').textContent=`${fmt(D/ORNL)} × ORNL. Only the Cr tracer input changes.`;$('eta').disabled=$('bath').value!=='prescribed';$('bath-help').textContent={prescribed:'Actual overpotential is held fixed; bulk supply still evolves.',finite:'A finite chemical inventory evolves as corrosion proceeds.',maintained:'Salt activities stay fixed; the mixed potential responds to the alloy.'}[$('bath').value];}
+function submit(action='case'){try{const p=params();$('error').textContent='';setBusy(true);$('status').textContent='Preparing analytical calculation…';worker.postMessage({action,p,h:action==='case'?$('time').value:$('size-time').value,baseline:$('baseline').checked});}catch(e){$('error').textContent=e.message;}}
+function snapshot(p){return `${names[p.bath]} · L = ${fmt(p.L)} µm · Sᵥ = ${fmt(p.S)} · D*Cr = ${fmt(p.factor*ORNL)} m²/s (${fmt(p.factor)} × ORNL) · ${p.model}${p.bath==='prescribed'?` · η = ${fmt(p.eta*1000)} mV`:''}`;}
+function rowAt(r,h){return h==='final'?r.endpoint:r.milestones.find(z=>z.h===+h);}
+function series(rows,key){return rows.map(r=>[r.t/3600,key==='rate'?r.r*YEAR:r[key]]);}
+const xml=s=>String(s).replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+function plot(id,sets,{xLabel='Time (h)',yLabel='',logX=false,logY=false,xRange=null,zero=false,marker=null}={}){
+ const W=Math.max(330,$(id).clientWidth),H=320,left=86,right=20,top=22,bottom=62,w=W-left-right,h=H-top-bottom;
+ let pts=sets.flatMap(s=>s.points).filter(([x,y])=>Number.isFinite(x)&&Number.isFinite(y));if(xRange)pts=pts.filter(p=>p[0]>=xRange[0]&&p[0]<=xRange[1]);
+ if(!pts.length){$(id).innerHTML='<p class="note">No finite cumulative total at this limit: removal continues to grow.</p>';return;}
+ const tx=x=>logX?Math.log10(x):x;logY=logY&&pts.every(p=>p[1]>0);const ty=y=>logY?Math.log10(y):y;
+ let xmin=xRange?tx(xRange[0]):Math.min(...pts.map(p=>tx(p[0]))),xmax=xRange?tx(xRange[1]):Math.max(...pts.map(p=>tx(p[0]))),ymin=Math.min(...pts.map(p=>ty(p[1]))),ymax=Math.max(...pts.map(p=>ty(p[1])));
+ if(zero&&!logY)ymin=Math.min(0,ymin);if(xmax===xmin)xmax=xmin+1;
+ if(ymax-ymin<Math.max(1e-30,Math.abs(ymax)*1e-12)){const dy=Math.max(Math.abs(ymax)*.025,1e-9);ymin-=dy;ymax+=dy;}
+ else{const dy=(ymax-ymin)*.07;ymin-=dy;ymax+=dy;}
+ if(!logY&&pts.every(p=>p[1]>=0))ymin=Math.max(0,ymin);
+ const X=x=>left+(tx(x)-xmin)/(xmax-xmin)*w,Y=y=>top+h-(ty(y)-ymin)/(ymax-ymin)*h;
+ let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${xml(yLabel+' versus '+xLabel)}"><title>${xml(yLabel+' versus '+xLabel)}</title><defs><clipPath id="clip-${id}"><rect x="${left}" y="${top}" width="${w}" height="${h}"/></clipPath></defs>`;
+ for(let i=0;i<=4;i++){const a=ymin+(ymax-ymin)*i/4,yp=top+h-i*h/4,lab=logY?10**a:a;s+=`<line x1="${left}" y1="${yp}" x2="${W-right}" y2="${yp}" stroke="#e2e6e9"/><text x="${left-9}" y="${yp+5}" text-anchor="end" font-size="13" fill="#36434e">${xml(fmt(lab,3))}</text>`;}
+ const xt=[];if(logX){for(let j=Math.ceil(xmin);j<=Math.floor(xmax);j++)xt.push(j);if(xmax-Math.floor(xmax)>.55)xt.push(xmax);}else for(let i=0;i<=4;i++)xt.push(xmin+(xmax-xmin)*i/4);
+ for(const a of xt){const x=left+(a-xmin)/(xmax-xmin)*w,lab=logX?10**a:a;s+=`<line x1="${x}" y1="${top+h}" x2="${x}" y2="${top+h+5}" stroke="#71808b"/><text x="${x}" y="${top+h+24}" text-anchor="middle" font-size="13">${xml(fmt(lab,3))}</text>`;}
+ s+=`<path d="M${left},${top}V${top+h}H${W-right}" fill="none" stroke="#667680"/>`;
+ for(let k=0;k<sets.length;k++){const pts=sets[k].points.filter(([x,y])=>Number.isFinite(x)&&Number.isFinite(y)&&(!logY||y>0)&&(!logX||x>0));const d=pts.map(([x,y],i)=>`${i?'L':'M'}${X(x).toFixed(3)},${Y(y).toFixed(3)}`).join(' ');s+=`<path d="${d}" fill="none" stroke="${sets[k].color||'#500000'}" stroke-width="2.5" ${k?'stroke-dasharray="7 5"':''} clip-path="url(#clip-${id})"/>`;if(sets[k].dots)for(const [x,y]of pts)s+=`<circle cx="${X(x)}" cy="${Y(y)}" r="3.5" fill="${sets[k].color||'#500000'}"/>`;}
+ if(marker!==null&&tx(marker)>=xmin&&tx(marker)<=xmax)s+=`<line x1="${X(marker)}" x2="${X(marker)}" y1="${top}" y2="${top+h}" stroke="#0b6e75" stroke-dasharray="3 4"/>`;
+ s+=`<text x="${left+w/2}" y="${H-12}" text-anchor="middle" font-size="15">${xml(xLabel+(logX?' · log scale':''))}</text><text transform="translate(20,${top+h/2}) rotate(-90)" text-anchor="middle" font-size="15">${xml(yLabel+(logY?' · log':''))}</text></svg>`;$(id).innerHTML=s;
+}
+function draw(){if(!last)return;const {result:r,base,h}=last,p=r.p,z=rowAt(r,h);$('snapshot').textContent=snapshot(p);$('rate-val').textContent=fmt(z.rate??z.r*YEAR);$('removal-val').textContent=fmt(z.removal);$('cr-val').textContent=fmt(z.q[1]);$('v-val').textContent=fmt(z.q[2]);$('baseline-legend').hidden=!base;
+ $('final-note').textContent=p.bath==='finite'?`Final finite-bath equilibrium: zero net current; ${fmt(r.endpoint.removal)} µm accumulated Cr-equivalent removal. At a fixed vacancy reference and capacity, that amount does not depend on Cr diffusivity or length. Two years can still be far from this limit.`:`Final steady rate: ${fmt(r.endpoint.rate)} µm/year. A fixed alloy reservoir can sustain this transfer; accumulated removal continues to grow. Two years is a separate finite-time prediction.`;
+ for(const key of ['rate','removal'])plot(key+'-plot',[{points:series(r.rows,key)},...(base?[{points:series(base.rows,key),color:'#2c5f8a'}]:[])],{logX:true,logY:key==='rate'&&$('lograte').checked,yLabel:key==='rate'?'Cr-equivalent rate (µm/year)':'Accumulated removal (µm)',zero:key==='removal',marker:h==='final'?null:+h});
+ drawProfiles();const rows=[...r.milestones.map(z=>({...z,label:z.h===17520?'2 years':fmt(z.h)+' h'})),{...r.endpoint,label:'Final asymptote',h:'final'}];$('milestones').querySelector('tbody').innerHTML=rows.map(z=>`<tr class="${String(z.h)===h?'selected-row':''}"><th scope="row">${z.label}</th><td>${fmt(z.rate)}</td><td>${fmt(z.removal)}</td><td>${fmt(z.q[0])}</td><td>${fmt(z.q[1])}</td><td>${fmt(z.q[2])}</td></tr>`).join('');
+}
+function drawProfiles(){if(!last)return;const {result:r,base}=last,xmax=r.p.L*+$('zoom').value;for(const [name,j]of [['cr',1],['v',2],['ni',0]])plot(name+'-plot',[{points:r.profile.map(z=>[z.x,z.q[j]])},...(base?[{points:base.profile.map(z=>[z.x,z.q[j]]),color:'#2c5f8a'}]:[])],{xLabel:'Distance from interface (µm)',yLabel:{cr:'Cr site fraction',ni:'Ni site fraction',v:'Vacancy site fraction'}[name],xRange:[0,xmax]});}
+function drawSize(){if(!sizeLast)return;const {rows,p,h}=sizeLast;$('size-snapshot').textContent=snapshot(p)+' · '+(h==='final'?'final asymptote':h+' h');for(const [id,key,j]of [['rate','rate',null],['removal','removal',null],['cr','q',1],['v','q',2]])plot('size-'+id,[{points:rows.map(z=>[z.L,j===null?z[key]:z.q[j]]),dots:true}],{xLabel:'Transport length (µm)',yLabel:{rate:'Rate (µm/year)',removal:'Removal (µm)',cr:'Surface Cr site fraction',v:'Surface vacancy site fraction'}[id],logX:true,logY:id==='rate',zero:id==='removal'});}
+function download(name,lines){const url=URL.createObjectURL(new Blob([lines.join('\r\n')+'\r\n'],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function header(p){return ['interface,L_um,S_v,D_Cr_tracer_m2_s,Cr_multiplier,coupling,eta_prescribed_V',[p.bath,p.L,p.S,p.factor*ORNL,p.factor,p.model,p.bath==='prescribed'?p.eta:'not_prescribed'].join(','),''];}
+$('export-history').onclick=()=>{if(!last)return;const r=last.result;download('Cr_history_'+r.p.bath+'.csv',[...header(r.p),'time_h,Cr_rate_um_yr,Cr_removal_um,x_Ni_surface,x_Cr_surface,x_v_surface,E_V',...r.rows.map(z=>[z.t/3600,z.r*YEAR,z.removal,...z.q,z.E??''].join(',')),'final,'+[r.endpoint.rate,r.endpoint.removal??'unbounded',...r.endpoint.q,r.endpoint.E??''].join(',')]);};
+$('export-profile').onclick=()=>{if(!last)return;const r=last.result;download('Cr_profile_'+r.p.bath+'_'+last.h+'.csv',[...header(r.p),'time_h_or_final,'+last.h,'distance_um,x_Ni,x_Cr,x_v',...r.profile.map(z=>[z.x,...z.q].join(','))]);};
+$('export-size').onclick=()=>{if(!sizeLast)return;const {rows,p,h}=sizeLast;download('Cr_size_'+p.bath+'_'+h+'.csv',[...header(p),'time_h_or_final,'+h,'L_um,Cr_rate_um_yr,Cr_removal_um,x_Ni_surface,x_Cr_surface,x_v_surface',...rows.map(z=>[z.L,z.rate,z.removal??'unbounded',...z.q].join(','))]);};
+$('calculate').onclick=()=>submit();$('size-calculate').onclick=()=>submit('size');$('cancel').onclick=()=>{makeWorker();setBusy(false);$('status').textContent='Calculation cancelled; prior plots retained.';};
+$('reset').onclick=()=>{$('sv').value=1;$('dcr').value=ORNL;$('preset').value='ornl';helpers();submit();};
+$('preset').onchange=()=>{if(presets[$('preset').value])$('dcr').value=presets[$('preset').value];helpers();};$('dcr').oninput=()=>{$('preset').value='custom';helpers();};$('sv').oninput=helpers;$('bath').onchange=helpers;
+$('time').onchange=()=>{if(last){$('error').textContent='';setBusy(true);worker.postMessage({action:'case',p:last.result.p,h:$('time').value,baseline:!!last.base});}};
+$('zoom').onchange=drawProfiles;$('lograte').onchange=draw;
+const tabButtons=[...document.querySelectorAll('[data-tab]')];for(const b of tabButtons){b.onclick=()=>{for(const t of tabButtons){const yes=t===b;t.setAttribute('aria-selected',yes);t.tabIndex=yes?0:-1;$(t.dataset.tab+'-panel').hidden=!yes;}if(b.dataset.tab==='time')draw();if(b.dataset.tab==='size')drawSize();};b.onkeydown=e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();const i=tabButtons.indexOf(b),j=e.key==='Home'?0:e.key==='End'?2:(i+(e.key==='ArrowRight'?1:2))%3;tabButtons[j].click();tabButtons[j].focus();}};}
+for(const b of document.querySelectorAll('[data-preset]'))b.onclick=()=>{$('preset').value=b.dataset.preset;$('dcr').value=presets[b.dataset.preset];helpers();$('time-tab').click();submit();};
+for(const el of document.querySelectorAll('#setup-title ~ .controls input,#setup-title ~ .controls select'))el.addEventListener('change',()=>{if(last&&!busy)$('status').textContent='Inputs changed. Click Calculate to update; existing plots retain the parameters printed above them.';});
+makeWorker();helpers();submit();
+
+let resizeTimer;window.addEventListener("resize",()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{draw();drawSize();},150);});
+</script></body></html>

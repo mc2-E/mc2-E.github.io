@@ -1,0 +1,321 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Configurable Cr and Fe corrosion kinetics: prescribed and maintained-chemistry mixed potentials, exact diffusion response, signed transfer and electrochemical plots."><title>Cr & Fe | Configurable Corrosion Kinetics</title><style>
+:root{--maroon:#500000;--ink:#242b33;--muted:#53606b;--line:#d5dbe0;--paper:#f5f6f8;--blue:#17648a;--gold:#926718;--teal:#13766c}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}header{background:var(--maroon);color:white;padding:28px max(24px,calc((100vw - 1390px)/2)) 30px}header p{max-width:960px;margin:10px 0 0;color:#f4e7e7}h1{font-size:clamp(1.7rem,3vw,2.5rem);line-height:1.15;margin:6px 0 14px}h2{font-size:1.4rem;margin:0 0 14px;color:var(--maroon)}h3{font-size:1.1rem;margin:16px 0 8px}p{margin:8px 0 14px}.eyebrow{font-size:.8rem;font-weight:750;letter-spacing:.12em;text-transform:uppercase}main{max-width:1450px;margin:auto;padding:24px}section,.card,aside{background:white;border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:20px}.controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.field{min-width:0}label{display:block;font-size:.9rem;font-weight:650;margin-bottom:5px}input,select,button{font:inherit;border:1px solid #aeb8c1;border-radius:6px;padding:9px 11px;max-width:100%;min-height:44px}input,select{background:white;width:100%;color:var(--ink)}input:disabled,select:disabled{background:#eef0f3;color:#75808a}input[type=checkbox]{width:auto;min-height:0}button{cursor:pointer;background:white;color:var(--maroon);font-weight:650}button.primary{background:var(--maroon);color:white;border-color:var(--maroon)}button:disabled{opacity:.5;cursor:default}:focus-visible{outline:3px solid #b58820;outline-offset:3px}.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px}.small,.hint{font-size:.88rem;color:var(--muted)}.hint{margin:5px 0 0}details{border-top:1px solid var(--line);margin-top:18px;padding-top:12px}summary{font-weight:700;cursor:pointer;color:var(--maroon);padding:4px 0}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:.91rem}td,th{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{font-weight:700;background:#f6f0f0}table input{min-width:95px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.tabs button[aria-selected=true]{background:var(--maroon);color:white}.tabs button{padding:11px 18px}.tab-panel[hidden], [hidden]{display:none!important}.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.cols>.card{margin:0}.cols{margin-bottom:20px}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0 20px}.metric{border:1px solid var(--line);border-top:4px solid var(--maroon);border-radius:8px;background:white;padding:16px}.metric strong{display:block;font-size:1.65rem;line-height:1.4;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}.metric span{font-size:.87rem}.metric .meta{font-size:.82rem;color:var(--muted);display:block}.plot{width:100%;min-width:0}.plot svg{width:100%;height:auto;display:block}.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem;margin:7px 0}.swatch{display:inline-block;width:22px;height:3px;vertical-align:middle;margin-right:5px}.note{border-left:4px solid var(--blue);padding:12px 16px;background:#eef5fa;border-radius:0 6px 6px 0}.error{padding:14px;border-left:4px solid #a13017;background:#fff0e9;color:#702814;margin-top:12px;white-space:pre-wrap}.status{font-size:.92rem;color:var(--muted)}math{font-size:1.12em;font-family:Cambria Math,STIX Two Math,serif}math[display=block]{margin:18px 0;overflow-x:auto;max-width:100%}.eqbox{background:#f8f5f5;border-radius:8px;padding:14px;margin:14px 0}.eqbox p{font-size:.94rem}a{color:var(--blue)}.pill{border-radius:20px;font-size:.82rem;padding:5px 10px;background:#f0e8e8;color:var(--maroon);display:inline-block}footer{padding:20px 4px 40px;color:var(--muted);font-size:.84rem}.milestones button{font-size:.91rem;padding:6px 12px}.milestones button.active{background:#eee3e3;border-color:var(--maroon)}.field-inline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.field-inline select{width:auto}.schema{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:center;margin:18px 0}.schema div{padding:14px;border:1px solid var(--line);border-radius:8px;text-align:center}.schema b{color:var(--maroon)}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.88rem}.download-note{margin-left:auto}progress{width:170px;height:14px} @media(max-width:950px){.controls,.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.cols{grid-template-columns:1fr}}@media(max-width:540px){main{padding:12px}header{padding:22px 16px}section,.card,aside{padding:15px}.controls{grid-template-columns:1fr}.metrics{gap:8px}.metric{padding:12px}.metric strong{font-size:1.25rem}.schema{grid-template-columns:1fr}.schema>span{transform:rotate(90deg);text-align:center}.tabs button{flex:1;font-size:.94rem;padding:8px}.actions button{flex:1}.download-note{margin-left:0}td,th{padding:8px;font-size:.85rem}}
+</style></head><body>
+<header><div class="eyebrow">Corrosion • Analytical model explorer</div><h1>Cr & Fe: configurable interface kinetics</h1><p>Explore how reaction laws and equilibrium potentials compete with alloy transport. Compare signed Cr and Fe transfer under prescribed potential or a maintained-chemistry mixed potential.</p></header>
+<main><section aria-labelledby="setup-title"><h2 id="setup-title">1. Choose the physical case</h2><p class="small">700°C · planar, fixed alloy domain · fixed far reservoir · coupled Fe–Ni–Cr–vacancy diffusion</p>
+<form id="params"><div class="controls">
+<div class="field"><label for="mode">Electrical condition</label><select id="mode"><option value="mixed">Mixed potential — maintained chemistry</option><option value="eta">Prescribed actual Cr overpotential</option><option value="E">Prescribed common electrode potential</option></select></div>
+<div class="field"><label for="fe">Metal reactions</label><select id="fe"><option value="yes">Cr + Fe (both signed)</option><option value="no">Cr only</option></select></div>
+<div class="field"><label for="L">Transport length (µm)</label><input id="L" type="number" min="1" max="1000" step="1" value="100"></div>
+<div class="field"><label for="S">Initial/far vacancy supersaturation</label><input id="S" type="number" min="1" max="10000" step="1" value="1"></div>
+<div class="field"><label for="factor">Cr tracer diffusivity multiplier</label><input id="factor" type="number" min="0.0001" max="1000000" step="any" value="1"><p class="hint" id="diffusivity"></p></div>
+<div class="field"><label for="eta">Actual Cr overpotential (mV)</label><input id="eta" type="number" min="-1000" max="1000" step="any" value="83.85957864056579"><p class="hint">Vₜ = 83.8596 mV; Fe overpotential is calculated.</p></div>
+<div class="field"><label for="E">Common E (mV vs original Cr reference)</label><input id="E" type="number" min="-1000" max="1000" step="any" value="200"><p class="hint">Fixed E and fixed actual overpotential are different constraints.</p></div>
+<div class="field"><label for="prefactor">Exchange-current activity law</label><select id="prefactor"><option value="source">Source-informed: A^α (VS)^(1−α)</option><option value="linear">Linear metal activity: A</option><option value="constant">Constant exchange current</option><option value="custom">Custom powers: A^p (VS)^q</option></select></div></div>
+<p id="mode-note" class="note"></p>
+<details><summary>2. Change reaction parameters</summary><p class="small">These are conditional alloy-reference coefficients. Selecting another activity law changes its prefactor; it does not silently change the transfer coefficient or reference exchange current.</p><div class="tablewrap"><table><thead><tr><th>Channel</th><th>Reference j₀ (A/m²)</th><th>Cathodic α</th><th>Metal power p</th><th>Product power q</th></tr></thead><tbody>
+<tr><th scope="row">Cr</th><td><label class="small" for="jCr">Cr j₀</label><input id="jCr" type="number" step="any" min="1e-8" max="100000" value="3.2872738012357723"></td><td><label class="small" for="aCr">Cr α</label><input id="aCr" type="number" step=".01" min=".01" max=".99" value=".32"></td><td><label class="small" for="pCr">Cr p</label><input id="pCr" type="number" step=".01" min="-2" max="2" value=".32"></td><td><label class="small" for="qCr">Cr q</label><input id="qCr" type="number" step=".01" min="-2" max="2" value=".68"></td></tr>
+<tr><th scope="row">Fe</th><td><label class="small" for="jFe">Fe j₀</label><input id="jFe" type="number" step="any" min="1e-8" max="100000" value="19.546055361701182"></td><td><label class="small" for="aFe">Fe α</label><input id="aFe" type="number" step=".01" min=".01" max=".99" value=".09"></td><td><label class="small" for="pFe">Fe p</label><input id="pFe" type="number" step=".01" min="-2" max="2" value=".09"></td><td><label class="small" for="qFe">Fe q</label><input id="qFe" type="number" step=".01" min="-2" max="2" value=".91"></td></tr></tbody></table></div></details>
+<details><summary>3. Physical reference potentials and maintained salt chemistry</summary><p class="small">Changing a physical gap changes the driving force. S values change bath activities relative to the approved nonzero references. Do not incorporate the same salt-activity shift into both a gap and its S input.</p><div class="controls">
+<div><label for="feGap">Fe–Cr reference gap (mV)</label><input id="feGap" type="number" step="any" min="-1000" max="1000" value="432.4348487096082"></div>
+<div><label for="hGap">Hydrogen–Cr reference gap (mV)</label><input id="hGap" type="number" step="any" min="-1000" max="1000" value="450"></div>
+<div><label for="jH">Hydrogen reference j₀ (A/m²)</label><input id="jH" type="number" step="any" min="1e-8" max="100000" value="5"></div>
+<div><label for="SCr">Dissolved Cr activity ratio S_Cr</label><input id="SCr" type="number" step="any" min="1e-6" max="1e6" value="1"></div>
+<div><label for="SFe">Dissolved Fe activity ratio S_Fe</label><input id="SFe" type="number" step="any" min="1e-6" max="1e6" value="1"></div>
+<div><label for="H">HF activity ratio H</label><input id="H" type="number" step="any" min="1e-6" max="1e6" value="1"></div>
+<div><label for="P">H₂ activity ratio P</label><input id="P" type="number" step="any" min="1e-6" max="1e6" value="1"></div></div></details>
+<details><summary>4. Reporting reference and numerical resolution</summary><div class="controls"><div><label for="gauge">Display-reference offset (mV)</label><input id="gauge" type="number" step="any" min="-5000" max="5000" value="0"><p class="hint">E_display = E_original + offset. This alone cannot change any rate.</p></div><div><label for="resolution">Transient resolution</label><select id="resolution"><option value="0.02">Standard (2% logarithmic time increments)</option><option value="0.01">Fine (1% logarithmic time increments)</option></select></div></div><p class="small">The reference offset is a reporting gauge, not a measured conversion to a named laboratory electrode. A calibrated reference-electrode conversion must be supplied consistently.</p></details>
+<div class="actions"><button id="calculate" class="primary" type="submit">Calculate history & stationary state</button><button id="reset" type="button">Reset approved preset</button><button id="cancel" type="button" hidden>Cancel calculation</button><progress id="progress" max="1" value="0" hidden aria-label="Calculation progress"></progress></div></form><p id="status" class="status" role="status" aria-live="polite">Ready.</p><div id="error" class="error" role="alert" hidden></div></section>
+<div id="results" hidden><div class="tabs" role="tablist" aria-label="Explorer views"><button id="results-tab" role="tab" aria-selected="true" aria-controls="results-panel" data-tab="results">Transfer & profiles</button><button id="electrochem-tab" role="tab" aria-selected="false" aria-controls="electrochem-panel" data-tab="electrochem">Electrochemistry</button><button id="model-tab" role="tab" aria-selected="false" aria-controls="model-panel" data-tab="model">Model & interpretation</button></div>
+<section><div class="field-inline"><label for="time">Inspect a state</label><select id="time"><option value="0">Initial uniform state</option><option value="1">1 hour</option><option value="10">10 hours</option><option value="25">25 hours</option><option value="100" selected>100 hours</option><option value="1000">1,000 hours</option><option value="17520">2 years (17,520 h)</option><option value="final">Stationary solution</option></select><span id="selected-label" class="pill"></span></div><div class="actions milestones" aria-label="Time shortcuts"><button data-time="1">1 h</button><button data-time="10">10 h</button><button data-time="25">25 h</button><button data-time="100">100 h</button><button data-time="1000">1,000 h</button><button data-time="17520">2 years</button><button data-time="final">Stationary</button></div><p id="snapshot" class="small"></p><div id="steady-note" class="error" hidden></div></section>
+<div class="tab-panel" id="results-panel" role="tabpanel" aria-labelledby="results-tab"><div class="metrics"><div class="metric"><span>Cr-equivalent rate</span><strong id="cr-rate"></strong><span>µm/year</span><span class="meta">Positive: dissolution</span></div><div class="metric"><span>Fe-equivalent rate</span><strong id="fe-rate"></strong><span>µm/year</span><span class="meta">Negative: deposition</span></div><div class="metric"><span>Net metal-equivalent rate</span><strong id="net-rate"></strong><span>µm/year</span><span class="meta">Cr + Fe; not wall recession</span></div><div class="metric"><span>Accumulated net transfer</span><strong id="net-amount"></strong><span id="amount-unit">µm equivalent</span><span class="meta" id="amount-note"></span></div></div>
+<div class="cols"><div class="card"><h2>Signed transfer rates</h2><p class="small">History from 0.001 h to two years. Negative values are retained.</p><label><input id="rate-log" type="checkbox" checked> Signed logarithmic vertical scale</label><div id="rate-plot" class="plot"></div></div><div class="card"><h2>Accumulated transfer</h2><p class="small">Time integral of each signed rate; deposition offsets dissolution.</p><div id="amount-plot" class="plot"></div></div></div>
+<section><h2>Spatial profiles at the selected time</h2><div class="controls"><div><label for="species">Metal profile</label><select id="species"><option value="2">Chromium</option><option value="1">Nickel</option><option value="0">Iron</option></select></div><div><label for="zoom">Distance shown from interface</label><select id="zoom"><option value="1">Full domain</option><option value=".1">First 10%</option><option value=".01">First 1%</option><option value=".001">First 0.1%</option><option value=".0001">First 0.01%</option></select></div><div><label><input type="checkbox" id="profile-log"> Logarithmic concentration axes</label></div></div><p class="small">x = 0 is the alloy–salt interface; x = L is the fixed alloy reservoir. Fractions include vacancies in the site balance.</p><div class="cols"><div><div id="metal-plot" class="plot"></div></div><div><div id="vacancy-plot" class="plot"></div></div></div></section>
+<section><h2>Selected surface state</h2><div class="tablewrap"><table id="surface-table"><thead><tr><th>Species</th><th>Surface site fraction</th><th>Far site fraction</th><th>Normalized activity</th><th>Accumulated transfer (µm equivalent)</th></tr></thead><tbody></tbody></table></div></section></div>
+<div class="tab-panel" id="electrochem-panel" role="tabpanel" aria-labelledby="electrochem-tab" hidden><div class="cols"><div class="card"><h2>Electrode and equilibrium potentials</h2><p class="small">All plotted potentials use the chosen display-reference offset.</p><div id="potential-plot" class="plot"></div></div><div class="card"><h2>Actual overpotentials</h2><p class="small">E − E_eq for each metal. Independent of the display-reference offset.</p><div id="overpotential-plot" class="plot"></div></div></div>
+<section><h2>Instantaneous polarization / Evans view</h2><p class="note">The selected surface composition and salt activities are frozen while E is scanned. These curves are local kinetic diagnostics, not a time-dependent potentiodynamic experiment or a new transport solution.</p><div class="controls"><div><label for="window">Potential window about current E (±mV)</label><select id="window"><option value="150">150</option><option value="300" selected>300</option><option value="600">600</option></select></div><div><label for="polar-scale">Current axis</label><select id="polar-scale"><option value="symlog">Signed logarithmic</option><option value="linear">Linear</option></select></div></div><div id="polar-plot" class="plot"></div><p id="balance-text" class="small"></p><div class="tablewrap"><table id="electro-table"><thead><tr><th>Channel</th><th>Current (A/m²)</th><th>E_eq (mV, display reference)</th><th>Actual η (mV)</th><th>Exchange current (A/m²)</th></tr></thead><tbody></tbody></table></div></section></div>
+<div class="tab-panel" id="model-panel" role="tabpanel" aria-labelledby="model-tab" hidden><section><h2>What is being solved?</h2><div class="schema" aria-label="Model workflow"><div><b>Choose the reference state</b><br>Sv, Cr tracer, fixed metal ratios</div><span aria-hidden="true">→</span><div><b>Build bulk transport</b><br>Mobility B × Hessian H</div><span aria-hidden="true">→</span><div><b>Solve coupled boundary kinetics</b><br>Cr, Fe and one common E</div></div>
+<p>The browser rebuilds the coupled diffusion matrix at the selected initial/far composition and then freezes it. Surface activities remain nonlinear functions of composition. This is a <strong>semianalytical benchmark</strong>, distinct from our full nonlinear MOOSE simulations in which the bulk coefficients evolve locally.</p>
+<div class="eqbox"><math display="block" aria-label="The diffusion matrix is mobility times thermodynamic Hessian; the bulk time derivative equals D zero times the second spatial derivative."><mrow><msub><mi mathvariant="bold">D</mi><mn>0</mn></msub><mo>=</mo><msub><mi mathvariant="bold">B</mi><mn>0</mn></msub><msub><mi mathvariant="bold">H</mi><mn>0</mn></msub><mo>,</mo><mspace width="1em"/><mfrac><mrow><mo>∂</mo><mi mathvariant="bold">q</mi></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac><mo>=</mo><msub><mi mathvariant="bold">D</mi><mn>0</mn></msub><mfrac><mrow><msup><mo>∂</mo><mn>2</mn></msup><mi mathvariant="bold">q</mi></mrow><mrow><mo>∂</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></mfrac></mrow></math><p>q = (x_Ni, x_Cr, x_v). Initial and far-boundary values are q_b. Fe fills the remaining sites. Increasing Sv preserves the occupied-site Fe:Ni:Cr ratios; the thermal normalization of vacancy mobility stays fixed.</p></div>
+<h3>Common equilibrium relation; configurable kinetic prefactor</h3>
+<div class="eqbox"><math display="block" aria-label="Equilibrium potential equals the reference potential plus thermal voltage over two times log of vacancy times salt activity divided by alloy metal activity."><mrow><msub><mi>E</mi><mrow><mi>i</mi><mo>,</mo><mi>eq</mi></mrow></msub><mo>=</mo><msub><mi>E</mi><mrow><mi>i</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>+</mo><mfrac><msub><mi>V</mi><mi>T</mi></msub><mn>2</mn></mfrac><mi>ln</mi><mrow><mo>(</mo><mfrac><mrow><mi>V</mi><msub><mi>S</mi><mi>i</mi></msub></mrow><msub><mi>A</mi><mi>i</mi></msub></mfrac><mo>)</mo></mrow></mrow></math>
+<math display="block" aria-label="Exchange current equals reference exchange current times metal activity to power p times vacancy product activity to power q."><mrow><msub><mi>j</mi><mrow><mn>0</mn><mo>,</mo><mi>i</mi></mrow></msub><mo>=</mo><msub><mi>j</mi><mrow><mi>ref</mi><mo>,</mo><mi>i</mi></mrow></msub><msubsup><mi>A</mi><mi>i</mi><msub><mi>p</mi><mi>i</mi></msub></msubsup><msup><mrow><mo>(</mo><mi>V</mi><msub><mi>S</mi><mi>i</mi></msub><mo>)</mo></mrow><msub><mi>q</mi><mi>i</mi></msub></msup></mrow></math>
+<math display="block" aria-label="Current is exchange current times anodic exponential minus cathodic exponential."><mrow><msub><mi>j</mi><mi>i</mi></msub><mo>=</mo><msub><mi>j</mi><mrow><mn>0</mn><mo>,</mo><mi>i</mi></mrow></msub><mo>[</mo><mi>exp</mi><mo>(</mo><mfrac><mrow><mn>2</mn><mo>(</mo><mn>1</mn><mo>−</mo><msub><mi>α</mi><mi>i</mi></msub><mo>)</mo><msub><mi>η</mi><mi>i</mi></msub></mrow><msub><mi>V</mi><mi>T</mi></msub></mfrac><mo>)</mo><mo>−</mo><mi>exp</mi><mo>(</mo><mfrac><mrow><mo>−</mo><mn>2</mn><msub><mi>α</mi><mi>i</mi></msub><msub><mi>η</mi><mi>i</mi></msub></mrow><msub><mi>V</mi><mi>T</mi></msub></mfrac><mo>)</mo><mo>]</mo></mrow></math>
+<p>A_i and V are normalized metal and vacancy <em>activities</em>, including nonideal chemical interactions; V is not simply the vacancy fraction. S_i is the dissolved-product activity ratio. Both channels are effective divalent reactions. α is the cathodic coefficient. Changing p and q changes the barrier model while retaining zero current at the same local equilibrium potential.</p></div>
+<h3>Which electrical quantity is controlled?</h3><ul><li><strong>Prescribed actual Cr overpotential:</strong> E follows E_Cr,eq + η_Cr,set. Fe uses this same E. Vacancy shifts of E_Cr,eq do not directly suppress the prescribed Cr voltage factor.</li><li><strong>Prescribed common E:</strong> E is fixed relative to the original Cr reference. Both actual metal overpotentials evolve.</li><li><strong>Maintained-chemistry mixed potential:</strong> E is solved from current balance. All bath activities remain fixed; depositing Fe can be supplied by the bath. This is an open-system bath model.</li></ul>
+<div class="eqbox"><math display="block" aria-label="Mixed potential requires chromium plus iron plus hydrogen currents to sum to zero."><mrow><msub><mi>j</mi><mi>Cr</mi></msub><mo>+</mo><msub><mi>j</mi><mi>Fe</mi></msub><mo>+</mo><msub><mi>j</mi><mi>H</mi></msub><mo>=</mo><mn>0</mn></mrow></math>
+<math display="block" aria-label="Hydrogen current equals twice reference current times square root of H square root P times hyperbolic sine of E minus equilibrium over twice thermal voltage."><mrow><msub><mi>j</mi><mi>H</mi></msub><mo>=</mo><mn>2</mn><msub><mi>j</mi><mrow><mi>H</mi><mo>,</mo><mn>0</mn></mrow></msub><msqrt><mrow><mi>H</mi><msqrt><mi>P</mi></msqrt></mrow></msqrt><mi>sinh</mi><mo>(</mo><mfrac><mrow><mi>E</mi><mo>−</mo><msub><mi>E</mi><mrow><mi>H</mi><mo>,</mo><mi>eq</mi></mrow></msub></mrow><mrow><mn>2</mn><msub><mi>V</mi><mi>T</mi></msub></mrow></mfrac><mo>)</mo></mrow></math><p>E_H,eq = ΔE_HCr + V_T ln(H/√P). Under imposed potential, current balance is supplied by an external circuit; the hydrogen curve is a diagnostic and does not determine E or the metal history.</p></div>
+<h3>From current to transport and net removal</h3><div class="eqbox"><math display="block" aria-label="Metal equivalent speed is current over twice Faraday constant times site density."><mrow><msub><mi>r</mi><mi>i</mi></msub><mo>=</mo><mfrac><msub><mi>j</mi><mi>i</mi></msub><mrow><mn>2</mn><mi>F</mi><msub><mi>C</mi><mi>site</mi></msub></mrow></mfrac><mo>,</mo><mspace width="1em"/><msub><mi>r</mi><mi>net</mi></msub><mo>=</mo><msub><mi>r</mi><mi>Cr</mi></msub><mo>+</mo><msub><mi>r</mi><mi>Fe</mi></msub></mrow></math><p>The formula gives m/s with SI quantities; graphs convert to µm/year using 365 days per year. The surface flux vector is (0, r_Cr, −r_Cr−r_Fe). Ni is retained, and the total signed metal transfer determines vacancy exchange. No moving boundary or void phase is present.</p></div>
+<h3>Analytical space solution, numerical time history</h3><math display="block" aria-label="Stationary composition equals far composition minus length remaining times inverse diffusion matrix times stoichiometry times reaction speeds."><mrow><msub><mi mathvariant="bold">q</mi><mi>∞</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><msub><mi mathvariant="bold">q</mi><mi>b</mi></msub><mo>−</mo><mo>(</mo><mi>L</mi><mo>−</mo><mi>x</mi><mo>)</mo><msubsup><mi mathvariant="bold">D</mi><mn>0</mn><mrow><mo>−</mo><mn>1</mn></mrow></msubsup><mi mathvariant="bold">S</mi><msub><mi mathvariant="bold">r</mi><mi>∞</mi></msub></mrow></math>
+<p>Stationary profiles are affine and their boundary root is solved independently. Transients use the exact finite-slab diffusion response with implicit, piecewise-constant flux integration and positive-composition boundary roots. A converged stationary root does not establish uniqueness or dynamical stability. The stationary state is not assumed to have been reached at two years. Use the fine time grid to check a sensitive or nearly cancelling result.</p>
+<p class="note">The three kinetic presets are sensitivity alternatives. A prefactor switch retains the displayed j_ref and α values, so “linear metal activity” is not automatically the complete historical Cr-only model. Arbitrary powers, large voltages and reference gaps may produce no resolvable positive state. A numerical failure is reported without claiming physical nonexistence.</p>
+<h3>Evidence and physical scope</h3><p>The approved starting scales adapt <a href="https://doi.org/10.1149/2.1371713jes" target="_blank" rel="noopener">Wu, Guo & Zhang (2017)</a> pure-metal FLiNaK kinetics using the retained alloy and salt reference mapping. The Fe–Cr gap uses <a href="https://doi.org/10.1016/j.jnucmat.2020.152624" target="_blank" rel="noopener">Wang, Sridharan & Couet (2021)</a> thermodynamics with a consistent alloy-reference correction. The generalized activity prefactor follows the framework discussed by <a href="https://doi.org/10.1021/ar300145c" target="_blank" rel="noopener">Bazant (2013)</a>.</p><p>Reference dissolved MF₂ activities are 10⁻⁶; the experimental-to-alloy mapping assumes estimated fluoride activity coefficients and a unit barrier-transfer factor. These are conditional alloy coefficients, not measured 316 corrosion rates. The source kinetic fits span approximately ±150 mV about each metal equilibrium; wider overpotentials extrapolate those fits. Bulk coefficients frozen far from the surface composition are an additional approximation.</p><p>A finite-capacity Fe bath would need its own dissolved-Fe inventory and depletion law; it is not introduced here. Existing MOOSE results remain independent comparison evidence and are not re-simulated by this calculator.</p></section></div>
+<section><h2>Save the selected calculation</h2><div class="actions"><button id="export-history">History CSV</button><button id="export-profile">Selected profile CSV</button><button id="export-config">Parameters JSON</button><button id="export-polar">Polarization CSV</button></div><p class="small">Exports include the physical parameters, units, reference offset, and numerical method. This HTML is self-contained and works offline.</p></section></div>
+<footer>Local research explorer · 973.15 K · fixed-domain, constant-bulk-coefficient benchmarks with nonlinear interfaces. No data are sent to a server.</footer></main>
+<script id="engine-source" type="text/plain">'use strict';
+// Retained regular-solution Hessian and full exchange mobility; original implementation preserved separately.
+const DATA={"T": 973.15, "R": 8.31446261815324, "F": 96485.33212331001, "j0": 5.0, "Csite": 100000.0, "vthermal": 2.9187831503121694e-08, "VT_V": 0.08385957864056579, "qthermal": [0.11744009952731564, 0.18850737921609845, 2.9187831503121694e-08], "y": [0.6940525123266423, 0.11744010295513757, 0.18850738471822023], "tracers": [3.6861309965350795e-20, 2.950963559825461e-20, 8.774877334868778e-20], "pairs": {"FeNi": [-8868.1353905, 6750.932795, -725.805174], "FeCr": [3556.75745, -1410.0, 0.0], "NiCr": [-4504.269315, -17474.37197, 0.0]}, "ternary": [-6500.0, 48000.0, 19731.5], "sizes": [1, 10, 25, 50, 75, 100, 200, 400, 1000], "targets": [1, 5, 10, 20, 40, 60, 80, 100], "secondsYear": 31536000, "bath": {"gap": 0.45, "j0cr": 5, "j0h": 5, "capacity": 1.8850737921609846}, "bounds": {"S": [1, 10000], "eta": [0, 1], "factor": [0.0001, 1000000.0]}, "maxHours": 17520};
+
+const dot=(a,b)=>a.reduce((v,x,i)=>v+x*b[i],0);
+const transpose=A=>A[0].map((_,j)=>A.map(r=>r[j]));
+const product=(A,B)=>{const C=transpose(B);return A.map(r=>C.map(c=>dot(r,c)));};
+const logspace=(lo,hi,n)=>Array.from({length:n},(_,i)=>i===0?lo:i===n-1?hi:Math.exp(Math.log(lo)+(Math.log(hi)-Math.log(lo))*i/(n-1)));
+function solveSPD(A,b){
+ const C=Array.from({length:3},()=>[0,0,0]);
+ for(let i=0;i<3;i++)for(let j=0;j<=i;j++){
+  let a=A[i][j];for(let k=0;k<j;k++)a-=C[i][k]*C[j][k];
+  if(i===j){if(!(a>0))throw Error('The reference Hessian is not positive definite.');C[i][j]=Math.sqrt(a);}
+  else C[i][j]=a/C[j][j];
+ }
+ const y=[0,0,0],x=[0,0,0];
+ for(let i=0;i<3;i++){y[i]=b[i];for(let k=0;k<i;k++)y[i]-=C[i][k]*y[k];y[i]/=C[i][i];}
+ for(let i=2;i>=0;i--){x[i]=y[i];for(let k=i+1;k<3;k++)x[i]-=C[k][i]*x[k];x[i]/=C[i][i];}
+ return x;
+}
+function hessian(x){
+ const [f,n,c,v]=x,U=Array.from({length:3},()=>[0,0,0]);
+ for(const [name,i,j] of [['FeNi',0,1],['FeCr',0,2],['NiCr',1,2]]){
+  const [a,b]=[x[i],x[j]],[l0,l1,l2]=DATA.pairs[name],d=a-b;
+  const P=l0+l1*d+l2*d*d,P1=l1+2*l2*d,P2=2*l2;
+  U[i][i]+=2*b*P1+a*b*P2;U[j][j]+=-2*a*P1+a*b*P2;
+  const cross=P+d*P1-a*b*P2;U[i][j]+=cross;U[j][i]+=cross;
+ }
+ const [Af,An,Ac]=DATA.ternary;
+ const W=[[2*Af*n*c,c*(2*Af*f+2*An*n+Ac*c),n*(2*Af*f+An*n+2*Ac*c)],
+ [c*(2*Af*f+2*An*n+Ac*c),2*An*f*c,f*(Af*f+2*An*n+2*Ac*c)],
+ [n*(2*Af*f+An*n+2*Ac*c),f*(Af*f+2*An*n+2*Ac*c),2*Ac*f*n]];
+ const S=[[-1,-1,-1],[1,0,0],[0,1,0]];
+ const hex=product(product(transpose(S),U.map((r,i)=>r.map((z,j)=>z+W[i][j]))),S);
+ return hex.map((r,i)=>r.map((z,j)=>z+DATA.R*DATA.T*(1/f+(i===j?1/x[i+1]:0))));
+}
+function coefficients(S=1,model='PTK',factor=1){
+ if(!Number.isFinite(S)||S<1||S>10000||!['PT','PTK'].includes(model)||!Number.isFinite(factor)||factor<1e-4||factor>1e6)throw Error('Select S between 1 and 10,000 and a Cr multiplier between 0.0001 and 1,000,000.');
+ const v=S*DATA.vthermal,x=[...DATA.y.map(y=>y*(1-v)),v],q=x.slice(1),H=hessian(x);
+ const tracers=DATA.tracers.map((d,i)=>d*(i===2?factor:1));
+ const m=tracers.map((d,i)=>d*x[i]*S/(DATA.R*DATA.T));
+ const [mf,mn,mc]=m,B=model==='PT'?[[mn,0,0],[0,mc,0],[0,0,mf+mn+mc]]:[[mn,0,-mn],[0,mc,-mc],[-mn,-mc,mf+mn+mc]];
+ // Exact B^-1(0,1,-1): avoids subtractive cancellation at large Cr multipliers.
+ const b=model==='PT'?[0,1/mc,-1/(mf+mn+mc)]:[0,1/mc,0];
+ const a=solveSPD(H,b),D=product(B,H);
+ return {S,model,factor,x,q,H,B,D,a,tracers};
+}
+
+globalThis.Bulk={DATA,hessian,coefficients,dot,transpose,product,solveSPD};
+
+'use strict';
+// Symmetric similarity D = L (L^T H L) L^-1, where B = L L^T.
+// No non-symmetric eigenproblem or vacancy finite differencing is needed.
+function modalCoefficients(c,stoich=[0,1,-1]){
+ const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0),tr=A=>A[0].map((_,j)=>A.map(r=>r[j])),mul=(A,B)=>{const T=tr(B);return A.map(r=>T.map(col=>dot(r,col)));};
+ const L=Array.from({length:3},()=>[0,0,0]);
+ for(let i=0;i<3;i++)for(let j=0;j<=i;j++){let v=c.B[i][j];for(let k=0;k<j;k++)v-=L[i][k]*L[j][k];L[i][j]=i===j?Math.sqrt(v):v/L[j][j];}
+ const A=mul(mul(tr(L),c.H),L).map(r=>r.map(v=>v*1e12)),U=[[1,0,0],[0,1,0],[0,0,1]];
+ for(let it=0;it<80;it++){
+  let p=0,q=1;for(const [i,j] of [[0,2],[1,2]])if(Math.abs(A[i][j])>Math.abs(A[p][q]))[p,q]=[i,j];
+  if(Math.abs(A[p][q])<1e-28*Math.max(...A.map((r,i)=>Math.abs(r[i]))))break;
+  const tau=(A[q][q]-A[p][p])/(2*A[p][q]),t=(tau>=0?1:-1)/(Math.abs(tau)+Math.sqrt(1+tau*tau)),cs=1/Math.sqrt(1+t*t),sn=t*cs,apq=A[p][q];
+  A[p][p]-=t*apq;A[q][q]+=t*apq;A[p][q]=A[q][p]=0;
+  for(let k=0;k<3;k++){if(k!==p&&k!==q){const kp=A[k][p],kq=A[k][q];A[k][p]=A[p][k]=cs*kp-sn*kq;A[k][q]=A[q][k]=sn*kp+cs*kq;}const up=U[k][p],uq=U[k][q];U[k][p]=cs*up-sn*uq;U[k][q]=sn*up+cs*uq;}
+ }
+ const V=mul(L,U),y=[0,0,0],s=stoich;for(let i=0;i<3;i++){y[i]=s[i];for(let j=0;j<i;j++)y[i]-=L[i][j]*y[j];y[i]/=L[i][i];}
+ const z=tr(U).map(r=>dot(r,y)),order=[0,1,2].sort((i,j)=>A[i][i]-A[j][j]);
+ const eigen=order.map(i=>A[i][i]),weights=V.map(r=>order.map(i=>r[i]*z[i]));
+ if(eigen.some(d=>!(d>0)))throw Error('Reference diffusion modes are not positive.');
+ return {B:c.B,H:c.H,D:c.D.map(r=>r.map(v=>v*1e12)),a:c.a.map(v=>v*1e-12),eigen,weights};
+}
+
+globalThis.modalCoefficients=modalCoefficients;
+
+'use strict';
+// Retained finite-slab Neumann/Dirichlet step response and its second time primitive.
+function erfc(x){const t=1/(1+.5*Math.abs(x));const p=t*Math.exp(-x*x-1.26551223+t*(1.00002368+t*(.37409196+t*(.09678418+t*(-.18628806+t*(.27886807+t*(-1.13520398+t*(1.48851587+t*(-.82215223+t*.17087277)))))))));return x>=0?p:2-p;}
+function imageStep(a,t,d){const z=a/(2*Math.sqrt(d*t));if(z>27)return 0;return 2*Math.sqrt(t/(Math.PI*d))*Math.exp(-z*z)-a/d*erfc(z);}
+function stepKernel(x,t,d,L){
+ if(t<=0||x===L)return 0;const tau=d*t/(L*L);
+ if(tau<.025){let f=0;for(let m=0;m<4;m++){const g=imageStep(x+2*m*L,t,d)-imageStep(2*L-x+2*m*L,t,d);f+=(m%2?-1:1)*g;}return f;}
+ let f=(L-x)/d;
+ for(let n=0;n<60;n++){const z=(n+.5)*Math.PI,e=Math.exp(-z*z*tau);f-=2*L/d*Math.cos(z*x/L)*e/(z*z);if(e<1e-17)break;}return f;
+}
+// Second time primitive permits exact integration of linearly varying flux.
+function imageSecond(a,t,d){const z=a/(2*Math.sqrt(d*t)),b=a*a/(4*d);if(z>27)return 0;return 4/3*Math.sqrt(t/(Math.PI*d))*(t+b)*Math.exp(-z*z)-a/d*(t+2*b/3)*erfc(z);}
+function secondKernel(x,t,d,L){
+ if(t<=0||x===L)return 0;const tau=d*t/(L*L),y=x/L;
+ if(tau<.025){let f=0;for(let m=0;m<4;m++)f+=(m%2?-1:1)*(imageSecond(x+2*m*L,t,d)-imageSecond(2*L-x+2*m*L,t,d));return f;}
+ let v=1/6-y*y/4+y*y*y/12;
+ for(let n=0;n<60;n++){const z=(n+.5)*Math.PI,e=Math.exp(-z*z*tau);v-=Math.cos(z*y)*e/z**4;if(e<1e-17)break;}
+ return (L-x)*t/d-2*L**3/(d*d)*v;
+}
+
+globalThis.Kernel={stepKernel,secondKernel};
+
+'use strict';
+// Full nonlinear activities, generalized BV, and nonlinear boundary roots.
+const VT=Bulk.DATA.VT_V, RT=Bulk.DATA.R*Bulk.DATA.T, JC=2*Bulk.DATA.F*Bulk.DATA.Csite*1e-6, YEAR=31536000;
+const DEFAULT={mode:'mixed',fe:true,L:100,S:1,factor:1,eta:VT,E:.2,gauge:0,feGap:.4324348487096082,hGap:.45,jCr:3.2872738012357723,jFe:19.546055361701182,jH:5,aCr:.32,aFe:.09,pCr:.32,qCr:.68,pFe:.09,qFe:.91,SCr:1,SFe:1,H:1,P:1,prefactor:'source'};
+function excess(x){
+ const g=[0,0,0];let energy=0;
+ for(const [name,i,j] of [['FeNi',0,1],['FeCr',0,2],['NiCr',1,2]]){const a=x[i],b=x[j],[l0,l1,l2]=Bulk.DATA.pairs[name],d=a-b,P=l0+l1*d+l2*d*d,P1=l1+2*l2*d;energy+=a*b*P;g[i]+=b*P+a*b*P1;g[j]+=a*P-a*b*P1;}
+ const [f,n,c]=x,[A,B,C]=Bulk.DATA.ternary;energy+=f*n*c*(A*f+B*n+C*c);g[0]+=n*c*(2*A*f+B*n+C*c);g[1]+=f*c*(A*f+2*B*n+C*c);g[2]+=f*n*(A*f+B*n+2*C*c);
+ const mv=energy-Bulk.dot(x,g);return [...g.map(v=>v+mv),mv];
+}
+const X0=[1-Bulk.DATA.qthermal.reduce((a,b)=>a+b,0),...Bulk.DATA.qthermal],EX0=excess(X0.slice(0,3));
+function activity(q,givenX=null){const x=givenX||[1-q.reduce((a,b)=>a+b,0),...q];if(x.some(v=>!Number.isFinite(v)||v<=0))throw Error('Composition left the positive Fe–Ni–Cr–vacancy domain.');const ex=excess(x.slice(0,3));return x.map((v,i)=>v/X0[i]*Math.exp((ex[i]-EX0[i])/RT));}
+function validate(p){
+ const bounded=(key,lo,hi)=>{if(!Number.isFinite(p[key])||p[key]<lo||p[key]>hi)throw Error(key+' must be between '+lo+' and '+hi+'.');};
+ bounded('L',1,1000);bounded('S',1,10000);bounded('factor',.0001,1e6);
+ for(const k of ['eta','E','feGap','hGap'])bounded(k,-1,1);bounded('gauge',-5,5);
+ for(const k of ['jCr','jFe','jH'])bounded(k,1e-8,1e5);
+ for(const k of ['aCr','aFe'])bounded(k,.01,.99);
+ for(const k of ['pCr','pFe','qCr','qFe'])bounded(k,-2,2);
+ for(const k of ['SCr','SFe','H','P'])bounded(k,1e-6,1e6);
+ if(!['mixed','eta','E'].includes(p.mode))throw Error('Choose an interface condition.');return p;
+}
+function state(q,p,givenX=null){const a=activity(q,givenX),A=[a[2],a[0]],V=a[3],S=[p.SCr,p.SFe],alpha=[p.aCr,p.aFe],powers=p.prefactor==='source'?alpha:p.prefactor==='linear'?[1,1]:p.prefactor==='constant'?[0,0]:[p.pCr,p.pFe],vp=p.prefactor==='source'?alpha.map(v=>1-v):p.prefactor==='custom'?[p.qCr,p.qFe]:[0,0];return {q,x:givenX||[1-q.reduce((a,b)=>a+b,0),...q],a,A,V,alpha,eq:[VT/2*Math.log(V*S[0]/A[0]),p.feGap+VT/2*Math.log(V*S[1]/A[1])],j0:[p.jCr,p.jFe].map((v,i)=>v*Math.exp(powers[i]*Math.log(A[i])+vp[i]*Math.log(V*S[i]))),Eh:p.hGap+VT*Math.log(p.H/Math.sqrt(p.P)),jh0:p.jH*Math.sqrt(p.H*Math.sqrt(p.P))};}
+function bv(u,j0,a){if(u===0)return 0;const z=Math.abs(u),logj=Math.log(j0)+2*(u>0?1-a:a)*z+Math.log(-Math.expm1(-2*z));if(!Number.isFinite(logj)||logj>700)throw Error('The current exceeds the supported numerical range.');return Math.sign(u)*Math.exp(logj);}
+function inverseBV(j,j0,a){
+ if(j===0)return 0;if(!(j0>0)||!Number.isFinite(j0))throw Error('Exchange current must remain positive.');
+ const sign=Math.sign(j),alpha=sign>0?a:1-a,ly=Math.log(Math.abs(j))-Math.log(j0);
+ if(ly< -18)return sign*Math.exp(ly)/2;
+ let lo=0,hi=Math.max(1,(Math.max(0,ly)+2)/(2*(1-alpha))),u=Math.min(hi/2,Math.max(1e-8,(ly>4?ly/(2*(1-alpha)):Math.asinh(Math.exp(ly)/2))));
+ for(let k=0;k<55;k++){const logf=2*(1-alpha)*u+Math.log(-Math.expm1(-2*u)),f=logf-ly;if(Math.abs(f)<3e-14)return sign*u;if(f>0)hi=u;else lo=u;const d=2*(1-alpha)+2/Math.expm1(2*u),v=u-f/d;u=v>lo&&v<hi?v:(lo+hi)/2;}return sign*u;
+}
+function atE(st,E,p){const j=st.eq.map((e,i)=>i===1&&!p.fe?0:bv((E-e)/VT,st.j0[i],st.alpha[i]));const jH=2*st.jh0*Math.sinh((E-st.Eh)/(2*VT));return {...st,E,j,jH,eta:st.eq.map(e=>E-e),r:j.map(v=>v/JC)};}
+function instantaneous(q,p){const st=state(q,p);let E;if(p.mode==='eta')E=st.eq[0]+p.eta;else if(p.mode==='E')E=p.E;else{let lo=Math.min(st.eq[0],p.fe?st.eq[1]:st.eq[0],st.Eh),hi=Math.max(st.eq[0],p.fe?st.eq[1]:st.eq[0],st.Eh);for(let k=0;k<90;k++){E=(lo+hi)/2;const z=atE(st,E,p),f=z.j[0]+z.j[1]+z.jH;if(f>0)hi=E;else lo=E;if(hi-lo<2e-16)break;}E=(lo+hi)/2;}return atE(st,E,p);}
+function dataFromRate(q,r,p,givenX=null){const st=state(q,p,givenX),j=r.map(v=>v*JC),E=p.mode==='mixed'?st.Eh-2*VT*Math.asinh((j[0]+j[1])/(2*st.jh0)):p.mode==='eta'?st.eq[0]+p.eta:p.E;const required=st.eq.map((e,i)=>e+VT*inverseBV(j[i],st.j0[i],st.alpha[i]));return {...st,E,j,jH:2*st.jh0*Math.sinh((E-st.Eh)/(2*VT)),r,eta:st.eq.map(e=>E-e),res:required.map(e=>(e-E)/VT)};}
+function solve2(A,b){const det=A[0][0]*A[1][1]-A[0][1]*A[1][0];if(!Number.isFinite(det)||det===0)throw Error('Degenerate boundary response.');return [(b[0]*A[1][1]-b[1]*A[0][1])/det,(A[0][0]*b[1]-A[1][0]*b[0])/det];}
+function boundary(qh,phi,p,guess,tol=2e-10){
+ if(!p.fe&&p.mode==='eta'&&p.eta===0)return dataFromRate(qh,[0,0],p);
+ if(!p.fe){
+  const z=phi.map(r=>r[0]),base=[1-qh.reduce((a,b)=>a+b,0),...qh],slope=[z.reduce((a,b)=>a+b,0),...z.map(v=>-v)];let lo=-Infinity,hi=Infinity;
+  for(let i=0;i<4;i++){if(slope[i]>0)lo=Math.max(lo,-base[i]/slope[i]);if(slope[i]<0)hi=Math.min(hi,-base[i]/slope[i]);}
+  if(!(lo<hi)||!Number.isFinite(lo+hi))throw Error('No admissible Cr-only flux interval.');
+  // Parameterize a limiting species logarithmically so a depleted surface is not
+  // computed by subtracting two nearly equal O(1) numbers.
+  let bestOut=null,bestErr=Infinity;
+  const candidates=[0,1,2,3].filter(i=>slope[i]!==0).sort((a,b)=>Math.abs(base[a]+slope[a]*hi)-Math.abs(base[b]+slope[b]*hi));
+  for(const idx of candidates){const xlo=Math.max(0,Math.min(base[idx]+slope[idx]*lo,base[idx]+slope[idx]*hi)),xhi=Math.max(base[idx]+slope[idx]*lo,base[idx]+slope[idx]*hi);if(!(xhi>xlo))continue;
+   const at=zz=>{const xi=Math.exp(zz),r=(xi-base[idx])/slope[idx],x=base.map((v,i)=>v+slope[i]*r);x[idx]=xi;return dataFromRate(x.slice(1),[r,0],p,x);};
+   let l=xlo>0?Math.log(xlo+(xhi-xlo)*1e-14):-680,h=Math.log(xhi-(xhi-xlo)*1e-14),left,right;try{left=at(l);right=at(h);}catch(e){continue;}let fl=left.res[0];if(fl*right.res[0]>0)continue;
+   for(let it=0;it<130;it++){const mid=(l+h)/2,o=at(mid),err=Math.abs(o.res[0]);if(err<bestErr){bestErr=err;bestOut=o;}if(err<tol)return o;if(o.res[0]*fl>0)l=mid;else h=mid;}
+  }
+  if(bestOut&&bestErr<2e-8)return bestOut;
+  throw Error('Could not resolve a positive-composition Cr-only interface root for these parameters.');
+ }
+ // Work first in flux coordinates; this avoids subtractive concentration differences
+ // at very early times and highly supersaturated reference states.
+ let best=Infinity;
+ const continuous=o=>!guess||Math.max(...o.x.map((v,i)=>Math.abs(Math.log(v/guess.x[i]))))<.5;
+ function iterate(calc,seed,limit=5){let z=seed.slice(),o;try{o=calc(z);}catch(e){return null;}
+  for(let it=0;it<80;it++){const norm=Math.hypot(...o.res);best=Math.min(best,norm);if(norm<tol)return o;let cols=[];
+   try{for(let j=0;j<2;j++){const dz=2e-5*Math.max(1,Math.abs(z[j])),zp=z.slice(),zm=z.slice();zp[j]+=dz;zm[j]-=dz;let pp,mm;try{pp=calc(zp);}catch(e){}try{mm=calc(zm);}catch(e){}if(pp&&mm)cols.push(pp.res.map((v,i)=>(v-mm.res[i])/(2*dz)));else if(pp)cols.push(pp.res.map((v,i)=>(v-o.res[i])/dz));else if(mm)cols.push(mm.res.map((v,i)=>(o.res[i]-v)/dz));else throw Error('Derivative domain');}}catch(e){break;}
+   let step;try{step=solve2([[cols[0][0],cols[1][0]],[cols[0][1],cols[1][1]]],o.res.map(v=>-v));}catch(e){break;}
+   let scale=Math.min(1,limit/Math.max(...step.map(Math.abs))),accepted=false;
+   for(let ls=0;ls<30;ls++){const zz=z.map((v,i)=>v+scale*step[i]);try{const oo=calc(zz);if(Math.hypot(...oo.res)<norm){z=zz;o=oo;accepted=true;break;}}catch(e){}scale*=.5;}if(!accepted)break;
+  }return null;
+ }
+ const rguess=guess?.r||[0,0],rs=Math.max(1e-18,...rguess.map(Math.abs));
+ const direct=z=>{const r=z.map(v=>v*rs),q=qh.map((v,i)=>v-phi[i][0]*r[0]-phi[i][1]*r[1]);return dataFromRate(q,r,p);};
+ if(guess){const out=iterate(direct,rguess.map(v=>v/rs),20);if(out&&continuous(out))return out;}
+ // Each positive log-pair parameterizes the same affine response plane.
+ // Switch pairs when a different species approaches zero: no concentration clipping.
+ const col=[phi.map(r=>r[0]),phi.map(r=>r[1])].map(v=>{const s=Math.max(...v.map(Math.abs));return v.map(x=>x/s);});let n=[col[0][1]*col[1][2]-col[0][2]*col[1][1],col[0][2]*col[1][0]-col[0][0]*col[1][2],col[0][0]*col[1][1]-col[0][1]*col[1][0]];const ns=Math.max(...n.map(Math.abs));n=n.map(v=>v/ns);const b=Bulk.dot(n,qh),nn=[0,...n],fh=1-qh.reduce((a,b)=>a+b,0);
+ const phif=phi[0].map((_,j)=>-phi.reduce((v,row)=>v+row[j],0));
+ const prev=guess?.x||[1-qh.reduce((a,b)=>a+b,0),...qh];
+ for(const pair of [[2,3],[0,2],[0,3],[1,2]]){
+  const rest=[0,1,2,3].filter(i=>!pair.includes(i)),[u,v]=rest;if(Math.abs(nn[u]-nn[v])<1e-24)continue;
+  function calc(z){const x=[0,0,0,0];pair.forEach((k,i)=>x[k]=Math.exp(z[i]));const remaining=1-x[pair[0]]-x[pair[1]],bb=b-nn[pair[0]]*x[pair[0]]-nn[pair[1]]*x[pair[1]];x[u]=(bb-nn[v]*remaining)/(nn[u]-nn[v]);x[v]=remaining-x[u];const q=x.slice(1),r=solve2([phif,phi[1]],[fh-x[0],qh[1]-x[2]]);return dataFromRate(q,r,p,x);}
+  const seeds=[pair.map(i=>Math.log(Math.max(prev[i],1e-80)))];if(pair[0]===0&&pair[1]===2)seeds.push([-1,-12],[-35,-45],[-10,-20]);
+  if(pair[0]===2&&pair[1]===3)seeds.push([-2,-20],[-5,-35],[-10,-60]);
+  for(const seed of seeds){const out=iterate(calc,seed);if(out&&continuous(out))return out;}
+ }
+ throw Error('The coupled interface root did not converge inside the positive-composition domain (scaled residual '+best.toExponential(2)+'). This is not proof that no physical solution exists.');
+}
+function prepare(p){validate(p);const c=Bulk.coefficients(p.S,'PTK',p.factor),m0=modalCoefficients(c,[0,1,-1]),m1=modalCoefficients(c,[0,0,-1]);return {c,m0,m1,eigen:m0.eigen,weights:m0.weights.map((w,i)=>w.map((v,k)=>[v,m1.weights[i][k]]))};}
+function response(v,m){return m.weights.map(w=>[0,1].map(j=>w.reduce((s,a,k)=>s+a[j]*v[k],0)));}
+function steady(p,m=prepare(p)){const phi=response(m.eigen.map(d=>p.L/d),m);return boundary(m.c.q,phi,p);}
+globalThis.BVModel={DEFAULT,VT,RT,JC,YEAR,excess,activity,state,bv,inverseBV,validate,instantaneous,dataFromRate,boundary,prepare,response,steady};
+
+'use strict';
+// Exact spatial diffusion kernels; implicit piecewise-constant flux in time.
+// This avoids alternating fluxes for nearly perfect-sink boundary laws.
+function grid(end,step){const ts=[0,end];for(let t=1e-12;t<end;t*=1+step)ts.push(t);for(const h of [1,10,25,100,1000,10000,17520])if(h*3600<end)ts.push(h*3600);return [...new Set(ts)].sort((a,b)=>a-b);}
+function historyLoss(rows,n,t,m,L,x=0){const hist=Array.from({length:3},()=>[0,0]);let prev=m.eigen.map(d=>Kernel.stepKernel(x,t,d,L));for(let k=1;k<n;k++){const f=m.eigen.map(d=>Kernel.stepKernel(x,t-rows[k].t,d,L));for(let mode=0;mode<3;mode++){const delta=prev[mode]-f[mode];for(let a=0;a<2;a++)hist[mode][a]+=delta*rows[k].r[a];}prev=f;}return hist;}
+function combineHistory(hist,m){return m.weights.map(w=>w.reduce((s,v,k)=>s+v[0]*hist[k][0]+v[1]*hist[k][1],0));}
+function integrate(p,hours=17520,step=.02,progress=()=>{}){
+ const m=BVModel.prepare(p),ts=grid(hours*3600,step),first=BVModel.instantaneous(m.c.q,p),rows=[{...first,t:0,removal:[0,0]}];let retries=0;
+ for(let n=1;n<ts.length;n++){
+  const t=ts[n],dt=t-rows[n-1].t,hist=historyLoss(rows,n,t,m,p.L),fd=m.eigen.map(d=>Kernel.stepKernel(0,dt,d,p.L));
+
+  const loss=combineHistory(hist,m),qh=m.c.q.map((v,i)=>v-loss[i]),phi=BVModel.response(fd,m);let row;
+  try{row=BVModel.boundary(qh,phi,p,rows[n-1],t<1e-6?2e-8:2e-10);}catch(e){if(retries++<200&&dt>1e-14){ts.splice(n,0,(t+rows[n-1].t)/2);n--;continue;}throw Error('At '+(t/3600).toPrecision(5)+' h: '+e.message);}
+  const logJump=Math.max(...row.x.map((v,i)=>Math.abs(Math.log(v/rows[n-1].x[i]))));
+  if(logJump>.35&&dt>Math.max(1e-14,t*1e-9)){if(retries++>1000)throw Error('Boundary continuation exceeded its step budget at '+(t/3600).toPrecision(5)+' h.');ts.splice(n,0,(t+rows[n-1].t)/2);n--;continue;}
+  rows.push({...row,t,removal:rows[n-1].removal.map((v,a)=>v+dt*row.r[a])});
+  if(n%70===0)progress(n/ts.length,t/3600);
+ }
+ let endpoint=null,steadyError='';try{endpoint=BVModel.steady(p,m);}catch(e){steadyError=e.message;}
+ return {p,m,rows,endpoint,steadyError,step,retries};
+}
+function spatial(sol,hours){const {p,m,rows}=sol,L=p.L;if(hours==='final'){if(!sol.endpoint)throw Error(sol.steadyError);const xb=[1-m.c.q.reduce((a,b)=>a+b,0),...m.c.q];return Array.from({length:161},(_,i)=>{const f=sol.endpoint.x.map((v,j)=>v+(xb[j]-v)*i/160);return {x:L*i/160,q:f.slice(1),fractions:f};});}
+ const t=hours*3600,idx=rows.findIndex(r=>Math.abs(r.t-t)<1e-6);if(idx<0)throw Error('Requested time not in the calculated history.');const xs=[0,L];for(let i=1;i<121;i++)xs.push(L*i/121);for(let i=0;i<65;i++)xs.push(L*10**(-8+7.95*i/64));
+ return [...new Set(xs)].sort((a,b)=>a-b).map(x=>{if(x===0)return {x,q:rows[idx].q.slice(),fractions:rows[idx].x.slice()};if(x===L)return {x,q:m.c.q.slice(),fractions:[1-m.c.q.reduce((a,b)=>a+b,0),...m.c.q]};const hist=historyLoss(rows,idx+1,t,m,L,x),loss=combineHistory(hist,m),q=m.c.q.map((v,i)=>v-loss[i]);if(Math.min(...q,1-q.reduce((a,b)=>a+b,0))<=0)throw Error('The reconstructed profile leaves the physical composition domain.');return {x,q,fractions:[1-q.reduce((a,b)=>a+b,0),...q]};});
+}
+globalThis.BVTransient={integrate,spatial,grid};
+</script><script>(()=>{'use strict';
+const $=id=>document.getElementById(id),engine=$('engine-source').textContent;new Function(engine)();const YEAR=BVModel.YEAR;
+const numKeys=['L','S','factor','eta','E','gauge','feGap','hGap','jCr','jFe','jH','aCr','aFe','pCr','qCr','pFe','qFe','SCr','SFe','H','P'],voltageKeys=['eta','E','gauge','feGap','hGap'];
+let result=null,profile=[],worker=null,polarRows=[],revision=0;const colors=['#500000','#17648a','#13766c','#926718','#684a8a'];
+const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=(v,d=5)=>!Number.isFinite(v)?'—':v===0?'0':Math.abs(v)>=1e5||Math.abs(v)<1e-3?v.toExponential(d-1):Number(v.toPrecision(d)).toLocaleString('en-US',{maximumSignificantDigits:d});
+function read(){const p={};numKeys.forEach(k=>p[k]=Number($(k).value)/(voltageKeys.includes(k)?1000:1));p.mode=$('mode').value;p.fe=$('fe').value==='yes';p.prefactor=$('prefactor').value;return BVModel.validate(p);}
+function sync(){const mode=$('mode').value;$('eta').disabled=mode!=='eta';$('E').disabled=mode!=='E';const custom=$('prefactor').value==='custom';for(const el of ['Cr','Fe']){const a=+ $('a'+el).value;let pp=custom?+$('p'+el).value:$('prefactor').value==='source'?a:$('prefactor').value==='linear'?1:0,qq=custom?+$('q'+el).value:$('prefactor').value==='source'?1-a:0;$('p'+el).disabled=!custom;$('q'+el).disabled=!custom;if(!custom){$('p'+el).value=pp;$('q'+el).value=Number(qq.toPrecision(12));}}
+ $('mode-note').textContent=mode==='mixed'?'One common E balances Cr, Fe and hydrogen currents. Salt chemistry is maintained; there is no finite inventory depletion.':mode==='eta'?'Actual Cr overpotential is held fixed. E follows the evolving Cr equilibrium potential, and the same E determines Fe dissolution or deposition.':'Common E is held fixed relative to the original thermal Cr reference. Actual Cr and Fe overpotentials change as the alloy surface evolves.';
+ $('diffusivity').textContent='D*Cr = '+fmt(8.774877334868778e-20*Number($('factor').value))+' m²/s';}
+function error(msg){$('error').hidden=!msg;$('error').textContent=msg;}
+function dirty(){revision++;if(worker){worker.terminate();worker=null;}busy(false);result=null;$('results').hidden=true;error('');$('status').textContent='Inputs changed. Calculate to update all curves and results.';sync();}
+function busy(v){$('calculate').disabled=v;$('cancel').hidden=!v;$('progress').hidden=!v;if(!v)$('progress').value=0;}
+function calculate(){let p;try{p=read();}catch(e){error(e.message);$('results').hidden=true;return;}error('');busy(true);$('results').hidden=true;$('status').textContent='Solving diffusion and nonlinear boundary kinetics…';const ticket=++revision;
+ const source=engine+`\nself.onmessage=e=>{try{const sol=BVTransient.integrate(e.data.p,17520,e.data.step,(fraction,h)=>self.postMessage({type:'progress',fraction,h}));self.postMessage({type:'result',sol});}catch(err){self.postMessage({type:'error',message:err.message});}};`;
+ const url=URL.createObjectURL(new Blob([source],{type:'text/javascript'}));worker=new Worker(url);URL.revokeObjectURL(url);
+ worker.onmessage=e=>{if(ticket!==revision)return;const d=e.data;if(d.type==='progress'){$('progress').value=d.fraction;$('status').textContent='Solving: '+fmt(d.h,3)+' h…';return;}worker.terminate();worker=null;busy(false);if(d.type==='error'){error(d.message);$('status').textContent='Calculation not completed. Existing curves are hidden.';return;}result=d.sol;$('results').hidden=false;$('status').textContent='Calculated '+result.rows.length.toLocaleString()+' time nodes; stationary solution solved separately. Exact spatial response, numerical time integration.';render();};
+ worker.onerror=e=>{busy(false);error(e.message);};worker.postMessage({p,step:Number($('resolution').value)});
+}
+function plot(id,series,opt={}){const el=$(id);if(!el)return;const W=Math.max(330,Math.min(960,el.clientWidth||650)),H=W<440?325:365,left=W<440?75:90,right=20,top=24,bottom=67,pw=W-left-right,ph=H-top-bottom;const points=series.flatMap(s=>s.data).filter(v=>Number.isFinite(v[0])&&Number.isFinite(v[1]));if(!points.length){el.innerHTML='<p>No finite data to plot.</p>';return;}
+ const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);let xlo=opt.xlim?.[0]??Math.min(...xs),xhi=opt.xlim?.[1]??Math.max(...xs);if(xhi===xlo)xhi=xlo+1;
+ const absmax=Math.max(...ys.map(Math.abs),1e-30),lin=absmax*1e-5;const yf=v=>opt.y==='symlog'?Math.sign(v)*Math.log10(1+Math.abs(v)/lin):opt.y==='log'?Math.log10(Math.max(v,1e-300)):v,yi=v=>opt.y==='symlog'?Math.sign(v)*lin*(10**Math.abs(v)-1):opt.y==='log'?10**v:v;
+ const xf=v=>opt.x==='log'?Math.log10(Math.max(v,1e-300)):v;let ylo=Math.min(...ys.map(yf)),yhi=Math.max(...ys.map(yf));if(opt.y!=='log'&&opt.includeZero!==false){ylo=Math.min(0,ylo);yhi=Math.max(0,yhi);}let pad=(yhi-ylo)*.08||Math.max(Math.abs(yhi)*.08,1e-6);ylo-=pad;yhi+=pad;if(opt.nonnegative&&opt.y!=='log')ylo=Math.max(0,ylo);const xa=xf(xlo),xb=xf(xhi),X=x=>left+(xf(x)-xa)/(xb-xa)*pw,Y=y=>top+(yhi-yf(y))/(yhi-ylo)*ph;
+ const clip='clip-'+id;let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${escape(opt.label||opt.ylabel+' versus '+opt.xlabel)}"><title>${escape(opt.label||opt.ylabel+' versus '+opt.xlabel)}</title><defs><clipPath id="${clip}"><rect x="${left}" y="${top}" width="${pw}" height="${ph}"/></clipPath></defs>`;
+ const tick=v=>fmt(v,3);for(let i=0;i<=4;i++){const z=ylo+(yhi-ylo)*i/4,y=top+ph-ph*i/4;svg+=`<line x1="${left}" y1="${y}" x2="${W-right}" y2="${y}" stroke="#e0e5e8"/><text x="${left-8}" y="${y+5}" text-anchor="end" font-size="14" fill="#39434b">${escape(tick(yi(z)))}</text>`;}
+ for(let i=0;i<=4;i++){const z=xa+(xb-xa)*i/4,v=opt.x==='log'?10**z:z,x=left+pw*i/4;svg+=`<line x1="${x}" y1="${top+ph}" x2="${x}" y2="${top+ph+5}" stroke="#687581"/><text x="${x}" y="${top+ph+23}" text-anchor="middle" font-size="14">${escape(tick(v))}</text>`;}
+ if(ylo<=0&&yhi>=0&&opt.y!=='log')svg+=`<line x1="${left}" y1="${Y(0)}" x2="${W-right}" y2="${Y(0)}" stroke="#87919a" stroke-dasharray="3 3"/>`;
+ series.forEach((s,i)=>{const data=s.data.filter(v=>Number.isFinite(v[0])&&Number.isFinite(v[1])&&(opt.x!=='log'||v[0]>0)&&(opt.y!=='log'||v[1]>0)),d=data.map((v,k)=>(k?'L':'M')+X(v[0]).toFixed(3)+','+Y(v[1]).toFixed(3)).join(' ');svg+=`<path d="${d}" fill="none" stroke="${s.color||colors[i%colors.length]}" stroke-width="2.6" ${i?'stroke-dasharray="'+(['','7 4','2 3','10 3 2 3'][i%4])+'"':''} clip-path="url(#${clip})"/>`;});
+ if(opt.mark&&opt.mark>=xlo&&opt.mark<=xhi)svg+=`<line x1="${X(opt.mark)}" y1="${top}" x2="${X(opt.mark)}" y2="${top+ph}" stroke="#575c62" stroke-dasharray="3 4" clip-path="url(#${clip})"/>`;
+ svg+=`<line x1="${left}" y1="${top+ph}" x2="${W-right}" y2="${top+ph}" stroke="#454d54"/><text x="${left+pw/2}" y="${H-10}" text-anchor="middle" font-size="16" font-weight="700">${escape(opt.xlabel)}</text><text x="18" y="${top+ph/2}" transform="rotate(-90 18 ${top+ph/2})" text-anchor="middle" font-size="16" font-weight="700">${escape(opt.ylabel)}</text></svg>`;
+ el.innerHTML=svg+'<div class="legend">'+series.map((s,i)=>`<span><i class="swatch" style="background:${s.color||colors[i%colors.length]}"></i>${escape(s.name)}</span>`).join('')+'</div>'+(opt.y==='symlog'?'<p class="hint">Signed log scale: logarithmic away from zero, linear near zero.</p>':'');}
+function selected(){if(!result)return null;const h=$('time').value;return h==='final'?result.endpoint:result.rows.find(r=>Math.abs(r.t-Number(h)*3600)<1e-6);}
+function render(){if(!result)return;const p=result.p,row=selected(),h=$('time').value,mark=h==='final'||h==='0'?null:Number(h);$('selected-label').textContent=h==='final'?'Independent stationary root':h==='0'?'Before diffusion evolves':h==='17520'?'Two-year transient':h+' h transient';document.querySelectorAll('[data-time]').forEach(b=>b.classList.toggle('active',b.dataset.time===h));
+ $('snapshot').textContent=(p.fe?'Cr + Fe':'Cr only')+' · '+({mixed:'Maintained mixed potential',eta:'Prescribed actual Cr overpotential',E:'Prescribed common E'}[p.mode])+' · L = '+p.L+' µm · Sv = '+p.S+' · D*Cr × '+p.factor+' · '+p.prefactor+' prefactor · display offset '+fmt(p.gauge*1000)+' mV';
+ $('steady-note').hidden=!!row;if(!row){$('steady-note').textContent=result.steadyError||'The requested state is not available.';for(const id of ['cr-rate','fe-rate','net-rate','net-amount'])$(id).textContent='—';for(const id of ['metal-plot','vacancy-plot','polar-plot'])$(id).innerHTML='';$('surface-table').querySelector('tbody').innerHTML='';$('electro-table').querySelector('tbody').innerHTML='';profile=[];polarRows=[];return;}
+ $('cr-rate').textContent=fmt(row.r[0]*YEAR);$('fe-rate').textContent=fmt(row.r[1]*YEAR);$('net-rate').textContent=fmt((row.r[0]+row.r[1])*YEAR);$('net-amount').textContent=row.removal?fmt(row.removal[0]+row.removal[1]):'—';$('amount-unit').textContent=row.removal?'µm equivalent':'No elapsed time';$('amount-note').textContent=row.removal?'Signed integral; not a depletion depth.':'Stationary is a rate/profile, not an accumulated loss.';
+ const hist=result.rows.filter(r=>r.t>=3.6);const ss=['Cr','Fe','Net'].map((name,i)=>({name,data:hist.map(r=>[r.t/3600,(i<2?r.r[i]:r.r[0]+r.r[1])*YEAR])}));plot('rate-plot',ss,{x:'log',y:$('rate-log').checked?'symlog':'linear',xlabel:'Time (h)',ylabel:'Signed rate (µm/year)',mark});plot('amount-plot',['Cr','Fe','Net'].map((name,i)=>({name,data:hist.map(r=>[r.t/3600,i<2?r.removal[i]:r.removal[0]+r.removal[1]])})),{x:'log',xlabel:'Time (h)',ylabel:'Transfer (µm equivalent)',mark});
+ try{profile=h==='0'?[0,p.L].map(x=>({x,q:row.q,fractions:row.x})):BVTransient.spatial(result,h==='final'?'final':Number(h));error('');}catch(e){error('Profile: '+e.message);profile=[];}
+ const xmax=p.L*Number($('zoom').value),part=profile.filter(r=>r.x<=xmax),species=Number($('species').value),names=['Iron','Nickel','Chromium'];plot('metal-plot',[{name:names[species],data:part.map(r=>[r.x,r.fractions[species]])}],{y:$('profile-log').checked?'log':'linear',xlabel:'Distance into alloy (µm)',ylabel:names[species]+' site fraction',includeZero:false,nonnegative:true,xlim:[0,xmax]});plot('vacancy-plot',[{name:'Vacancy',data:part.map(r=>[r.x,r.fractions[3]]),color:colors[3]}],{y:$('profile-log').checked?'log':'linear',xlabel:'Distance into alloy (µm)',ylabel:'Vacancy site fraction',includeZero:false,nonnegative:true,xlim:[0,xmax]});
+ const far=[1-result.m.c.q.reduce((a,b)=>a+b,0),...result.m.c.q];$('surface-table').querySelector('tbody').innerHTML=['Fe','Ni','Cr','Vacancy'].map((s,i)=>'<tr><th scope="row">'+s+'</th><td>'+fmt(row.x[i],7)+'</td><td>'+fmt(far[i],7)+'</td><td>'+fmt(row.a[i],7)+'</td><td>'+(row.removal&&[0,2].includes(i)?fmt(row.removal[i===0?1:0],7):'—')+'</td></tr>').join('');
+ plot('potential-plot',[{name:'Common E',data:hist.map(r=>[r.t/3600,(r.E+p.gauge)*1000])},{name:'Cr equilibrium',data:hist.map(r=>[r.t/3600,(r.eq[0]+p.gauge)*1000])},{name:'Fe equilibrium',data:hist.map(r=>[r.t/3600,(r.eq[1]+p.gauge)*1000])},{name:'Hydrogen equilibrium',data:hist.map(r=>[r.t/3600,(r.Eh+p.gauge)*1000])}],{x:'log',xlabel:'Time (h)',ylabel:'Potential (mV, display reference)',includeZero:false,mark});
+ plot('overpotential-plot',[{name:'Cr',data:hist.map(r=>[r.t/3600,r.eta[0]*1000])},{name:'Fe',data:hist.map(r=>[r.t/3600,r.eta[1]*1000])}],{x:'log',xlabel:'Time (h)',ylabel:'Actual overpotential (mV)',mark});
+ renderPolar(row);}
+function renderPolar(row=selected()){if(!row)return;const p=result.p,span=Number($('window').value)/1000;polarRows=Array.from({length:301},(_,i)=>{const E=row.E-span+2*span*i/300,j=row.eq.map((eq,k)=>k===1&&!p.fe?0:BVModel.bv((E-eq)/BVModel.VT,row.j0[k],row.alpha[k])),jH=2*row.jh0*Math.sinh((E-row.Eh)/(2*BVModel.VT));return {E,j,jH,total:j[0]+j[1]+jH};});plot('polar-plot',['Cr','Fe','Hydrogen','Sum of all currents'].map((name,i)=>({name,data:polarRows.map(r=>[(r.E+p.gauge)*1000,i<2?r.j[i]:i===2?r.jH:r.total])})),{y:$('polar-scale').value,xlabel:'Common E (mV, display reference)',ylabel:'Signed current (A/m²)',mark:(row.E+p.gauge)*1000});
+ const balance=row.j[0]+row.j[1]+row.jH;$('balance-text').textContent=p.mode==='mixed'?'At the selected common E: jCr + jFe + jH = '+fmt(balance,3)+' A/m². Positive current is anodic.':'At the prescribed E, the summed faradaic current is '+fmt(balance)+' A/m². The external circuit balances it; it need not be zero.';
+ $('electro-table').querySelector('tbody').innerHTML=['Cr','Fe','Hydrogen'].map((name,i)=>'<tr><th scope="row">'+name+'</th><td>'+fmt(i<2?row.j[i]:row.jH,7)+'</td><td>'+fmt(((i<2?row.eq[i]:row.Eh)+p.gauge)*1000,7)+'</td><td>'+fmt((i<2?row.eta[i]:row.E-row.Eh)*1000,7)+'</td><td>'+fmt(i<2?row.j0[i]:row.jh0,7)+'</td></tr>').join('');}
+function download(name,text,type){const a=document.createElement('a'),url=URL.createObjectURL(new Blob([text],{type}));a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function preamble(){return '# Configurable Cr-Fe corrosion; frozen bulk coefficients, nonlinear interfaces\n# positive metal transfer=dissolution; negative=deposition; equivalent removal is not wall recession\n# parameters_SI_except_L_um: '+JSON.stringify(result.p)+'\n# fixed_constants: '+JSON.stringify({T_K:973.15,F_C_mol:Bulk.DATA.F,Csite_mol_m3:Bulk.DATA.Csite,VT_V:BVModel.VT,thermal_v:Bulk.DATA.vthermal,Cr_tracer_reference_m2_s:Bulk.DATA.tracers[2],seconds_per_year:YEAR})+'\n# method: exact spatial kernel; implicit piecewise-constant flux; log_time_increment='+result.step+'\n';}
+$('export-history').onclick=()=>{if(!result)return;const header='time_h,rCr_um_year,rFe_um_year,rNet_um_year,Cr_transfer_um,Fe_transfer_um,net_transfer_um,E_original_V,E_display_V,EeqCr_original_V,EeqFe_original_V,etaCr_V,etaFe_V,xFe_surface,xNi_surface,xCr_surface,xv_surface,jCr_A_m2,jFe_A_m2,jH_A_m2';const rows=result.rows.map(r=>[r.t/3600,r.r[0]*YEAR,r.r[1]*YEAR,(r.r[0]+r.r[1])*YEAR,...r.removal,r.removal[0]+r.removal[1],r.E,r.E+result.p.gauge,...r.eq,...r.eta,...r.x,...r.j,r.jH].join(','));download('Cr_Fe_History.csv',preamble()+header+'\n'+rows.join('\n'),'text/csv');};
+$('export-profile').onclick=()=>download('Cr_Fe_Profile_'+$('time').value+'.csv',preamble()+'# selected_time_h: '+$('time').value+'\ndistance_um,xFe,xNi,xCr,xv\n'+profile.map(r=>[r.x,...r.fractions].join(',')).join('\n'),'text/csv');
+$('export-config').onclick=()=>download('Cr_Fe_Parameters.json',JSON.stringify({model:'fixed-domain frozen-bulk generalized BV',parameters:result.p,units:{L:'um',voltage:'V',j:'A/m2',tracer:'m2/s'},timeStepFraction:result.step,stationary:result.endpoint,numericalMethod:'Exact diffusion kernel with implicit piecewise-constant flux'},null,2),'application/json');
+$('export-polar').onclick=()=>download('Cr_Fe_Frozen_State_Polarization.csv',preamble()+'# frozen_state_time_h: '+$('time').value+'\nE_original_V,E_display_V,jCr_A_m2,jFe_A_m2,jH_A_m2,total_A_m2\n'+polarRows.map(r=>[r.E,r.E+result.p.gauge,...r.j,r.jH,r.total].join(',')).join('\n'),'text/csv');
+$('params').onsubmit=e=>{e.preventDefault();calculate();};$('params').addEventListener('input',dirty);$('params').addEventListener('change',sync);$('reset').onclick=()=>{for(const k of numKeys)$(k).value=BVModel.DEFAULT[k]*(voltageKeys.includes(k)?1000:1);$('mode').value='mixed';$('fe').value='yes';$('prefactor').value='source';$('resolution').value='.02';if(!$('resolution').value)$('resolution').value='0.02';dirty();calculate();};$('cancel').onclick=()=>{revision++;worker?.terminate();worker=null;busy(false);$('status').textContent='Calculation cancelled.';};
+for(const id of ['time','species','zoom','profile-log','rate-log'])$(id).onchange=render;for(const id of ['window','polar-scale'])$(id).onchange=()=>renderPolar();document.querySelectorAll('[data-time]').forEach(b=>b.onclick=()=>{$('time').value=b.dataset.time;render();});
+document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-tab]').forEach(t=>t.setAttribute('aria-selected',String(t===b)));document.querySelectorAll('.tab-panel').forEach(t=>t.hidden=t.id!==b.dataset.tab+'-panel');render();});
+let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(render,180);});window.ExplorerQA={get result(){return result;},read,calculate,render};sync();calculate();
+})();
+</script></body></html>
