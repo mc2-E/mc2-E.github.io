@@ -19,6 +19,35 @@ We connect multiscale physics, experimental evidence, and AI/ML to understand ho
 
 [Explore our research →]({{ '/about/' | relative_url }})
 
+<section aria-labelledby="updates-heading">
+  <h2 id="updates-heading">News and highlights</h2>
+  <div class="card mb-3">
+    <div class="card-body">
+      <p><strong>Call for papers · Deadline January 31, 2027</strong></p>
+      <h3 style="margin-top: 0;">Predictive Theory and Multiscale Modeling for Advanced Nuclear Fuels</h3>
+      <p>Karim Ahmed joins Mohammed Abdoelatef (EPRI), Sudipta Biswas (Idaho National Laboratory), and Wen Jiang (North Carolina State University) as editors of this collection in <em>Journal of Materials Science: Materials Theory</em>.</p>
+      <p>The collection welcomes theory, simulation, and data-informed approaches connecting materials mechanisms to advanced fuel performance, including oxide, metallic, ceramic, molten-salt, and TRU-bearing fuels.</p>
+      <a href="https://link.springer.com/collections/jidbjaaddc">View the collection and submission instructions →</a>
+    </div>
+  </div>
+  <div class="card mb-3">
+    <div class="card-body">
+      <p><strong>Research highlight</strong></p>
+      <h3 style="margin-top: 0;">From experiments to fast thermal-conductivity models</h3>
+      <p>Experiments, mesoscale simulations, and machine learning connect microstructure to effective thermal conductivity in UO₂–BeO, UO₂–Mo, and U-10Zr fuels.</p>
+      <a href="{{ '/publications/#thermal-conductivity-models' | relative_url }}">Read the publication highlight →</a>
+    </div>
+  </div>
+  <div class="card mb-3">
+    <div class="card-body">
+      <p><strong>Teaching · NUEN465</strong></p>
+      <h3 style="margin-top: 0;">Nuclear materials and computational design</h3>
+      <p>Explore the Nuclear Materials Engineering course and begin with Module 1: materials selection, reactor environments, multiscale modeling, and the evidence behind credible predictions.</p>
+      <a href="{{ '/teaching/nuen465/' | relative_url }}">Explore NUEN465 and Module 1 →</a>
+    </div>
+  </div>
+</section>
+
 <section class="lab-support" aria-labelledby="support-heading">
   <h2 id="support-heading">Research support</h2>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 20px; margin: 2rem 0;">
