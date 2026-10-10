@@ -12,7 +12,7 @@ Explore course materials, interactive tools, and worked examples for materials s
 
 ### [NUEN265 — Introduction to Materials Science for Nuclear Energy Applications]({{ '/teaching/nuen265/' | relative_url }})
 
-Explore structure–property relationships in metals, ceramics and polymers for nuclear energy: atomic bonding, crystal structures, defects, diffusion, radiation effects, mechanical behavior, failure and phase diagrams. Interactive resources and introductory MOOSE modeling support the course; the current collection includes crystal-structure explorers for elemental solids and for compounds and alloys.
+Explore structure–property relationships in metals, ceramics and polymers for nuclear energy: atomic bonding, crystal structures, defects, diffusion, radiation effects, mechanical behavior, failure and phase diagrams. Interactive resources and introductory MOOSE modeling support the course; the current collection includes Explorer I on elemental solids, Explorer II on compounds and alloys, and Explorer III on carbon, 2D materials, glasses and polymers.
 
 [View NUEN265 materials →]({{ '/teaching/nuen265/' | relative_url }})
 

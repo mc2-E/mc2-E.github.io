@@ -50,3 +50,18 @@ For offline use, extract the ZIP and open <strong style="overflow-wrap:anywhere;
   <a href="{{ '/teaching/nuen265/compounds-and-alloys/' | relative_url }}"><img src="{{ '/teaching/nuen265/images/NUEN265_PartII_Explorer_QR.png' | relative_url }}" alt="QR code linking to the Part II Compounds and Alloys explorer; the same link is provided above." width="192" height="192" style="width:192px;max-width:100%;height:auto;background:white;" loading="lazy"></a>
   <figcaption>Scan to open Part II on another device. <a href="{{ '/teaching/nuen265/images/NUEN265_PartII_Explorer_QR.png' | relative_url }}" download>Download QR code (PNG)</a> · <a href="{{ '/teaching/nuen265/images/NUEN265_PartII_Explorer_QR.svg' | relative_url }}" download>Scalable SVG</a></figcaption>
 </figure>
+
+
+## Explorer III: Carbon, 2D materials, glasses and polymers
+
+Connect bonding and atomic or molecular connectivity to the behavior of materials beyond simple metallic and ionic crystals. Seven interactive lessons combine rotatable structures, qualitative teaching diagrams and thirty formative questions with hints and explanations.
+
+- **Carbon and layered materials:** diamond and sp²/sp³ bonding, graphene and AB graphite, nanotube geometry, C₆₀, fullerite, h-BN and 1H-MoS₂.
+- **Networks and polymer building blocks:** local versus long-range order, glass-network schematics, repeat-unit chemistry and finite polyethylene-chain mass.
+- **Architecture and processing:** secondary interactions, covalent crosslinks, crystalline mass fractions, segmental mobility, melting, persistent chemical damage and practical recycling limits.
+
+[Open Explorer III →]({{ '/teaching/nuen265/carbon-and-polymers/' | relative_url }})
+
+[Download Explorer III for offline use (ZIP)]({{ '/teaching/nuen265/downloads/NUEN265_Carbon_and_Polymers_Explorer.zip' | relative_url }})
+
+Extract the ZIP and open <strong style="overflow-wrap:anywhere;">Carbon_and_Polymers_Explorer.html</strong>. All controls, calculations and teaching diagrams work offline; links to other explorers and external references require internet access. Polymer, extended glass-network and orbital diagrams are explicitly labeled schematics. They do not predict material properties, kinetic rates or recycling yields.
