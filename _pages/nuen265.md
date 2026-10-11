@@ -65,3 +65,19 @@ Connect bonding and atomic or molecular connectivity to the behavior of material
 [Download Explorer III for offline use (ZIP)]({{ '/teaching/nuen265/downloads/NUEN265_Carbon_and_Polymers_Explorer.zip' | relative_url }})
 
 Extract the ZIP and open <strong style="overflow-wrap:anywhere;">Carbon_and_Polymers_Explorer.html</strong>. All controls, calculations and teaching diagrams work offline; links to other explorers and external references require internet access. Polymer, extended glass-network and orbital diagrams are explicitly labeled schematics. They do not predict material properties, kinetic rates or recycling yields.
+
+
+## Explorer IV: Crystal directions, planes, X-rays and anisotropy
+
+Follow atom coordinates into crystal directions and planes, then connect indexed geometry to diffraction and directional properties. Eight interactive lessons combine rotatable structures, step-by-step indexing, worked examples and 32 formative questions with hints and explanations.
+
+- **Coordinates and cubic indexing:** every FCC corner and face-center coordinate, direction and plane labeling recipes, cubic families, and densely packed directions and planes.
+- **Hexagonal symmetry and density:** four-axis Miller–Bravais indexing, equivalent basal orientations, and atomic linear and planar densities.
+- **X-ray diffraction:** interplanar spacing, Bragg geometry, theta versus 2theta, wavelength units, and reflection rules for identical-atom cubic models.
+- **Anisotropy:** compare a single crystal, a randomly oriented polycrystal, and a textured polycrystal using qualitative orientation diagrams.
+
+[Open Explorer IV →]({{ '/teaching/nuen265/directions-planes-diffraction/' | relative_url }})
+
+[Download Explorer IV for offline use (ZIP)]({{ '/teaching/nuen265/downloads/NUEN265_Crystal_Directions_Planes_Xrays_Anisotropy_Explorer_IV.zip' | relative_url }})
+
+Extract the ZIP and open <strong style="overflow-wrap:anywhere;">Crystal_Directions_Planes_Xrays_Anisotropy_Explorer_IV.html</strong>. All lessons and calculations work offline; course and reference links require internet access. Figures are geometric or qualitative teaching schematics. The diffraction model uses identical-atom cubic structures, and the anisotropy lesson illustrates orientation effects without predicting numerical properties.
