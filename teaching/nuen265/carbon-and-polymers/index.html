@@ -204,7 +204,7 @@ function damage(s){const pts=Array.from({length:12},(_,i)=>[38+i*56,110+(i%2?15:
 }
 function update(i){if(i===1)carbon();if(i===6)contacts();if(i===7){const s=polymerState(val('architecture-kind'),num('heat'),num('crystalline-share'),val('chemical-change'));packing(s);thermal(s);damage(s);}}
 root.UpdateLessons=update;root.ResetLessonState=i=>{if(i===7)phase=0;};root.LessonUI={get phase(){return phase;},update};
-const refresh=i=>root.ExplorerDraft.scene(i);
+const refresh=i=>root.ExplorerIII.scene(i);
 document.querySelectorAll('[data-bond-mode]').forEach(e=>e.addEventListener('click',()=>{$('diamond-view').value=e.dataset.bondMode==='sp2'?'sp2':'cage';refresh(1);}));
 document.querySelectorAll('[data-architecture]').forEach(e=>e.addEventListener('click',()=>{$('architecture-kind').value=e.dataset.architecture;refresh(7);}));
 document.querySelectorAll('[data-heat-step]').forEach(e=>e.addEventListener('click',()=>{$('heat').value=e.dataset.heatStep;refresh(7);}));
@@ -256,6 +256,6 @@ document.querySelectorAll('[data-tab]').forEach(e=>{e.addEventListener('click',(
 document.querySelectorAll('[data-view]').forEach(e=>e.addEventListener('click',()=>{const i=+e.dataset.for;views[i]={mode:e.dataset.view,ang:e.dataset.view==='top'?[0,0]:e.dataset.view==='front'?[0,-Math.PI/2]:[...angleDefault]};render(i);}));
 document.querySelectorAll('[data-reset]').forEach(e=>e.addEventListener('click',()=>reset(+e.dataset.reset)));
 document.querySelectorAll('[data-prev],[data-next]').forEach(e=>e.addEventListener('click',()=>{activate(e.dataset.prev?+e.dataset.prev-1:+e.dataset.next+1,true);$('main').scrollIntoView();}));
-window.ExplorerDraft={scene,reset,activate,scenes,views,get active(){return active}};
+window.ExplorerIII={scene,reset,activate,scenes,views,get active(){return active}};
 })();
 </script></body></html>
