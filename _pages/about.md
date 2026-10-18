@@ -42,6 +42,12 @@ We also apply computational materials methods to fusion-energy and battery-mater
 
 ## Projects
 
+### [U–Zr metallic fuel]({{ '/research/projects/#uzr-processing' | relative_url }})
+
+Experiments connect casting, extrusion and heat treatment to the microstructure of U–10Zr.
+
+[Read the U–Zr research entry →]({{ '/research/projects/#uzr-processing' | relative_url }})
+
 ### [Molten-salt corrosion]({{ '/research/projects/molten-salt-corrosion/' | relative_url }})
 
 Interactive analytical tools connect alloy transport, interface kinetics and salt chemistry, with supporting reports and offline downloads.

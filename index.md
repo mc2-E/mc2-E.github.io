@@ -23,6 +23,14 @@ We connect multiscale physics, experimental evidence, and AI/ML to understand ho
   <h2 id="updates-heading">News and highlights</h2>
   <div class="card mb-3">
     <div class="card-body">
+      <p><strong>Research highlight</strong></p>
+      <h3 style="margin-top: 0;">How processing shapes U–Zr fuel microstructure</h3>
+      <p>A new study coauthored by Karim Ahmed compares cast and extruded U–10Zr using synchrotron X-ray diffraction and electron microscopy, revealing distinct responses to annealing and quenching.</p>
+      <a href="{{ '/publications/#uzr-processing' | relative_url }}">Read the U–Zr publication highlight →</a>
+    </div>
+  </div>
+  <div class="card mb-3">
+    <div class="card-body">
       <p><strong>Call for papers · Deadline January 31, 2027</strong></p>
       <h3 style="margin-top: 0;">Predictive Theory and Multiscale Modeling for Advanced Nuclear Fuels</h3>
       <p>Karim Ahmed joins Mohammed Abdoelatef (EPRI), Sudipta Biswas (Idaho National Laboratory), and Wen Jiang (North Carolina State University) as editors of this collection in <em>Journal of Materials Science: Materials Theory</em>.</p>

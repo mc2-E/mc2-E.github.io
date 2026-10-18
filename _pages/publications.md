@@ -6,6 +6,15 @@ nav: true
 nav_order: 2
 ---
 
+<section aria-labelledby="uzr-processing">
+  <h2 id="uzr-processing">How processing shapes U–Zr fuel microstructure</h2>
+  <p><strong>Anthony Albert Harrup, Mathias Boulanger, Sarah Cole, Mehmet Topsakal, Laura K. Sudderth, Karim Ahmed, Tiankai Yao, and Ericmoore Jossou</strong> · <em>Journal of Nuclear Materials</em> 634, 157082 (2026)</p>
+  <p><em>Effects of processing technique on microstructural evolution of U–Zr alloy: A combined XRD and SEM analysis</em></p>
+  <p>Annealing reduced microstrain in extruded material, while quenched material retained microstrain similar to the as-extruded condition. The study connects fabrication history with the microstructure of U–10Zr.</p>
+  <p><a href="https://doi.org/10.1016/j.jnucmat.2026.157082">Read the paper · DOI: 10.1016/j.jnucmat.2026.157082 →</a> · <a href="https://inl.elsevierpure.com/en/publications/effects-of-processing-technique-on-microstructural-evolution-of-u/">Read the abstract at Idaho National Laboratory</a></p>
+  <p><a href="{{ '/research/projects/#uzr-processing' | relative_url }}">Explore the U–Zr research entry →</a></p>
+</section>
+
 <section aria-labelledby="thermal-conductivity-models">
   <h2 id="thermal-conductivity-models">From experiments to fast thermal-conductivity models</h2>
   <p><strong>Fergany Badry, Merve Gencturk, and Karim Ahmed</strong> · <em>Journal of Nuclear Engineering</em> 7(1), 8 · Published January 22, 2026</p>
