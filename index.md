@@ -15,7 +15,7 @@ We connect multiscale physics, experimental evidence, and AI/ML to understand ho
   <figcaption>Our research approach. <a href="{{ '/assets/img/research_workflow_2026.png' | relative_url }}" target="_blank" rel="noopener">View the full-size image (opens a new tab)</a>.</figcaption>
 </figure>
 
-**From physics to useful predictions:** atomistic, phase-field, and finite-element models connect material structure to properties and performance. Experimental comparisons test and inform these models. AI/ML and reduced-order models support rapid predictions with uncertainty estimates, while feedback guides further modeling and targeted experiments.
+**From physics to useful predictions:** we connect material structure to properties and performance through atomistic, phase-field and finite-element models. We use experimental comparisons to test and inform our models, and develop machine-learning and reduced-order approaches to accelerate predictions.
 
 [Explore our research →]({{ '/about/' | relative_url }})
 
@@ -24,8 +24,16 @@ We connect multiscale physics, experimental evidence, and AI/ML to understand ho
   <div class="card mb-3">
     <div class="card-body">
       <p><strong>Research highlight</strong></p>
+      <h3 style="margin-top: 0;">Why chromium enriches or depletes at grain boundaries</h3>
+      <p>Working with collaborators at Idaho National Laboratory, we investigated how defect production and absorption affect chromium segregation in dilute Fe–Cr. Our rate-theory study shows how these mechanisms can shift the transition from grain-boundary enrichment to depletion toward lower temperatures.</p>
+      <a href="{{ '/publications/#fe-cr-segregation' | relative_url }}">Read the Fe–Cr publication highlight →</a>
+    </div>
+  </div>
+  <div class="card mb-3">
+    <div class="card-body">
+      <p><strong>Research highlight</strong></p>
       <h3 style="margin-top: 0;">How processing shapes U–Zr fuel microstructure</h3>
-      <p>A new study coauthored by Karim Ahmed compares cast and extruded U–10Zr using synchrotron X-ray diffraction and electron microscopy, revealing distinct responses to annealing and quenching.</p>
+      <p>We collaborated on a study comparing cast and extruded U–10Zr with synchrotron X-ray diffraction and electron microscopy, revealing distinct responses to annealing and quenching.</p>
       <a href="{{ '/publications/#uzr-processing' | relative_url }}">Read the U–Zr publication highlight →</a>
     </div>
   </div>
@@ -33,7 +41,7 @@ We connect multiscale physics, experimental evidence, and AI/ML to understand ho
     <div class="card-body">
       <p><strong>Call for papers · Deadline January 31, 2027</strong></p>
       <h3 style="margin-top: 0;">Predictive Theory and Multiscale Modeling for Advanced Nuclear Fuels</h3>
-      <p>Karim Ahmed joins Mohammed Abdoelatef (EPRI), Sudipta Biswas (Idaho National Laboratory), and Wen Jiang (North Carolina State University) as editors of this collection in <em>Journal of Materials Science: Materials Theory</em>.</p>
+      <p>We invite contributions to <em>Predictive Theory and Multiscale Modeling for Advanced Nuclear Fuels</em> in <em>Journal of Materials Science: Materials Theory</em>. Our PI, Karim Ahmed, is co-editing the collection with Mohammed Abdoelatef, Sudipta Biswas and Wen Jiang.</p>
       <p>The collection welcomes theory, simulation, and data-informed approaches connecting materials mechanisms to advanced fuel performance, including oxide, metallic, ceramic, molten-salt, and TRU-bearing fuels.</p>
       <a href="https://link.springer.com/collections/jidbjaaddc">View the collection and submission instructions →</a>
     </div>
@@ -42,7 +50,7 @@ We connect multiscale physics, experimental evidence, and AI/ML to understand ho
     <div class="card-body">
       <p><strong>Research highlight</strong></p>
       <h3 style="margin-top: 0;">From experiments to fast thermal-conductivity models</h3>
-      <p>Experiments, mesoscale simulations, and machine learning connect microstructure to effective thermal conductivity in UO₂–BeO, UO₂–Mo, and U-10Zr fuels.</p>
+      <p>We combine experimental conductivity data, mesoscale simulations and machine learning to connect microstructure with effective thermal conductivity in UO₂–BeO, UO₂–Mo and U-10Zr fuels.</p>
       <a href="{{ '/publications/#thermal-conductivity-models' | relative_url }}">Read the publication highlight →</a>
     </div>
   </div>

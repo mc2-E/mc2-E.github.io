@@ -24,9 +24,9 @@ nav_parent: /about/
 
 <nav class="project-breadcrumb" aria-label="Breadcrumb"><a href="{{ '/about/' | relative_url }}">Research</a> / <a href="{{ '/research/projects/' | relative_url }}">Projects</a> / <a href="{{ '/research/projects/molten-salt-corrosion/' | relative_url }}">Molten-salt corrosion</a> / Simple implementation</nav>
 
-Start here for focused studies of **Cr-only selective dissolution** in a one-dimensional Fe–Ni–Cr–vacancy alloy. The five explorers separate the effects of transport length, Cr diffusivity, vacancies, imposed overpotential and finite versus maintained salt chemistry. Supporting reports and offline packages accompany the tools.
+We use five focused explorers to study **Cr-only selective dissolution** in a one-dimensional Fe–Ni–Cr–vacancy alloy. We separate the effects of transport length, Cr diffusivity, vacancies, imposed overpotential and finite versus maintained salt chemistry. Supporting reports and offline packages accompany the tools.
 
-The bulk transport coefficients are evaluated at the selected reference state and held fixed during each calculation. The surface laws differ among the tools, from a linear reaction benchmark to nonlinear activity-based mixed-potential kinetics; each explorer states its own assumptions. This collection is useful for understanding individual mechanisms and building analytical benchmarks.
+We evaluate bulk transport coefficients at the selected reference state and hold them fixed during each calculation. We use different surface laws across the tools, from a linear reaction benchmark to nonlinear activity-based mixed-potential kinetics. Each explorer states its assumptions so readers can examine individual mechanisms and build analytical benchmarks.
 
 For configurable Cr-only or Cr+Fe exchange and user-adjustable Butler–Volmer kinetics, use the [Comprehensive Implementation]({{ '/research/projects/molten-salt-corrosion/comprehensive-implementation/' | relative_url }}).
 

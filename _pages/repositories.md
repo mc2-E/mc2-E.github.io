@@ -6,4 +6,4 @@ nav: true
 nav_order: 4
 ---
 
-You can find our group's open-source projects and code on our [mc2-E](https://github.com/mc2-E).
+We share our open-source projects and research code through the [mc2-E organization on GitHub](https://github.com/mc2-E).

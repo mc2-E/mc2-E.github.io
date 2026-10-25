@@ -20,7 +20,7 @@ nav_parent: /about/
 
 <nav class="project-breadcrumb" aria-label="Breadcrumb"><a href="{{ '/about/' | relative_url }}">Research</a> / <a href="{{ '/research/projects/' | relative_url }}">Projects</a> / <a href="{{ '/research/projects/molten-salt-corrosion/' | relative_url }}">Molten-salt corrosion</a> / Comprehensive implementation</nav>
 
-This unified explorer extends the focused Cr-only studies to **configurable Cr-only or Cr+Fe dissolution and deposition**. It combines analytical spatial transport with numerically solved, nonlinear activity-based Butler–Volmer interface kinetics. Use it to test how reaction assumptions, thermodynamic reference gaps and finite or maintained salt chemistry change element redistribution and net metal transfer.
+We extend the focused Cr-only studies to **configurable Cr-only or Cr+Fe dissolution and deposition** in this unified explorer. We combine analytical spatial transport with numerically solved, nonlinear activity-based Butler–Volmer interface kinetics. Use it to test how reaction assumptions, thermodynamic reference gaps and finite or maintained salt chemistry change element redistribution and net metal transfer.
 
 <div class="project-links"><a href="{{ '/research/projects/molten-salt-corrosion/comprehensive-implementation/configurable-kinetics/' | relative_url }}">Open the configurable corrosion explorer →</a><a href="{{ '/research/projects/molten-salt-corrosion/comprehensive-implementation/configurable-kinetics/' | relative_url }}?bath=finite">Start with finite-bath mixed potential →</a><a href="{{ '/research/projects/molten-salt-corrosion/comprehensive-implementation/configurable-kinetics/index.html' | relative_url }}" download="Configurable_BV_Corrosion_Explorer.html">Download the offline HTML</a></div>
 
@@ -39,11 +39,11 @@ Open the default 100 µm, 700 °C maintained-chemistry case. Compare Cr+Fe with 
 
 ## Scope and assumptions
 
-Bulk transport coefficients are evaluated at the chosen initial/far-alloy reference and held constant during each trajectory; surface thermodynamic activities and reaction kinetics remain nonlinear. The transient calculation is semianalytical, using analytical diffusion responses with numerical time integration and boundary solves. It does not run MOOSE.
+We evaluate bulk transport coefficients at the chosen initial/far-alloy reference and hold them constant during each trajectory, while retaining nonlinear surface thermodynamic activities and reaction kinetics. We calculate transients semianalytically, combining analytical diffusion responses with numerical time integration and boundary solves. The explorer does not run MOOSE.
 
-The kinetic mapping is a conditional adaptation of source measurements, and adjustable prefactors are sensitivity choices. A converged stationary root does not by itself establish stability, uniqueness or attainment within two years. Equivalent metal transfer is not wall recession. The explorer’s **Model** tab explains the equations, evidence and limitations.
+We conditionally adapt source measurements to define the kinetic mapping and use adjustable prefactors for sensitivity studies. A converged stationary root does not by itself establish stability, uniqueness or attainment within two years. Equivalent metal transfer is not wall recession. The explorer’s **Model** tab explains the equations, evidence and limitations.
 
-The finite-bath default uses equal initial effective dissolved Cr and Fe inventories (0.188507 mol/m² each) and a shared capacity of 1.885074 mol/m². These are controlled comparison inputs, not a measured salt composition. Activity ratios scale with the remaining inventories; no spatial salt transport or gas equation of state is solved. The fixed far-alloy reservoir remains available. Positive kinetic-prefactor changes affect the approach to equilibrium, while the equilibrium itself depends on thermodynamics and inventories.
+For the finite-bath default, we use equal initial effective dissolved Cr and Fe inventories of 0.188507 mol/m² each and a shared capacity of 1.885074 mol/m². These are controlled comparison inputs, not a measured salt composition. Activity ratios scale with the remaining inventories; we solve neither spatial salt transport nor a gas equation of state. The fixed far-alloy reservoir remains available. Positive kinetic-prefactor changes affect the approach to equilibrium, while the equilibrium itself depends on thermodynamics and inventories.
 
 The earlier focused Cr-only tools remain available under the [Simple Implementation]({{ '/research/projects/molten-salt-corrosion/simple-implementation/' | relative_url }}).
 

@@ -20,9 +20,9 @@ nav_parent: /about/
 
 <nav class="project-breadcrumb" aria-label="Breadcrumb"><a href="{{ '/about/' | relative_url }}">Research</a> / <a href="{{ '/research/projects/' | relative_url }}">Projects</a> / Molten-salt corrosion</nav>
 
-Our molten-salt corrosion project investigates how alloy diffusion, thermodynamic interactions, vacancy transport and interfacial electrochemistry combine to control selective dissolution. The broader research connects modeling with experiments on 316H stainless steel for molten-salt energy systems.
+We investigate how alloy diffusion, thermodynamic interactions, vacancy transport and interfacial electrochemistry combine to control selective dissolution. We connect this modeling with experimental collaborations on 316H stainless steel for molten-salt energy systems.
 
-Explore the project through two implementations. Both use a one-dimensional alloy representation and analytical or semianalytical transport calculations, primarily at 700 °C.
+We provide two public implementations for exploring these mechanisms. Both use a one-dimensional alloy representation and analytical or semianalytical transport calculations, primarily at 700 °C.
 
 <div class="implementation-grid">
 <section class="implementation-card" aria-labelledby="simple-title">
@@ -39,11 +39,19 @@ Explore the project through two implementations. Both use a one-dimensional allo
 </section>
 </div>
 
+## Experimental collaboration: stress and corrosion in 316H
+
+We collaborated on a study combining four-point bending, finite-element analysis and molten-salt exposure to map stress-dependent corrosion in 316H stainless steel. After 100 hours in FLiNaK at 700 °C, tensile regions showed deeper attack and greater grain-boundary chromium depletion than compressive regions. The method compares corrosion susceptibility across the stress field of a single specimen.
+
+Our current public explorers examine transport and electrochemical mechanisms. They do not model the stress-dependent cracking observed in this experiment, and this study does not by itself validate their predictions.
+
+[Read the experimental study: Williams et al., *Materials Today Communications* 49, 114225 (2025)](https://doi.org/10.1016/j.mtcomm.2025.114225).
+
 ## Reading the predictions
 
-These tools hold the bulk transport coefficients fixed at the selected reference state. They provide analytical benchmarks and semianalytical sensitivity studies; they are not the full evolving-coefficient MOOSE model. “Comprehensive” describes the configurable reaction choices in the newer explorer.
+We hold the bulk transport coefficients fixed at the selected reference state in these tools. We use them for analytical benchmarks and semianalytical sensitivity studies; they do not implement the full evolving-coefficient MOOSE model. “Comprehensive” describes the configurable reaction choices in the newer explorer.
 
-Rates represent **equivalent metal transfer per unit area**, not direct wall recession or depletion depth. The simple tools report Cr-equivalent removal; the comprehensive explorer also separates signed Cr and Fe transfer from net metal removal. Assumptions and applicable parameter ranges are documented within each tool.
+We report rates as **equivalent metal transfer per unit area**, not direct wall recession or depletion depth. The simple tools report Cr-equivalent removal; the comprehensive explorer also separates signed Cr and Fe transfer from net metal removal. Each tool documents its assumptions and applicable parameter ranges.
 
 [← All research projects]({{ '/research/projects/' | relative_url }})
 

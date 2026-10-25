@@ -20,7 +20,7 @@ Our research connects material structure, evolving microstructure, and component
 
 ### Materials in extreme environments
 
-We study how interacting thermal, mechanical, chemical, and irradiation conditions influence material behavior. Coupled models connect microstructural evolution with changes in properties and performance.
+We study how interacting thermal, mechanical, chemical, and irradiation conditions influence material behavior. We use coupled models to connect microstructural evolution with changes in properties and performance.
 
 ### Multiphysics and multiscale modeling
 
@@ -42,14 +42,20 @@ We also apply computational materials methods to fusion-energy and battery-mater
 
 ## Projects
 
+### [Irradiation-induced segregation in alloys]({{ '/research/projects/irradiation-induced-segregation/' | relative_url }})
+
+We investigate how defect production, transport and absorption redistribute chromium near grain boundaries, connecting our published studies of dilute Fe–Cr and Ni–Cr alloys.
+
+[Explore the segregation project →]({{ '/research/projects/irradiation-induced-segregation/' | relative_url }})
+
 ### [U–Zr metallic fuel]({{ '/research/projects/#uzr-processing' | relative_url }})
 
-Experiments connect casting, extrusion and heat treatment to the microstructure of U–10Zr.
+We collaborate on experiments that connect casting, extrusion and heat treatment to the microstructure of U–10Zr.
 
 [Read the U–Zr research entry →]({{ '/research/projects/#uzr-processing' | relative_url }})
 
 ### [Molten-salt corrosion]({{ '/research/projects/molten-salt-corrosion/' | relative_url }})
 
-Interactive analytical tools connect alloy transport, interface kinetics and salt chemistry, with supporting reports and offline downloads.
+We connect alloy transport, interface kinetics and salt chemistry through modeling, interactive tools and experimental collaborations.
 
 [View project resources →]({{ '/research/projects/molten-salt-corrosion/' | relative_url }}) · [All research projects →]({{ '/research/projects/' | relative_url }})

@@ -9,11 +9,17 @@ nav_parent: /about/
 
 [← Research overview]({{ '/about/' | relative_url }})
 
-Explore the questions, methods and interactive resources behind our research. Each project brings its related tools and guides together in one place.
+Explore the questions, methods and interactive resources behind our research. We bring each project’s related publications, tools and guides together here.
+
+## [Irradiation-induced segregation in alloys]({{ '/research/projects/irradiation-induced-segregation/' | relative_url }})
+
+We study how irradiation changes chromium distributions near grain boundaries. Our Fe–Cr and Ni–Cr studies examine how defect production and absorption interact with alloy transport to produce enrichment or depletion.
+
+[Explore the segregation project →]({{ '/research/projects/irradiation-induced-segregation/' | relative_url }})
 
 <h2 id="uzr-processing">U–Zr metallic fuel</h2>
 
-How does fabrication history change a metallic fuel’s starting microstructure? Harrup and colleagues examine injection-cast and extruded U–10Zr with synchrotron X-ray diffraction and scanning electron microscopy. Their measurements distinguish changes in phase morphology and microstrain after thermal treatment.
+We collaborated on a study of injection-cast and extruded U–10Zr using synchrotron X-ray diffraction and scanning electron microscopy. Together, we examined how fabrication and thermal treatment change phase morphology and microstrain.
 
 **Related publication:** Harrup et al., *Journal of Nuclear Materials* 634, 157082 (2026).
 
@@ -21,7 +27,7 @@ How does fabrication history change a metallic fuel’s starting microstructure?
 
 ## [Molten-salt corrosion]({{ '/research/projects/molten-salt-corrosion/' | relative_url }})
 
-Understand how alloy transport and interfacial electrochemistry control selective dissolution in molten salts. Explore prescribed overpotential, finite-bath and maintained-chemistry conditions, diffusion versus interface control, and uncertainty in Cr diffusivity.
+We investigate how alloy transport and interfacial electrochemistry control selective dissolution in molten salts. Our public resources explore prescribed overpotential, finite-bath and maintained-chemistry conditions, diffusion versus interface control and uncertainty in Cr diffusivity. We also collaborate on experiments that examine how stress affects corrosion in 316H stainless steel.
 
 **Available resources:** a Simple Implementation collection with five focused explorers, supporting reports and offline downloads, plus a Comprehensive Implementation with configurable Cr-only and Cr+Fe reaction kinetics.
 
