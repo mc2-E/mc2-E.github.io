@@ -11,13 +11,13 @@ nav_parent: /about/
 
 Explore the questions, methods and interactive resources behind our research. We bring each project’s related publications, tools and guides together here.
 
-## [Irradiation-induced segregation in alloys]({{ '/research/projects/irradiation-induced-segregation/' | relative_url }})
+## [Irradiation induced segregation in alloys]({{ '/research/projects/irradiation-induced-segregation/' | relative_url }})
 
 We study how irradiation changes chromium distributions near grain boundaries. Our Fe–Cr and Ni–Cr studies examine how defect production and absorption interact with alloy transport to produce enrichment or depletion.
 
 [Explore the segregation project →]({{ '/research/projects/irradiation-induced-segregation/' | relative_url }})
 
-<h2 id="uo2-fuel-performance">UO₂ fuel performance</h2>
+<h2 id="uo2-fuel-performance">Fuel performance of high burnup UO₂</h2>
 
 How does damage at the scale of a uranium atom affect the behavior of a fuel pellet? We modeled mobile defects inside irradiated UO₂ grains to estimate how quickly uranium atoms diffuse and how readily the fuel deforms under sustained stress.
 

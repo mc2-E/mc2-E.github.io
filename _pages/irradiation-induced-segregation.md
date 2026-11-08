@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Irradiation-Induced Segregation in Alloys
+title: Irradiation induced segregation in alloys
 permalink: /research/projects/irradiation-induced-segregation/
 nav: false
 nav_parent: /about/
 ---
 
-[Research]({{ '/about/' | relative_url }}) / [Projects]({{ '/research/projects/' | relative_url }}) / Irradiation-induced segregation
+[Research]({{ '/about/' | relative_url }}) / [Projects]({{ '/research/projects/' | relative_url }}) / Irradiation induced segregation in alloys
 
 We investigate how irradiation redistributes alloying elements near grain boundaries. By coupling defect generation, transport and absorption to solute evolution, we examine why chromium enriches or depletes at interfaces.
 

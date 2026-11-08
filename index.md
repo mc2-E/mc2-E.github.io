@@ -34,7 +34,7 @@ We connect multiscale physics, experimental evidence, and AI/ML to understand ho
       <p><strong>Research highlight</strong></p>
       <h3 id="uo2-diffusion-and-creep" style="margin-top: 0;">How radiation damage affects diffusion and creep in UO₂</h3>
       <p>Which defects remain mobile after irradiation? In uranium dioxide, their relative numbers depend on temperature. We traced how that balance affects uranium diffusion and the rate at which fuel deforms under stress.</p>
-      <a href="{{ '/publications/#uo2-defect-survival' | relative_url }}">Read the UO₂ publication highlight →</a>
+      <p><a href="{{ '/publications/#uo2-defect-survival' | relative_url }}">Read the UO₂ publication highlight →</a> · <a href="{{ '/research/projects/#uo2-fuel-performance' | relative_url }}">Fuel performance of high burnup UO₂ →</a></p>
     </div>
   </div>
   <div class="card mb-3">
@@ -42,7 +42,7 @@ We connect multiscale physics, experimental evidence, and AI/ML to understand ho
       <p><strong>Research highlight</strong></p>
       <h3 id="fe-cr-segregation" style="margin-top: 0;">Why chromium enriches or depletes at grain boundaries</h3>
       <p>Working with collaborators at Idaho National Laboratory, we investigated how defect production and absorption affect chromium segregation in dilute Fe–Cr. Our rate-theory study shows how these mechanisms can shift the transition from grain-boundary enrichment to depletion toward lower temperatures.</p>
-      <p><a href="{{ '/publications/#fe-cr-segregation' | relative_url }}">Read the Fe–Cr publication highlight →</a> · <a href="{{ '/research/projects/irradiation-induced-segregation/' | relative_url }}">Explore the segregation project →</a></p>
+      <p><a href="{{ '/publications/#fe-cr-segregation' | relative_url }}">Read the Fe–Cr publication highlight →</a> · <a href="{{ '/research/projects/irradiation-induced-segregation/' | relative_url }}">Irradiation induced segregation in alloys →</a></p>
     </div>
   </div>
   <div class="card mb-3">

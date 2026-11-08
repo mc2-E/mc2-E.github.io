@@ -42,11 +42,15 @@ We also apply computational materials methods to fusion-energy and battery-mater
 
 ## Projects
 
-### [Irradiation-induced segregation in alloys]({{ '/research/projects/irradiation-induced-segregation/' | relative_url }})
+### [Irradiation induced segregation in alloys]({{ '/research/projects/irradiation-induced-segregation/' | relative_url }})
 
 We investigate how defect production, transport and absorption redistribute chromium near grain boundaries, connecting our published studies of dilute Fe–Cr and Ni–Cr alloys.
 
 [Explore the segregation project →]({{ '/research/projects/irradiation-induced-segregation/' | relative_url }})
+
+### [Fuel performance of high burnup UO₂]({{ '/research/projects/#uo2-fuel-performance' | relative_url }})
+
+We model how defects in irradiated uranium dioxide affect uranium diffusion and creep.
 
 ### [U–Zr metallic fuel]({{ '/research/projects/#uzr-processing' | relative_url }})
 

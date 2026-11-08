@@ -11,7 +11,7 @@ nav_order: 2
   <p><strong>Abdurrahman Ozturk, Merve Gencturk, Larry K. Aagesen, and Karim E. Ahmed</strong> · <em>Journal of Nuclear Materials</em> 635 (2027), 157191 · Published online October 28, 2026</p>
   <p><em>Efficiently bridging primary radiation damage and macroscopic fuel behavior: The role of production bias in UO₂</em></p>
   <p>When radiation displaces a uranium atom, it leaves a vacancy in the lattice. Molecular dynamics simulations show that temperature affects how many vacancies and displaced atoms survive as mobile defects. We used those survival fractions in rate-theory models of uranium dioxide. At lower temperatures, including the excess mobile uranium interstitials improved agreement with selected benchmarks for uranium self-diffusion and irradiation creep.</p>
-  <p><a href="https://doi.org/10.1016/j.jnucmat.2026.157191">Read the paper (DOI 10.1016/j.jnucmat.2026.157191) →</a> · <a href="{{ '/research/projects/#uo2-fuel-performance' | relative_url }}">Explore the UO₂ fuel performance project →</a></p>
+  <p><a href="https://doi.org/10.1016/j.jnucmat.2026.157191">Read the paper (DOI 10.1016/j.jnucmat.2026.157191) →</a> · <a href="{{ '/research/projects/#uo2-fuel-performance' | relative_url }}">Fuel performance of high burnup UO₂ →</a></p>
 </section>
 
 <section aria-labelledby="fe-cr-segregation">
@@ -20,7 +20,7 @@ nav_order: 2
   <p><em>Radiation-induced segregation in dilute Fe–Cr: A rate-theory framework for the Cr enrichment–depletion transition at the grain boundary</em></p>
   <p>We collaborated on a rate-theory model of Fe–0.1 at.% Cr. Under symmetric defect production and absorption, the model recovers chromium enrichment at lower temperatures and depletion at higher temperatures. Preferential effective vacancy production or preferential interstitial absorption shifts this transition toward lower temperatures, showing why transport coefficients alone are insufficient when defect fluxes are asymmetric.</p>
   <p><a href="https://doi.org/10.1063/5.0323296">Read the paper · DOI: 10.1063/5.0323296 →</a></p>
-  <p><a href="{{ '/research/projects/irradiation-induced-segregation/' | relative_url }}">Explore our segregation research →</a></p>
+  <p><a href="{{ '/research/projects/irradiation-induced-segregation/' | relative_url }}">Irradiation induced segregation in alloys →</a></p>
 </section>
 
 <section aria-labelledby="stress-corrosion-316h">
