@@ -6,6 +6,14 @@ nav: true
 nav_order: 2
 ---
 
+<section aria-labelledby="uo2-defect-survival">
+  <h2 id="uo2-defect-survival">How surviving defects affect diffusion and creep in UO₂</h2>
+  <p><strong>Abdurrahman Ozturk, Merve Gencturk, Larry K. Aagesen, and Karim E. Ahmed</strong> · <em>Journal of Nuclear Materials</em> 635 (2027), 157191 · Published online October 28, 2026</p>
+  <p><em>Efficiently bridging primary radiation damage and macroscopic fuel behavior: The role of production bias in UO₂</em></p>
+  <p>When radiation displaces a uranium atom, it leaves a vacancy in the lattice. Molecular dynamics simulations show that temperature affects how many vacancies and displaced atoms survive as mobile defects. We used those survival fractions in rate-theory models of uranium dioxide. At lower temperatures, including the excess mobile uranium interstitials improved agreement with selected benchmarks for uranium self-diffusion and irradiation creep.</p>
+  <p><a href="https://doi.org/10.1016/j.jnucmat.2026.157191">Read the paper (DOI 10.1016/j.jnucmat.2026.157191) →</a> · <a href="{{ '/research/projects/#uo2-fuel-performance' | relative_url }}">Explore the UO₂ fuel performance project →</a></p>
+</section>
+
 <section aria-labelledby="fe-cr-segregation">
   <h2 id="fe-cr-segregation">Why chromium enriches or depletes at grain boundaries</h2>
   <p><strong>Russell Oplinger, Mukesh Bachhav, Karim Ahmed, and Sourabh Bhagwan Kadambi</strong> · <em>Journal of Applied Physics</em> 139(15), 155903 (2026)</p>

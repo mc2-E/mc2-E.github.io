@@ -23,10 +23,26 @@ We connect multiscale physics, experimental evidence, and AI/ML to understand ho
   <h2 id="updates-heading">News and highlights</h2>
   <div class="card mb-3">
     <div class="card-body">
+      <p><strong>Research news</strong> · <time datetime="2026-10-30">October 30, 2026</time></p>
+      <h3 id="hornig-tb2-msr" style="margin-top: 0;">Texas A&amp;M team to study recycled fuel for molten salt reactors</h3>
+      <p>Texas A&amp;M announced a $5.4 million award to the Texas A&amp;M Engineering Experiment Station (TEES) under ARPA-E’s HORNIG program. Lin Shao leads the TB²-MSR team, which brings together TEES, Savannah River National Laboratory and Natura Resources. The team aims to develop and test a thorium-based fuel salt containing transuranic elements from used nuclear fuel.</p>
+      <p><a href="https://stories.tamu.edu/news/2026/10/30/texas-am-awarded-5-4-million-to-explore-turning-nuclear-waste-into-fuel/">Read the Texas A&amp;M announcement →</a> · <a href="https://arpa-e.energy.gov/sites/default/files/2026-10/HORNIG_Project_Descriptions_FINAL.pdf">Read ARPA-E’s HORNIG project descriptions (PDF) →</a></p>
+    </div>
+  </div>
+  <div class="card mb-3">
+    <div class="card-body">
       <p><strong>Research highlight</strong></p>
-      <h3 style="margin-top: 0;">Why chromium enriches or depletes at grain boundaries</h3>
+      <h3 id="uo2-diffusion-and-creep" style="margin-top: 0;">How radiation damage affects diffusion and creep in UO₂</h3>
+      <p>Which defects remain mobile after irradiation? In uranium dioxide, their relative numbers depend on temperature. We traced how that balance affects uranium diffusion and the rate at which fuel deforms under stress.</p>
+      <a href="{{ '/publications/#uo2-defect-survival' | relative_url }}">Read the UO₂ publication highlight →</a>
+    </div>
+  </div>
+  <div class="card mb-3">
+    <div class="card-body">
+      <p><strong>Research highlight</strong></p>
+      <h3 id="fe-cr-segregation" style="margin-top: 0;">Why chromium enriches or depletes at grain boundaries</h3>
       <p>Working with collaborators at Idaho National Laboratory, we investigated how defect production and absorption affect chromium segregation in dilute Fe–Cr. Our rate-theory study shows how these mechanisms can shift the transition from grain-boundary enrichment to depletion toward lower temperatures.</p>
-      <a href="{{ '/publications/#fe-cr-segregation' | relative_url }}">Read the Fe–Cr publication highlight →</a>
+      <p><a href="{{ '/publications/#fe-cr-segregation' | relative_url }}">Read the Fe–Cr publication highlight →</a> · <a href="{{ '/research/projects/irradiation-induced-segregation/' | relative_url }}">Explore the segregation project →</a></p>
     </div>
   </div>
   <div class="card mb-3">

@@ -17,6 +17,12 @@ We study how irradiation changes chromium distributions near grain boundaries. O
 
 [Explore the segregation project →]({{ '/research/projects/irradiation-induced-segregation/' | relative_url }})
 
+<h2 id="uo2-fuel-performance">UO₂ fuel performance</h2>
+
+How does damage at the scale of a uranium atom affect the behavior of a fuel pellet? We modeled mobile defects inside irradiated UO₂ grains to estimate how quickly uranium atoms diffuse and how readily the fuel deforms under sustained stress.
+
+[Read the diffusion and creep publication highlight →]({{ '/publications/#uo2-defect-survival' | relative_url }})
+
 <h2 id="uzr-processing">U–Zr metallic fuel</h2>
 
 We collaborated on a study of injection-cast and extruded U–10Zr using synchrotron X-ray diffraction and scanning electron microscopy. Together, we examined how fabrication and thermal treatment change phase morphology and microstrain.
