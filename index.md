@@ -90,6 +90,9 @@ We connect multiscale physics, experimental evidence, and AI/ML to understand ho
   <a href="https://www.energy.gov/" aria-label="U.S. Department of Energy" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; width: 310px; max-width: 100%; padding: 18px; background: #fff; border-radius: 4px;">
     <img src="{{ '/assets/img/doe-logo.png' | relative_url }}" alt="U.S. Department of Energy" width="1350" height="387" style="display: block; width: 100%; height: auto;" loading="lazy">
   </a>
+  <a href="https://arpa-e.energy.gov/" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; width: 240px; max-width: 100%; padding: 18px; background: #fff; border-radius: 4px;">
+    <img src="{{ '/assets/img/arpa-e-logo.svg' | relative_url }}" alt="Advanced Research Projects Agency–Energy (ARPA-E)" width="282" height="58" style="display: block; width: 100%; height: auto;" loading="lazy">
+  </a>
   <a href="https://nsuf.inl.gov/" aria-label="Nuclear Science User Facilities" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; width: 230px; max-width: 100%; padding: 15px; background: #fff; border-radius: 4px;">
     <img src="{{ '/assets/img/nsuf-logo.png' | relative_url }}" alt="NSUF — Nuclear Science User Facilities" width="1235" height="617" style="display: block; width: 100%; height: auto;" loading="lazy">
   </a>
